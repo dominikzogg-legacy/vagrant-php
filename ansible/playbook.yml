@@ -3,3 +3,6 @@
   sudo: true
   roles:
     - general
+    - mariadb
+    - php
+    - nginx

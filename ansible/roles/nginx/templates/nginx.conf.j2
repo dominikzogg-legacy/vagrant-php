@@ -1,0 +1,50 @@
+user vagrant;
+worker_processes 4;
+error_log /var/log/nginx/error.log;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    include mime.types;
+    default_type application/octet-stream;
+    charset UTF-8;
+
+    sendfile on;
+    keepalive_timeout 65;
+
+    gzip on;
+    gzip_disable "msie6";
+
+    server {
+        root /vagrant/web;
+
+        index app_dev.php;
+
+        location ~ /\. {
+            access_log off;
+            log_not_found off;
+            deny all;
+        }
+
+        location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml|ttf|woff)$ {
+            access_log off;
+            log_not_found off;
+            expires 30d;
+            add_header Pragma public;
+            add_header Cache-Control "public, mustrevalidate, proxy-revalidate";
+        }
+
+        location ~ \.php$ {
+            try_files $uri =404;
+            fastcgi_pass unix:/var/run/php5-fpm.socket;
+            include fastcgi_params;
+        }
+
+        location / {
+            try_files $uri $uri/ /app_dev.php?$args;
+        }
+    }
+}

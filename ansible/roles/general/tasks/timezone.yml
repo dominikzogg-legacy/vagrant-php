@@ -1,6 +1,0 @@
----
-- name: Timezone | Set /etc/localtime to {{ timezone }}
-  command: /bin/cp /usr/share/zoneinfo/{{ timezone }} /etc/localtime
-
-- name: Timezone | Update tzdata
-  command: dpkg-reconfigure --frontend noninteractive tzdata

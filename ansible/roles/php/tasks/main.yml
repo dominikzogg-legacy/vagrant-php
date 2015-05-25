@@ -1,0 +1,41 @@
+---
+- name: PHP | install needed modules
+  apt: name={{ item }} state=present
+  with_items:
+    - php5
+    - php5-apcu
+    - php5-cli
+    - php5-common
+    - php5-curl
+    - php5-fpm
+    - php5-gd
+    - php5-imagick
+    - php5-intl
+    - php5-mcrypt
+    - php5-mysqlnd
+    - php5-sqlite
+    - php5-xdebug
+    - php5-xmlrpc
+
+- name: PHP | CLI php.ini
+  template:
+    src=php-cli.ini.j2
+    dest=/etc/php5/cli/php.ini
+
+- name: PHP | FPM php.ini
+  template:
+    src=php-fpm.ini.j2
+    dest=/etc/php5/fpm/php.ini
+
+- name: PHP-FPM | Pool config
+  template:
+    src=www.conf.j2
+    dest=/etc/php5/fpm/pool.d/www.conf
+  notify:
+    - restart php5-fpm
+
+- shell: curl -LsS https://getcomposer.org/installer -o /usr/local/bin/composer
+- shell: chmod a+x /usr/local/bin/composer
+
+- shell: curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony
+- shell: chmod a+x /usr/local/bin/symfony
