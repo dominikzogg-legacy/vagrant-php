@@ -34,8 +34,7 @@
   notify:
     - restart php5-fpm
 
-- shell: curl -LsS https://getcomposer.org/installer -o /usr/local/bin/composer
-- shell: chmod a+x /usr/local/bin/composer
+- shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
 - shell: curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony
 - shell: chmod a+x /usr/local/bin/symfony
