@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Networking stuff
   # --------------------------------------------------------------------------
-  config.vm.network :private_network, ip: "10.10.10.2"
+  config.vm.network "private_network", type: "dhcp"
 
   # Resources of our box
   # --------------------------------------------------------------------------
