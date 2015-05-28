@@ -14,6 +14,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # --------------------------------------------------------------------------
   config.vm.network :private_network, ip: "10.10.10.2"
 
+  # SSH stuff
+  #---------------------------------------------------------------------------
+  config.ssh.forward_agent = true
+
+
   # Resources of our box
   # --------------------------------------------------------------------------
 
