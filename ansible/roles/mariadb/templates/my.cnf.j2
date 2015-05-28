@@ -1,6 +1,7 @@
 [client]
 port = 3306
 socket = /var/run/mysqld/mysqld.sock
+default-character-set=utf8
 
 [mysqld_safe]
 socket = /var/run/mysqld/mysqld.sock
@@ -14,6 +15,7 @@ port = 3306
 basedir = /usr
 datadir = /var/lib/mysql
 tmpdir = /tmp
+character-set-server=utf8
 
 [mysqldump]
 
