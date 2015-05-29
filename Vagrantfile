@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Networking stuff
   # --------------------------------------------------------------------------
   config.vm.network :private_network, ip: "10.10.10.2"
-  config.vm.network :forwarded_port, guest: 22, host: 2002
+  config.vm.network :forwarded_port, guest: 22, host: 2002, id: 'ssh'
 
   # SSH stuff
   #---------------------------------------------------------------------------
