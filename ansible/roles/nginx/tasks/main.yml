@@ -4,16 +4,6 @@
   with_items:
     - nginx-full
 
-- name: Nginx | mime.types
-  template:
-    src=mime.types.j2
-    dest=/etc/nginx/mime.types
-
-- name: Nginx | fastcgi_params
-  template:
-    src=fastcgi_params.j2
-    dest=/etc/nginx/fastcgi_params
-
 - name: Nginx | nginx.conf
   template:
     src=nginx.conf.j2

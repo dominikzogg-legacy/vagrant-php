@@ -1,7 +1,25 @@
 # dominikzogg/vagrant-virtualbox-ansible-symfony
 
-Howto optimize your symfony for good perfomance with vagrant and virtualbox?
-Do not write any cache or log to the synced folder.
+This is a simple vagrant setup for develop symfony projects
+
+## Vagrant plugins
+
+```{.sh}
+vagrant plugin install vagrant-hostmanager
+```
+
+## Vagrant configuration
+
+Add a configuration at `vagrant.yml`
+
+```{.yaml}
+---
+hostname: "symfony.dev"
+relative_document_root: "/web" # "/web" means "/vagrant/web"
+index: "app_dev.php"
+```
+
+## Symfony modification
 
 ### Update your app/AppKernel.php
 
@@ -54,3 +72,38 @@ protected function getRuntimeDir()
 ### Add app/runtime_dir_config.php.dist
 
 Use the app/runtime_dir_config.php.dist file of this repo and copy it to app/runtime_dir_config.php.
+
+### Allow all local networks to access `web/app_dev.php`
+
+Add a function after the use statements
+
+```{.php}
+function checkAllowedIp($remoteAddress)
+{
+    if(in_array($remoteAddress, array('127.0.0.1', 'fe80::1', '::1'))) {
+        return true;
+    }
+    $matches = array();
+    // http://en.wikipedia.org/wiki/Private_network
+    if(preg_match('/([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/', $remoteAddress, $matches) === 1) {
+        for($i=1;$i<5;$i++) {
+            $matches[$i] = (int) $matches[$i];
+        }
+        // localhost
+        if($matches[1] === 127) {
+            return true;
+        }
+        if($matches[1] === 10) {
+            return true;
+        }
+        if($matches[1] === 172 && $matches[2] >= 16 && $matches[2] <= 31) {
+            return true;
+        }
+        if($matches[1] === 192 && $matches[2] === 168) {
+            return true;
+        }
+    }
+}
+```
+
+and replace `in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'fe80::1', '::1'))` with `checkAllowedIp($_SERVER['REMOTE_ADDR'])`

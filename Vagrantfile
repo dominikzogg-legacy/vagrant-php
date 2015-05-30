@@ -1,6 +1,9 @@
-VAGRANTFILE_API_VERSION = "2"
+require 'yaml'
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant.yaml")
+sshforwardport = Random.rand(10000..20000)
+
+Vagrant.configure(2) do |config|
 
   # Vagrant box
   # --------------------------------------------------------------------------
@@ -8,17 +11,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # General settings
   # --------------------------------------------------------------------------
-  config.vm.hostname = "symfony.dev"
+  config.vm.hostname = projectconfig['hostname']
 
-  # Networking stuff
+  # Network
   # --------------------------------------------------------------------------
-  config.vm.network :private_network, ip: "10.10.10.2"
-  config.vm.network :forwarded_port, guest: 22, host: 2002, id: 'ssh'
+  config.vm.network "private_network", type: "dhcp"
+  config.vm.network :forwarded_port, guest: 22, host: sshforwardport, id: "ssh"
 
   # SSH stuff
-  #---------------------------------------------------------------------------
+  # --------------------------------------------------------------------------
   config.ssh.forward_agent = true
 
+  # Hostmanager
+  # --------------------------------------------------------------------------
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
+    if hostname = (vm.ssh_info && vm.ssh_info[:host])
+      `vagrant ssh -c "/sbin/ifconfig eth1" | grep "inet addr" | tail -n 1 | egrep -o "[0-9\.]+" | head -n 1 2>&1`.split("\n").first[/(\d+\.\d+\.\d+\.\d+)/, 1]
+    end
+  end
 
   # Resources of our box
   # --------------------------------------------------------------------------
@@ -37,6 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Provisioning
   # --------------------------------------------------------------------------
   config.vm.provision :ansible do |ansible|
+    ansible.extra_vars = projectconfig
     ansible.playbook = "ansible/playbook.yml"
   end
 end

@@ -1,4 +1,4 @@
-user vagrant;
+user vagrant vagrant;
 worker_processes 4;
 error_log /var/log/nginx/error.log;
 pid /var/run/nginx.pid;
@@ -9,19 +9,17 @@ events {
 
 http {
     include mime.types;
-    default_type application/octet-stream;
     charset UTF-8;
 
     sendfile on;
     keepalive_timeout 65;
 
     gzip on;
-    gzip_disable "msie6";
 
     server {
-        root /vagrant/web;
+        root /vagrant{{ relative_document_root }};
 
-        index app_dev.php;
+        index {{ index }};
 
         location ~ /\. {
             access_log off;
@@ -39,12 +37,13 @@ http {
 
         location ~ \.php$ {
             try_files $uri =404;
-            fastcgi_pass unix:/var/run/php5-fpm.socket;
             include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            fastcgi_pass unix:/var/run/php5-fpm.socket;
         }
 
         location / {
-            try_files $uri $uri/ /app_dev.php?$args;
+            try_files $uri $uri/ /{{ index }}?$args;
         }
     }
 }
