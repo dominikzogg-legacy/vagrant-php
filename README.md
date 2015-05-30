@@ -106,4 +106,14 @@ function checkAllowedIp($remoteAddress)
 }
 ```
 
-and replace `in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'fe80::1', '::1'))` with `checkAllowedIp($_SERVER['REMOTE_ADDR'])`
+and replace
+
+```{.php}
+in_array(@$_SERVER['REMOTE_ADDR'], array('127.0.0.1', 'fe80::1', '::1'))
+```
+
+with
+
+```{.php}
+checkAllowedIp($_SERVER['REMOTE_ADDR'])
+```
