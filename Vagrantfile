@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
   # Network
   # --------------------------------------------------------------------------
   config.vm.network "private_network", type: "dhcp"
-  config.vm.network :forwarded_port, guest: 22, host: sshforwardport, id: "ssh"
+  config.vm.network :forwarded_port, guest: 22, host: sshforwardport, id: "ssh", auto_correct: true
 
   # SSH stuff
   # --------------------------------------------------------------------------
@@ -26,11 +26,6 @@ Vagrant.configure(2) do |config|
   # --------------------------------------------------------------------------
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
-  config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
-    if hostname = (vm.ssh_info && vm.ssh_info[:host])
-      `vagrant ssh -c "/sbin/ifconfig eth1" | grep "inet addr" | tail -n 1 | egrep -o "[0-9\.]+" | head -n 1 2>&1`.split("\n").first[/(\d+\.\d+\.\d+\.\d+)/, 1]
-    end
-  end
 
   # Resources of our box
   # --------------------------------------------------------------------------
@@ -42,6 +37,12 @@ Vagrant.configure(2) do |config|
     v.customize ['modifyvm', :id, '--nictype0', 'virtio']
     v.customize ['modifyvm', :id, '--nictype1', 'virtio']
     v.customize ['modifyvm', :id, '--nictype2', 'virtio']
+
+    config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
+      if vm.id
+        `VBoxManage guestproperty get #{vm.id} "/VirtualBox/GuestInfo/Net/1/V4/IP"`.split()[1]
+      end
+    end
 
     config.vm.synced_folder "./", "/vagrant", :nfs => true, nfs_udp: false
   end
