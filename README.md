@@ -19,6 +19,13 @@ relative_document_root: "/web" # "/web" means "/vagrant/web"
 index: "app_dev.php"
 ```
 
+## Allow the guest, using the hosts ssh config an keys
+
+```
+Host *.dev
+    ForwardAgent yes
+```
+
 ## Symfony modification
 
 ### Update your app/AppKernel.php
