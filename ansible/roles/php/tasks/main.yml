@@ -35,3 +35,5 @@
     - restart php5-fpm
 
 - shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
+
+- shell: curl -sS http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer.phar && chmod +x /usr/local/bin/php-cs-fixer.phar
