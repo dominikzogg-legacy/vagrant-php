@@ -1,4 +1,9 @@
 ---
+- name: APT | update sources.list
+  template:
+    src=sources.list.j2
+    dest=/etc/apt/sources.list
+
 - name: APT | Update apt cache
   apt: update_cache=yes
 
