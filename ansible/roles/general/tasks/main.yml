@@ -4,6 +4,8 @@
     src=sources.list.j2
     dest=/etc/apt/sources.list
 
+- shell: apt-key adv --keyserver keys.gnupg.net --recv-keys E9C74FEEA2098A6E
+
 - name: APT | Update apt cache
   apt: update_cache=yes
 
