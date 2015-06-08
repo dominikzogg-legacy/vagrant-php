@@ -17,6 +17,12 @@ http {
     gzip on;
 
     server {
+        listen 80;
+        listen 443 ssl;
+
+        ssl_certificate /etc/nginx/cert;
+        ssl_certificate_key /etc/nginx/key;
+
         root /vagrant{{ relative_document_root }};
 
         index {{ index }};
