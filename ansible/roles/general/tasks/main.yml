@@ -1,18 +1,20 @@
 ---
+- name: APT | Install requirements
+  apt: name={{ item }} state=present
+  with_items:
+    - aptitude
+    - apt-transport-https
+
 - name: APT | update sources.list
   template:
     src=sources.list.j2
     dest=/etc/apt/sources.list
 
+- shell: cd /tmp && wget https://deb.nodesource.com/gpgkey/nodesource.gpg.key && apt-key add nodesource.gpg.key
 - shell: apt-key adv --keyserver keys.gnupg.net --recv-keys E9C74FEEA2098A6E
 
 - name: APT | Update apt cache
   apt: update_cache=yes
-
-- name: APT | Install requirements
-  apt: name={{ item }} state=present
-  with_items:
-    - aptitude
 
 - name: APT | Upgrade
   apt: upgrade=full
