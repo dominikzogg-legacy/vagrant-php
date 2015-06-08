@@ -26,6 +26,11 @@ Host *.dev
     ForwardAgent yes
 ```
 
+## MacOSX supend the running machinse on user logout (shutdown)
+
+Copy the files `tools/vagrant-suspend` to `/usr/local/bin/vagrant-suspend` and register the logout hook with:
+`sudo defaults write com.apple.loginwindow LogoutHook /usr/local/bin/vagrant-suspend`
+
 ## Symfony modification
 
 ### Update your app/AppKernel.php

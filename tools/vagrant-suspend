@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+// sudo defaults write com.apple.loginwindow LogoutHook /usr/local/bin/vagrant-suspend
+
+$user = exec('stat -f \'%Su\' /dev/console');
+
+echo sprintf('User: %s', $user);
+$output = array();
+$command = sprintf('sudo -u %s VBoxManage list runningvms', $user);
+echo $command . "\n";
+exec($command, $output);
+
+foreach($output as $line) {
+    $matches = array();
+    if(preg_match('/{([^}]+)}/', $line, $matches) !== 1) {
+        throw new \Exception(sprintf('Can\'t parse the following line: %s', $line));
+    }
+    $command = sprintf('sudo -u %s VBoxManage controlvm %s savestate', $user, $matches[1]);
+    echo $command . "\n";
+    exec($command);
+    echo 'done' . "\n";
+}
