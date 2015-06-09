@@ -1,7 +1,7 @@
 require 'yaml'
 
 projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant.yaml")
-sshforwardport = Random.rand(10000..20000)
+sshforwardport = Random.rand(49152..65535)
 
 Vagrant.configure(2) do |config|
 
