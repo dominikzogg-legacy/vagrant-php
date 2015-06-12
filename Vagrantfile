@@ -39,12 +39,17 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
     v.cpus = 1
-    v.customize ['modifyvm', :id, '--nictype0', 'virtio']
-    v.customize ['modifyvm', :id, '--nictype1', 'virtio']
-    v.customize ['modifyvm', :id, '--nictype2', 'virtio']
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-
-    config.vm.synced_folder "./", "/vagrant", :nfs => true, nfs_udp: false
+    
+    if Vagrant::Util::Platform.windows?
+      config.vm.synced_folder "./", "/vagrant", type: "smb"
+    else
+      v.customize ['modifyvm', :id, '--nictype0', 'virtio']
+      v.customize ['modifyvm', :id, '--nictype1', 'virtio']
+      v.customize ['modifyvm', :id, '--nictype2', 'virtio']
+      
+      config.vm.synced_folder "./", "/vagrant", type: "nfs", nfs_udp: false
+    end
   end
 
   # for vmware
