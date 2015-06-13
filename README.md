@@ -1,5 +1,7 @@
 # dominikzogg/vagrant-virtualbox-ansible-symfony
 
+*important*: the host machine, does not need ansible support, all ansible scripts get managed by the client machine.
+
 This is a simple vagrant setup for develop symfony projects
 
  * Debian 8

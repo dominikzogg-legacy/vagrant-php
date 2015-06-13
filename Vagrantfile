@@ -1,4 +1,5 @@
 require 'yaml'
+require 'json'
 
 projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant.yml")
 sshforwardport = Random.rand(49152..65535)
@@ -39,12 +40,17 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
     v.cpus = 1
-    v.customize ['modifyvm', :id, '--nictype0', 'virtio']
-    v.customize ['modifyvm', :id, '--nictype1', 'virtio']
-    v.customize ['modifyvm', :id, '--nictype2', 'virtio']
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-
-    config.vm.synced_folder "./", "/vagrant", :nfs => true, nfs_udp: false
+    
+    if Vagrant::Util::Platform.windows?
+      config.vm.synced_folder "./", "/vagrant", type: "smb"
+    else
+      # use virtio networkcards on unix hosts
+      v.customize ['modifyvm', :id, '--nictype1', 'virtio']
+      v.customize ['modifyvm', :id, '--nictype2', 'virtio']
+      
+      config.vm.synced_folder "./", "/vagrant", type: "nfs", nfs_udp: false
+    end
   end
 
   # for vmware
@@ -58,8 +64,9 @@ Vagrant.configure(2) do |config|
 
   # Provisioning
   # --------------------------------------------------------------------------
-  config.vm.provision :ansible do |ansible|
-    ansible.extra_vars = projectconfig
-    ansible.playbook = "ansible/playbook.yml"
-  end
+
+  config.vm.provision "shell" do |sh|
+      sh.path = "ansible/ansible-on-guest.sh"
+      sh.args = ["ansible/playbook.yml", JSON.generate(projectconfig)]
+    end
 end
