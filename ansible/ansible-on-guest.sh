@@ -1,11 +1,10 @@
 #!/bin/bash
 
-ANSIBLE_PLAYBOOK=$1
-EXTRA_VARS=$2
-
 # Install ansible
 apt-get install -y ansible
 
+export PYTHONUNBUFFERED=1
+
 # Run the playbook.
 echo "Running Ansible provisioner defined in Vagrantfile."
-ansible-playbook -i 'localhost,' "/vagrant/${ANSIBLE_PLAYBOOK}" --extra-vars $EXTRA_VARS --connection=local
+ansible-playbook -i localhost, --connection=local --extra-vars=${2} /vagrant/${1}
