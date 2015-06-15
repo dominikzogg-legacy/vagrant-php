@@ -43,6 +43,14 @@ support on a easy way.
 
 ### vagrant.yml
 
+#### default
+
+```{.yml}
+---
+hostname: 'default.dev'
+application: 'default'
+```
+
 #### drupal
 
 ```{.yml}
