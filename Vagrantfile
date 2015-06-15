@@ -53,15 +53,6 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  # for vmware
-  config.vm.provider "vmware_fusion" do |v|
-    v.vmx["memsize"] = "1024"
-    v.vmx["numvcpus"] = "1"
-    v.vmx["vhv.enable"] = "TRUE"
-
-    config.vm.synced_folder "./", "/vagrant"
-  end
-
   # Provisioning
   # --------------------------------------------------------------------------
 
