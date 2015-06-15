@@ -1,31 +1,31 @@
 ---
-- name: MariaDB | Install
+- name: install
   apt: name={{ item }} state=present
   with_items:
     - mariadb-server
     - mariadb-client
     - python-mysqldb
 
-- name: MariaDB | Change default user to root/root
-  mysql_user: name=root host=localhost password=root
+- name: change default user to root/root
+  mysql_user: name=root password=root host=localhost
 
-- name: MariaDB | copy .my.cnf file for root
-  template:
-    src=user-my.cnf.j2
+- name: copy .my.cnf file for root
+  copy:
+    src=user-my.cnf
     dest=/root/.my.cnf
     owner=root
     mode=0600
 
-- name: MariaDB | copy .my.cnf for vagrant
-  template:
-    src=user-my.cnf.j2
+- name: copy .my.cnf for vagrant
+  copy:
+    src=user-my.cnf
     dest=/home/vagrant/.my.cnf
     owner=vagrant
     mode=0600
 
 - name: MySQL | Copy mysql config
-  template:
-    src=my.cnf.j2
+  copy:
+    src=my.cnf
     dest=/etc/mysql/my.cnf
   notify:
     restart mysql

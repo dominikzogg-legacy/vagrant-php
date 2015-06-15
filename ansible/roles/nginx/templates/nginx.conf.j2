@@ -20,8 +20,8 @@ http {
         listen 80;
         listen 443 ssl;
 
-        ssl_certificate /etc/nginx/cert;
-        ssl_certificate_key /etc/nginx/key;
+        ssl_certificate /etc/nginx/certificate;
+        ssl_certificate_key /etc/nginx/privatekey;
 
         root /vagrant{{ relative_document_root }};
 

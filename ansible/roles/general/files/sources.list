@@ -1,0 +1,5 @@
+deb http://mirror.switch.ch/ftp/mirror/debian jessie main
+deb-src http://mirror.switch.ch/ftp/mirror/debian jessie main
+
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main

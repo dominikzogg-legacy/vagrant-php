@@ -1,20 +1,29 @@
 ---
-- name: Nginx | install needed modules
+- name: add key
+  apt_key: keyserver=keys.gnupg.net id=89DF5277 state=present
+
+- name: app repository
+  apt_repository: repo='deb http://dotdeb.netmirror.org jessie all' state=present
+
+- name: app src repository
+  apt_repository: repo='deb-src http://dotdeb.netmirror.org jessie all' state=present
+
+- name: install needed modules
   apt: name={{ item }} state=present
   with_items:
     - nginx-full
 
-- name: Nginx | ssl private key
-  template:
-    src=key.j2
-    dest=/etc/nginx/key
+- name: copy privatekey
+  copy:
+    src=privatekey
+    dest=/etc/nginx/privatekey
 
-- name: Nginx | ssl certificate
-  template:
-    src=cert.j2
-    dest=/etc/nginx/cert
+- name: copy certificate
+  copy:
+    src=certificate
+    dest=/etc/nginx/certificate
 
-- name: Nginx | nginx.conf
+- name: nginx.conf
   template:
     src=nginx.conf.j2
     dest=/etc/nginx/nginx.conf

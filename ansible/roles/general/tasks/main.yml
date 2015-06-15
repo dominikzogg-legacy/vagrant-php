@@ -1,44 +1,37 @@
 ---
-- name: APT | Install requirements
+- name: apt | update sources.list
+  copy:
+    src=sources.list
+    dest=/etc/apt/sources.list
+
+- name: apt | Update apt cache
+  apt: update_cache=yes
+
+- name: apt | install requirements / tools
   apt: name={{ item }} state=present
   with_items:
     - aptitude
     - apt-transport-https
+    - vim
+    - htop
+    - git
 
-- name: APT | update sources.list
-  template:
-    src=sources.list.j2
-    dest=/etc/apt/sources.list
-
-- shell: cd /tmp && wget https://deb.nodesource.com/gpgkey/nodesource.gpg.key && apt-key add nodesource.gpg.key
-- shell: apt-key adv --keyserver keys.gnupg.net --recv-keys E9C74FEEA2098A6E
-
-- name: APT | Update apt cache
-  apt: update_cache=yes
-
-- name: APT | Upgrade
+- name: apt | Upgrade
   apt: upgrade=full
 
-- name: Locale | Install locales
+- name: locale | install
   apt: name={{ item }} state=present
   with_items:
     - locales-all
 
-- name: Locale | Generate de_CH.UTF-8
+- name: locale | Generate de_CH.UTF-8
   command: /usr/sbin/locale-gen de_CH.UTF-8
 
-- name: Locale | Set locale to de_CH.UTF-8
+- name: locale | Set locale to de_CH.UTF-8
   command: /usr/sbin/update-locale LANG=de_CH.UTF-8 LC_ALL=de_CH.UTF-8
 
-- name: Timezone | Set /etc/localtime to Europe/Zurich
+- name: timezone | Set /etc/localtime to Europe/Zurich
   command: /bin/cp /usr/share/zoneinfo/Europe/Zurich /etc/localtime
 
-- name: Timezone | Update tzdata
+- name: timezone | Update tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
-
-- name: Tools | Install additional tools
-  apt: name={{ item }} state=present
-  with_items:
-    - vim
-    - htop
-    - git

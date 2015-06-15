@@ -1,5 +1,5 @@
 ---
-- name: PHP | install needed modules
+- name: install
   apt: name={{ item }} state=present
   with_items:
     - php5
@@ -17,23 +17,25 @@
     - php5-xdebug
     - php5-xmlrpc
 
-- name: PHP | CLI php.ini
-  template:
-    src=php-cli.ini.j2
+- name: copy cli php.ini
+  copy:
+    src=php-cli.ini
     dest=/etc/php5/cli/php.ini
 
-- name: PHP | FPM php.ini
-  template:
-    src=php-fpm.ini.j2
+- name: copy fpm php.ini
+  copy:
+    src=php-fpm.ini
     dest=/etc/php5/fpm/php.ini
 
-- name: PHP-FPM | Pool config
-  template:
-    src=www.conf.j2
+- name: fpm pool config
+  copy:
+    src=www.conf
     dest=/etc/php5/fpm/pool.d/www.conf
   notify:
     - restart php5-fpm
 
-- shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
+- name: composer install
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
 
-- shell: curl -sS http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer.phar && chmod +x /usr/local/bin/php-cs-fixer.phar
+- name: php-cs-fixer install
+  shell: curl -sS http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer.phar && chmod +x /usr/local/bin/php-cs-fixer.phar
