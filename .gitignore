@@ -1,5 +1,2 @@
-/.idea
 /.vagrant
-/app/config/parameters.yml
 /app/runtime_dir_config.php
-/vendor
