@@ -49,7 +49,7 @@ http {
         }
 
         location / {
-            try_files $uri $uri/ /{{ index }}?$args;
+            try_files $uri $uri/ /{{ index }}{{ rewrite_parameter }};
         }
     }
 }
