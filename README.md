@@ -1,6 +1,6 @@
 # dominikzogg/vagrant-virtualbox-ansible
 
-*important*: the host machine, does not need ansible support, all ansible scripts get managed by the client machine.
+**important**: the host machine, does not need ansible support, all ansible scripts get managed by the client machine.
 
 ## Features
 
