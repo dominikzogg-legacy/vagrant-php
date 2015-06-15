@@ -109,6 +109,8 @@ http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
 
 #### Modify the kernel
 
+`app/AppKernel.php`
+
 ```{.php}
 /**
  * @var string
@@ -157,9 +159,24 @@ protected function getRuntimeDir()
 
 #### Change the cache and log dir path
 
-Copy the script:
+`app/runtime_dir_config.php`
 
-`app/runtime_dir_config.php.dist` to `app/runtime_dir_config.php`
+```{.php}
+<?php
+
+$relativeUrl = DIRECTORY_SEPARATOR . 'symfony' . DIRECTORY_SEPARATOR . trim(str_replace(DIRECTORY_SEPARATOR, '-', dirname(__DIR__)), '-');
+
+if(function_exists('posix_getuid') && function_exists('posix_getpwuid')) {
+    $userID = posix_getuid();
+    $userInfo = posix_getpwuid($userID);
+
+    if(is_array($userInfo) && isset($userInfo['dir']) && $userInfo['dir']) {
+        return $userInfo['dir'] . $relativeUrl;
+    }
+}
+
+return sys_get_temp_dir() . $relativeUrl;
+```
 
 #### Allow access from host to `app_dev.php`
 
