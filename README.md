@@ -1,47 +1,105 @@
-# dominikzogg/vagrant-virtualbox-ansible-symfony
+# dominikzogg/vagrant-virtualbox-ansible
 
 *important*: the host machine, does not need ansible support, all ansible scripts get managed by the client machine.
 
-This is a simple vagrant setup for develop symfony projects
+## Features
 
  * Debian 8
  * Nginx 1.8
  * Mariadb 10.0
- * PHP 5.6.9
+ * PHP 5.6
  * NOdeJS 0.12
 
-## Vagrant plugins
+## Installation
 
-```{.sh}
-vagrant plugin install vagrant-hostmanager
+### virtualbox
+
+Download the newest virtualbox version supported by vagrant.
+
+https://www.virtualbox.org/wiki/Downloads
+
+### vagrant
+
+Download the newest vagrant version.
+
+https://www.vagrantup.com/downloads.html
+
+### vagrant plugin
+
+`vagrant plugin install vagrant-hostmanager`
+
+### operating systems specific
+
+#### windows
+
+##### git
+
+https://msysgit.github.io
+
+Windows got no ssh or git support out of the box, by installing git from `msysgit.github.io` you get ssh and a git
+support on a easy way.
+
+## Configuration
+
+### `vagrant.yml`
+
+#### drupal
+
+```{.yml}
+---
+hostname: "drupal.dev"
+relative_document_root: ""
+index: "index.php"
+rewrite_parameter: "q=$1&$args"
 ```
 
-## Vagrant configuration
+#### symfony
 
-Add a configuration at `vagrant.yml`
-
-```{.yaml}
+```{.yml}
 ---
 hostname: "symfony.dev"
-relative_document_root: "/web" # "/web" means "/vagrant/web"
+relative_document_root: "/web"
 index: "app_dev.php"
+rewrite_parameter: "?$args"
 ```
 
-## Allow the guest, using the hosts ssh config an keys
+### ssh
 
-```
+```{.sh}
 Host *.dev
     ForwardAgent yes
 ```
 
-## MacOSX supend the running machinse on user logout (shutdown)
+### Suspend the virtual machines on host logout or shutdown
 
-Copy the files `tools/vagrant-suspend` to `/usr/local/bin/vagrant-suspend` and register the logout hook with:
+#### linux
+
+Add the following lines to `/etc/default/virtualbox` and add every user, which uses virtualboxm whitespace separated.
+
+```{.sh}
+SHUTDOWN_USERS="foo bar"
+SHUTDOWN=savestate
+```
+
+#### macosx
+
+Copy the script:
+`tools/vagrant-suspend` to `/usr/local/bin/vagrant-suspend`
+
+Register the logout hook:
 `sudo defaults write com.apple.loginwindow LogoutHook /usr/local/bin/vagrant-suspend`
 
-## Symfony modification
+#### windows
 
-### Update your app/AppKernel.php
+There should be a python solution for windows, but i have no expirience with it.
+
+http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
+
+## Optimization
+
+### symfony
+
+#### Modify the kernel
 
 ```{.php}
 /**
@@ -89,11 +147,12 @@ protected function getRuntimeDir()
 }
 ```
 
-### Add app/runtime_dir_config.php.dist
+#### Change the cache and log dir path
 
-Use the app/runtime_dir_config.php.dist file of this repo and copy it to app/runtime_dir_config.php.
+Copy the script:
+`app/runtime_dir_config.php.dist` to `app/runtime_dir_config.php`
 
-### Allow all local networks to access `web/app_dev.php`
+#### Allow access from host to `app_dev.php`
 
 Add a function after the use statements
 
