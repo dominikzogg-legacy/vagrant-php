@@ -154,6 +154,7 @@ protected function getRuntimeDir()
 #### Change the cache and log dir path
 
 Copy the script:
+
 `app/runtime_dir_config.php.dist` to `app/runtime_dir_config.php`
 
 #### Allow access from host to `app_dev.php`
