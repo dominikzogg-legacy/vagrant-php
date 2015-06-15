@@ -23,10 +23,6 @@ http {
         ssl_certificate /etc/nginx/certificate;
         ssl_certificate_key /etc/nginx/privatekey;
 
-        root /vagrant{{ relative_document_root }};
-
-        index {{ index }};
-
         location ~ /\. {
             access_log off;
             log_not_found off;
@@ -48,8 +44,6 @@ http {
             fastcgi_pass unix:/var/run/php5-fpm.socket;
         }
 
-        location / {
-            try_files $uri $uri/ /{{ index }}{{ rewrite_parameter }};
-        }
+        include applications/{{ application }}.conf;
     }
 }

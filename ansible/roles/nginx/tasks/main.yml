@@ -23,6 +23,11 @@
     src=certificate
     dest=/etc/nginx/certificate
 
+- name: copy application profile
+  copy:
+    src=applications
+    dest=/etc/nginx/
+
 - name: nginx.conf
   template:
     src=nginx.conf.j2

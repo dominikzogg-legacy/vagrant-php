@@ -47,20 +47,16 @@ support on a easy way.
 
 ```{.yml}
 ---
-hostname: "drupal.dev"
-relative_document_root: ""
-index: "index.php"
-rewrite_parameter: "q=$1&$args"
+hostname: 'drupal.dev'
+application: 'drupal'
 ```
 
 #### symfony
 
 ```{.yml}
 ---
-hostname: "symfony.dev"
-relative_document_root: "/web"
-index: "app_dev.php"
-rewrite_parameter: "?$args"
+hostname: 'symfony.dev'
+application: 'symfony'
 ```
 
 ### ssh
