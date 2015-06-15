@@ -8,7 +8,7 @@
  * Nginx 1.8
  * Mariadb 10.0
  * PHP 5.6
- * NOdeJS 0.12
+ * NodeJS 0.12
 
 ## Installation
 
