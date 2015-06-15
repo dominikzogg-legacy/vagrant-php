@@ -6,7 +6,7 @@
 
  * Debian 8
  * Nginx 1.8
- * Mariadb 10.0
+ * MariaDB 10.0
  * PHP 5.6
  * NodeJS 0.12
 
