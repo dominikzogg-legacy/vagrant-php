@@ -41,7 +41,7 @@ support on a easy way.
 
 ## Configuration
 
-### `vagrant.yml`
+### vagrant.yml
 
 #### drupal
 
@@ -86,9 +86,11 @@ SHUTDOWN=savestate
 #### macosx
 
 Copy the script:
+
 `tools/vagrant-suspend` to `/usr/local/bin/vagrant-suspend`
 
 Register the logout hook:
+
 `sudo defaults write com.apple.loginwindow LogoutHook /usr/local/bin/vagrant-suspend`
 
 #### windows
