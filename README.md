@@ -103,7 +103,7 @@ There should be a python solution for windows, but i have no expirience with it.
 
 http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
 
-## Optimization
+## Applications
 
  * [symfony][1]
 
