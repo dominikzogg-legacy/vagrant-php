@@ -43,29 +43,18 @@ support on a easy way.
 
 ### vagrant.yml
 
-#### default
-
 ```{.yml}
 ---
-hostname: 'default.dev'
+hostname: 'projectname.dev'
 application: 'default'
 ```
 
-#### drupal
+#### supported application
 
-```{.yml}
----
-hostname: 'drupal.dev'
-application: 'drupal'
-```
-
-#### symfony
-
-```{.yml}
----
-hostname: 'symfony.dev'
-application: 'symfony'
-```
+ * contao
+ * default (no rewrite)
+ * drupal
+ * symfony
 
 ### ssh
 
