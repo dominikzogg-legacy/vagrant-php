@@ -28,6 +28,10 @@ https://www.vagrantup.com/downloads.html
 
 `vagrant plugin install vagrant-hostmanager`
 
+#### windows user need this too (nfs support)
+
+`vagrant plugin install vagrant-winnfsd`
+
 ### operating systems specific
 
 #### windows

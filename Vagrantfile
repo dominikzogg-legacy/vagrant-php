@@ -41,16 +41,14 @@ Vagrant.configure(2) do |config|
     v.memory = 1024
     v.cpus = 1
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-    
-    if Vagrant::Util::Platform.windows?
-      config.vm.synced_folder "./", "/vagrant", type: "smb"
-    else
+
+    if not Vagrant::Util::Platform.windows?
       # use virtio networkcards on unix hosts
       v.customize ['modifyvm', :id, '--nictype1', 'virtio']
       v.customize ['modifyvm', :id, '--nictype2', 'virtio']
-      
-      config.vm.synced_folder "./", "/vagrant", type: "nfs", nfs_udp: false
     end
+
+    config.vm.synced_folder "./", "/vagrant", type: "nfs", nfs_udp: false
   end
 
   # Provisioning
