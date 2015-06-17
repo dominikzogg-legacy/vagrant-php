@@ -36,11 +36,15 @@ https://www.vagrantup.com/downloads.html
 
 #### linux
 
-Install nfs server, for example within ubuntu:
+##### nfs support
 
 `sudo apt-get install nfs-kernel-server`
 
 #### windows
+
+##### nfs support
+
+`vagrant plugin install vagrant-winnfsd`
 
 ##### git
 
