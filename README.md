@@ -42,7 +42,7 @@ https://www.vagrantup.com/downloads.html
 
 `vagrant plugin install vagrant-winnfsd`
 
-##### git
+##### git / ssh client
 
 https://msysgit.github.io
 
