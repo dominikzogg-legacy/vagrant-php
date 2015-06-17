@@ -64,6 +64,7 @@ application: 'default'
  * contao
  * default (no rewrite)
  * drupal
+ * lavarel
  * symfony
  * wordpress
 
