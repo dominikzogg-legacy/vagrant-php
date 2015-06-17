@@ -34,6 +34,12 @@ https://www.vagrantup.com/downloads.html
 
 ### operating systems specific
 
+#### linux
+
+Install nfs server, for example within ubuntu:
+
+`sudo apt-get install nfs-kernel-server`
+
 #### windows
 
 ##### git
