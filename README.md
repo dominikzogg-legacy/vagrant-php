@@ -66,15 +66,6 @@ application: 'default'
  * drupal
  * symfony
 
-### ssh
-
-Allow the virtual machine to use the private keys of the host, for example to pull/push within git.
-
-```{.sh}
-Host *.dev
-    ForwardAgent yes
-```
-
 ### Suspend the virtual machines on host logout or shutdown
 
 #### linux
