@@ -65,6 +65,7 @@ application: 'default'
  * default (no rewrite)
  * drupal
  * symfony
+ * wordpress
 
 ### Suspend the virtual machines on host logout or shutdown
 
