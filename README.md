@@ -69,12 +69,10 @@ git submodule update --remote
 
 #### as a copy of the project
 
-**important**: if you want to update the vagrant setup you need to do it yourself, by remove the dir
-`vagrant-virtualbox-ansible` and repeat this steps bellow.
-
 ```{.sh}
 git clone https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
 cd vagrant-virtualbox-ansible
+git checkout -b v1
 rm -r .git
 ```
 
