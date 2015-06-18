@@ -56,16 +56,15 @@ support on a easy way.
 ##### install
 
 ```{.sh}
-git submodule add https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
-git add .gitmodules
-git add vagrant-virtualbox-ansible
+git submodule add -b v1 https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
+git submodule update --init
 ```
 
 ##### usage
 
 ```{.sh}
-git submodule init
-git submodule update
+git submodule update --init
+git submodule update --remote
 ```
 
 #### as a copy of the project
