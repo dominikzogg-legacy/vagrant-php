@@ -68,17 +68,16 @@ git submodule init
 git submodule update
 ```
 
-#### without beeing a part of the main project
+#### as a copy of the project
 
-##### modify your .gitignore
+**important**: if you want to update the vagrant setup you need to do it yourself, by remove the dir
+`vagrant-virtualbox-ansible` and repeat this steps bellow.
 
-Add the following line:
-
-`/vagrant-virtualbox-ansible`
-
-#### add the repository
-
-`git clone https://github.com/dominikzogg/vagrant-virtualbox-ansible.git`
+```{.sh}
+git clone https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
+cd vagrant-virtualbox-ansible
+rm -r .git
+```
 
 ## Configuration
 
