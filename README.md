@@ -49,9 +49,36 @@ https://msysgit.github.io
 Windows got no ssh or git support out of the box, by installing git from `msysgit.github.io` you get ssh and a git
 support on a easy way.
 
+### vagrant-virtualbox-ansible
+
+#### as a git submodule
+
+##### install
+
+`git submodule add https://github.com/dominikzogg/vagrant-virtualbox-ansible.git`
+`git add .gitmodules`
+`git add vagrant-virtualbox-ansible`
+
+##### usage
+
+`git submodule init`
+`git submodule update`
+
+#### without beeing a part of the main project
+
+##### modify your .gitignore
+
+Add the following line:
+
+`/vagrant-virtualbox-ansible`
+
+#### add the repository
+
+`git clone https://github.com/dominikzogg/vagrant-virtualbox-ansible.git`
+
 ## Configuration
 
-### vagrant.yml
+### vagrant.yml (within your project dir)
 
 ```{.yml}
 ---

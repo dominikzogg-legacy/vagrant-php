@@ -8,4 +8,4 @@ export PYTHONUNBUFFERED=1
 # Run the playbook.
 echo "Running Ansible provisioner defined in Vagrantfile."
 echo "extra-vars: " $2
-ansible-playbook -i localhost, --connection=local --extra-vars=${2} /vagrant/${1}
+ansible-playbook -i localhost, --connection=local --extra-vars=${2} /vagrant/vagrant-virtualbox-ansible/${1}

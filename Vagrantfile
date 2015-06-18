@@ -1,7 +1,7 @@
 require 'yaml'
 require 'json'
 
-projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant.yml")
+projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/../vagrant.yml")
 sshforwardport = Random.rand(49152..65535)
 
 Vagrant.configure(2) do |config|
@@ -48,7 +48,7 @@ Vagrant.configure(2) do |config|
       v.customize ['modifyvm', :id, '--nictype2', 'virtio']
     end
 
-    config.vm.synced_folder "./", "/vagrant", type: "nfs", nfs_udp: false
+    config.vm.synced_folder "./../", "/vagrant", type: "nfs", nfs_udp: false
   end
 
   # Provisioning
