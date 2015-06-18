@@ -128,4 +128,18 @@ http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
 
  * [symfony][1]
 
+## Run
+
+The vagrant setup is in a subdir, which means you need to go there, and call all vagrant commands from there.
+
+```{.sh}
+cd vagrant-virtualbox-ansible
+vagrant up
+vagrant halt
+vagrant suspend
+vagrant resume
+vagrant provision
+vagrant ssh
+```
+
 [1]: doc/symfony.md
