@@ -53,19 +53,24 @@ support on a easy way.
 
 #### as a git submodule
 
-##### install
+##### register
 
 ```{.sh}
 cd /path/to/my/project
 git submodule add -b v1 https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
-git submodule update --init
 ```
 
-##### usage
+##### install
 
 ```{.sh}
 cd /path/to/my/project
 git submodule update --init
+```
+
+##### update
+
+```{.sh}
+cd /path/to/my/project
 git submodule update --remote
 ```
 
