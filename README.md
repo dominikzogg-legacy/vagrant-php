@@ -56,6 +56,7 @@ support on a easy way.
 ##### install
 
 ```{.sh}
+cd /path/to/my/project
 git submodule add -b v1 https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
 git submodule update --init
 ```
@@ -63,6 +64,7 @@ git submodule update --init
 ##### usage
 
 ```{.sh}
+cd /path/to/my/project
 git submodule update --init
 git submodule update --remote
 ```
@@ -70,6 +72,7 @@ git submodule update --remote
 #### as a copy of the project
 
 ```{.sh}
+cd /path/to/my/project
 git clone https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
 cd vagrant-virtualbox-ansible
 git checkout -b v1
@@ -131,6 +134,7 @@ http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
 The vagrant setup is in a subdir, which means you need to go there, and call all vagrant commands from there.
 
 ```{.sh}
+cd /path/to/my/project
 cd vagrant-virtualbox-ansible
 vagrant up
 vagrant halt
