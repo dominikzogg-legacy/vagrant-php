@@ -55,14 +55,18 @@ support on a easy way.
 
 ##### install
 
-`git submodule add https://github.com/dominikzogg/vagrant-virtualbox-ansible.git`
-`git add .gitmodules`
-`git add vagrant-virtualbox-ansible`
+```{.sh}
+git submodule add https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
+git add .gitmodules
+git add vagrant-virtualbox-ansible
+```
 
 ##### usage
 
-`git submodule init`
-`git submodule update`
+```{.sh}
+git submodule init
+git submodule update
+```
 
 #### without beeing a part of the main project
 
