@@ -17,6 +17,9 @@
     - php5-xdebug
     - php5-xmlrpc
 
+- name: remove existing cli php.ini
+  file: path=/etc/php5/cli/php.ini state=absent
+
 - name: configure cli php.ini
   ini_file:
     section=PHP
@@ -24,6 +27,11 @@
     value={{ item.value }}
     dest=/etc/php5/cli/php.ini
   with_dict: php.cli
+  notify:
+      - restart php5-fpm
+
+- name: remove existing fpm php.ini
+  file: path=/etc/php5/fpm/php.ini state=absent
 
 - name: configure fpm php.ini
   ini_file:
@@ -32,6 +40,8 @@
     value={{ item.value }}
     dest=/etc/php5/fpm/php.ini
   with_dict: php.fpm
+  notify:
+      - restart php5-fpm
 
 - name: fpm pool config
   copy:
