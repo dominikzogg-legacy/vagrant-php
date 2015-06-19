@@ -4,6 +4,6 @@
   roles:
     - general
     - mariadb
-    - php
     - nginx
     - nodejs
+    - php
