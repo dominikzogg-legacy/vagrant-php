@@ -23,9 +23,9 @@
     owner=vagrant
     mode=0600
 
-- name: MySQL | Copy mysql config
-  copy:
-    src=my.cnf
+- name: configure my.cnf
+  template:
+    src=my.cnf.j2
     dest=/etc/mysql/my.cnf
   notify:
-    restart mysql
+      - restart mysql

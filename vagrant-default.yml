@@ -1,6 +1,12 @@
 ---
 hostname: projectname.dev
 application: default # contao, default, drupal, lavarel, symfony, wordpress
+mariadb:
+    config:
+        client:
+            default-character-set: utf8
+        mysqld:
+            character-set-server: utf8
 nodejs:
     modules:
         - bower
