@@ -3,7 +3,15 @@ require 'yaml'
 
 defaultconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant-default.yml")
 projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/../vagrant.yml")
-projectconfig = defaultconfig.merge(projectconfig)
+
+class ::Hash
+    def deep_merge(second)
+        merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : Array === v1 && Array === v2 ? v1 | v2 : [:undefined, nil, :nil].include?(v2) ? v1 : v2 }
+        self.merge(second.to_h, &merger)
+    end
+end
+
+projectconfig = defaultconfig.deep_merge(projectconfig)
 
 sshforwardport = Random.rand(49152..65535)
 
