@@ -16,6 +16,4 @@
 
 - name: npm install
   npm: name={{ item }} global=yes state=present
-  with_items:
-    - bower
-    - gulp
+  with_items: nodejs.modules
