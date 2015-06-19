@@ -11,7 +11,7 @@
 - name: install needed modules
   apt: name={{ item }} state=present
   with_items:
-    - nginx-full
+    - nginx-light
 
 - name: copy privatekey
   copy:

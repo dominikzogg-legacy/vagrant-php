@@ -1,5 +1,6 @@
 ---
 hostname: projectname.dev
+
 application: default # contao, default, drupal, lavarel, symfony, wordpress
 
 general:
@@ -11,10 +12,10 @@ mariadb:
             default-character-set: utf8
         mysqld:
             character-set-server: utf8
+
 nodejs:
-    modules:
-        - bower
-        - gulp
+    modules: [bower, gulp]
+
 php:
     config:
         cli:
@@ -36,6 +37,8 @@ php:
                 date.timezone: Europe/Zurich
             intl:
                 intl.default_locale: de_CH.UTF-8
+            xdebug:
+                max_nesting_level: 250
         fpm:
             php:
                 short_open_tag: Off
@@ -60,18 +63,7 @@ php:
                 date.timezone: Europe/Zurich
             intl:
                 intl.default_locale: de_CH.UTF-8
-    modules:
-        - php5
-        - php5-apcu
-        - php5-cli
-        - php5-common
-        - php5-curl
-        - php5-fpm
-        - php5-gd
-        - php5-imagick
-        - php5-intl
-        - php5-mcrypt
-        - php5-mysqlnd
-        - php5-sqlite
-        - php5-xdebug
-        - php5-xmlrpc
+            xdebug:
+                max_nesting_level: 250
+
+    modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, xdebug]
