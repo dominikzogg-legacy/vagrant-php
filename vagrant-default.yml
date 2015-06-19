@@ -1,3 +1,3 @@
 ---
-hostname: 'myproject.dev'
+hostname: 'projectname.dev'
 application: 'default' # contao, default, drupal, lavarel, symfony, wordpress
