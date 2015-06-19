@@ -5,29 +5,15 @@
   notify:
       - restart php5-fpm
 
-- name: remove existing cli php.ini
-  file: path=/etc/php5/cli/php.ini state=absent
-
 - name: configure cli php.ini
-  ini_file:
-    section=PHP
-    option={{ item.key }}
-    value={{ item.value }}
+  template:
+    src=cli.php.ini.j2
     dest=/etc/php5/cli/php.ini
-  with_dict: php.cli
-  notify:
-      - restart php5-fpm
-
-- name: remove existing fpm php.ini
-  file: path=/etc/php5/fpm/php.ini state=absent
 
 - name: configure fpm php.ini
-  ini_file:
-    section=PHP
-    option={{ item.key }}
-    value={{ item.value }}
+  template:
+    src=fpm.php.ini.j2
     dest=/etc/php5/fpm/php.ini
-  with_dict: php.fpm
   notify:
       - restart php5-fpm
 
