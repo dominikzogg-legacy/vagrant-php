@@ -1,5 +1,5 @@
-require 'yaml'
 require 'json'
+require 'yaml'
 
 defaultconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant-default.yml")
 projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/../vagrant.yml")

@@ -17,15 +17,21 @@
     - php5-xdebug
     - php5-xmlrpc
 
-- name: copy cli php.ini
-  copy:
-    src=php-cli.ini
+- name: configure cli php.ini
+  ini_file:
+    section=PHP
+    option={{ item.key }}
+    value={{ item.value }}
     dest=/etc/php5/cli/php.ini
+  with_dict: php.cli
 
-- name: copy fpm php.ini
-  copy:
-    src=php-fpm.ini
+- name: configure fpm php.ini
+  ini_file:
+    section=PHP
+    option={{ item.key }}
+    value={{ item.value }}
     dest=/etc/php5/fpm/php.ini
+  with_dict: php.fpm
 
 - name: fpm pool config
   copy:

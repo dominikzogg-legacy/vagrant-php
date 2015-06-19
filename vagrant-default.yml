@@ -1,3 +1,44 @@
 ---
-hostname: 'projectname.dev'
-application: 'default' # contao, default, drupal, lavarel, symfony, wordpress
+hostname: projectname.dev
+application: default # contao, default, drupal, lavarel, symfony, wordpress
+php:
+    cli:
+        short_open_tag: Off
+        safe_mode: Off
+        max_execution_time: 0
+        memory_limit: -1
+        error_reporting: E_ALL
+        display_errors: On
+        display_startup_errors: On
+        log_errors: On
+        error_log: /var/log/php5-cli.err.log
+        magic_quotes_gpc: Off
+        magic_quotes_runtime: Off
+        magic_quotes_sybase: Off
+        default_charset: utf-8
+        allow_url_fopen: On
+        allow_url_include: Off
+        date.timezone: Europe/Zurich
+        intl.default_locale: de_CH.UTF-8
+    fpm:
+        short_open_tag: Off
+        safe_mode: Off
+        max_execution_time: 600
+        max_input_time: 600
+        memory_limit: 256M
+        error_reporting: E_ALL
+        display_errors: On
+        display_startup_errors: On
+        log_errors: On
+        error_log: /var/log/php5-fpm.err.log
+        pos_max_size: 50M
+        magic_quotes_gpc: Off
+        magic_quotes_runtime: Off
+        magic_quotes_sybase: Off
+        default_charset: utf-8
+        cgi.fix_pathinfo: 1
+        upload_max_filesize: 50M
+        allow_url_fopen: On
+        allow_url_include: Off
+        date.timezone: Europe/Zurich
+        intl.default_locale: de_CH.UTF-8
