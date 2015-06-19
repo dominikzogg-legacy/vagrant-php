@@ -4,20 +4,12 @@
     src=sources.list
     dest=/etc/apt/sources.list
 
-- name: apt | Update apt cache
-  apt: update_cache=yes
+- name: apt | upgrade
+  apt: update_cache=yes upgrade=full
 
-- name: apt | install requirements / tools
+- name: apt | install packages
   apt: name={{ item }} state=present
-  with_items:
-    - aptitude
-    - apt-transport-https
-    - vim
-    - htop
-    - git
-
-- name: apt | Upgrade
-  apt: upgrade=full
+  with_items: general.packages
 
 - name: locale | install
   apt: name={{ item }} state=present

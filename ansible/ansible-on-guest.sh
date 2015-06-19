@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install ansible
-apt-get install -y ansible > /dev/null
+apt-get install -y ansible aptitude apt-transport-https > /dev/null
 
 export PYTHONUNBUFFERED=1
 
