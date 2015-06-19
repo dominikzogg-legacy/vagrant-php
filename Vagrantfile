@@ -1,7 +1,10 @@
 require 'yaml'
 require 'json'
 
+defaultconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant-default.yml")
 projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/../vagrant.yml")
+projectconfig = defaultconfig.merge(projectconfig)
+
 sshforwardport = Random.rand(49152..65535)
 
 Vagrant.configure(2) do |config|
