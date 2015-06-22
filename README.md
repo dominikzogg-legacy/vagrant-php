@@ -157,8 +157,6 @@ vagrant ssh
 
 `VBoxManage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0`
 
-``
-
 ### Vagrant
 
 #### vagrant-hostmanager
