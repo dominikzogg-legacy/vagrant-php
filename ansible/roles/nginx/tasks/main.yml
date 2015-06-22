@@ -1,6 +1,6 @@
 ---
 - name: add key
-  apt_key: keyserver=keys.gnupg.net id=89DF5277 state=present
+  apt_key: keyserver=keyserver.ubuntu.com id=89DF5277 state=present
 
 - name: app repository
   apt_repository: repo='deb http://dotdeb.netmirror.org jessie all' state=present
