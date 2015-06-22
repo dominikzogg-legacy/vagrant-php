@@ -3,6 +3,7 @@
   sudo: true
   roles:
     - general
+    - java
     - mariadb
     - nginx
     - nodejs
