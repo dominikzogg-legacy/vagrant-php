@@ -94,6 +94,8 @@ hostname: 'projectname.dev'
 application: 'default'
 ```
 
+for advanced configuration see the [default configuration][2]
+
 #### supported application
 
  * contao
@@ -168,3 +170,4 @@ vagrant ssh
 Check if you have installed XCode, if yes, check if you allready started it, and accepted the license.
 
 [1]: doc/symfony.md
+[2]: vagrant-default.yml
