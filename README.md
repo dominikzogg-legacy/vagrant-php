@@ -149,4 +149,24 @@ vagrant provision
 vagrant ssh
 ```
 
+## Troubleshooting
+
+### Virtualbox
+
+#### dhcp private_network fails
+
+`VBoxManage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0`
+
+``
+
+### Vagrant
+
+#### vagrant-hostmanager
+
+##### Unable to install due to FFI error
+
+###### OSX
+
+Check if you have installed XCode, if yes, check if you allready started it, and accepted the license.
+
 [1]: doc/symfony.md
