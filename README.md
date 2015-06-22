@@ -90,8 +90,8 @@ rm -r .git
 
 ```{.yml}
 ---
-hostname: 'projectname.dev'
-application: 'default'
+hostname: projectname.dev
+application: default
 ```
 
 for advanced configuration see the [default configuration][2]
