@@ -58,7 +58,7 @@ Vagrant.configure(2) do |config|
       v.customize ['modifyvm', :id, '--nictype2', 'virtio']
     end
 
-    config.vm.synced_folder "./../", "/vagrant", type: "nfs", nfs_udp: false
+    config.vm.synced_folder './../', '/vagrant', type: 'nfs', nfs_udp: false, :owner=> 'vagrant', :group=>'vagrant', :mount_options => ['dmode=777', 'fmode=777']
   end
 
   # Provisioning
