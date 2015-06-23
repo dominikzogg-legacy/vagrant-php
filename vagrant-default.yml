@@ -55,7 +55,7 @@ php:
                 magic_quotes_gpc: Off
                 magic_quotes_runtime: Off
                 default_charset: utf-8
-                cgi.fix_pathinfo: 1
+                cgi.fix_pathinfo: Off
                 upload_max_filesize: 50M
                 allow_url_fopen: On
                 allow_url_include: Off
