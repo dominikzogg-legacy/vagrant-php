@@ -12,7 +12,6 @@ http {
     charset UTF-8;
 
     sendfile on;
-    keepalive_timeout 65;
 
     gzip on;
 
@@ -23,28 +22,16 @@ http {
         ssl_certificate /etc/nginx/certificate;
         ssl_certificate_key /etc/nginx/privatekey;
 
-        location ~ /\. {
-            access_log off;
-            log_not_found off;
-            deny all;
-        }
+        include applications/{{ application }}.conf;
 
         location ~ ^(.+\.php)(.*)$ {
-            fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            fastcgi_param PATH_INFO $fastcgi_path_info;
-            include fastcgi_params;
+            fastcgi_split_path_info ^(.+\.php)(.*)$;
+            try_files $fastcgi_script_name =404;
+            set $wtf $fastcgi_path_info;
+            fastcgi_param PATH_INFO $wtf;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_pass unix:/var/run/php5-fpm.socket;
+            include fastcgi_params;
         }
-
-        location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml|ttf|woff)$ {
-            access_log off;
-            log_not_found off;
-            expires 30d;
-            add_header Pragma public;
-            add_header Cache-Control "public, mustrevalidate, proxy-revalidate";
-        }
-
-        include applications/{{ application }}.conf;
     }
 }
