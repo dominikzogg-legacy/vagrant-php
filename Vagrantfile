@@ -58,8 +58,14 @@ Vagrant.configure(2) do |config|
       v.customize ['modifyvm', :id, '--nictype2', 'virtio']
     end
 
-    config.vm.synced_folder './../', '/vagrant', type: 'nfs', nfs_udp: false
-    config.bindfs.bind_folder '/vagrant', '/vagrant'
+    # disable default share
+    config.vm.synced_folder '', '/vagrant', disabled: true
+
+    config.vm.synced_folder './../', '/vagrant-nfs', create: true, type: 'nfs', nfs_udp: false
+    config.nfs.map_uid = Process.uid
+    config.nfs.map_gid = Process.gid
+
+    config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
   end
 
   # Provisioning
