@@ -8,8 +8,8 @@ class ::Hash
     end
 end
 
-defaultconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/vagrant-default.yml")
-projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + "/../vagrant.yml")
+defaultconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + '/vagrant-default.yml')
+projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + '/../vagrant.yml')
 projectconfig = defaultconfig.deep_merge(projectconfig)
 sshforwardport = Random.rand(49152..65535)
 
@@ -17,7 +17,7 @@ Vagrant.configure(2) do |config|
 
   # Vagrant box
   # --------------------------------------------------------------------------
-  config.vm.box = "debian/jessie64"
+  config.vm.box = 'debian/jessie64'
 
   # General settings
   # --------------------------------------------------------------------------
@@ -25,8 +25,8 @@ Vagrant.configure(2) do |config|
 
   # Network
   # --------------------------------------------------------------------------
-  config.vm.network "private_network", type: "dhcp"
-  config.vm.network :forwarded_port, guest: 22, host: sshforwardport, id: "ssh", auto_correct: true
+  config.vm.network 'private_network', type: 'dhcp'
+  config.vm.network :forwarded_port, guest: 22, host: sshforwardport, id: 'ssh', auto_correct: true
 
   # SSH stuff
   # --------------------------------------------------------------------------
@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
   config.hostmanager.manage_host = true
   config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
     if hostname = (vm.ssh_info && vm.ssh_info[:host])
-      `vagrant ssh -c "hostname -I"`.split()[1]
+      `vagrant ssh -c 'hostname -I'`.split()[1]
     end
   end
 
@@ -46,7 +46,7 @@ Vagrant.configure(2) do |config|
   # --------------------------------------------------------------------------
 
   # for virtualbox
-  config.vm.provider "virtualbox" do |v|
+  config.vm.provider 'virtualbox' do |v|
     v.name = projectconfig['hostname']
     v.memory = 1024
     v.cpus = 1
@@ -64,8 +64,8 @@ Vagrant.configure(2) do |config|
   # Provisioning
   # --------------------------------------------------------------------------
 
-  config.vm.provision "shell" do |sh|
-      sh.path = "ansible/ansible-on-guest.sh"
-      sh.args = ["ansible/playbook.yml", JSON.generate(projectconfig)]
+  config.vm.provision 'shell' do |sh|
+      sh.path = 'ansible/ansible-on-guest.sh'
+      sh.args = ['ansible/playbook.yml', JSON.generate(projectconfig)]
     end
 end
