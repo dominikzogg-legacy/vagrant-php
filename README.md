@@ -26,8 +26,10 @@ https://www.vagrantup.com/downloads.html
 
 ### vagrant plugin
 
-`vagrant plugin install vagrant-hostmanager`
-`vagrant plugin install vagrant-bindfs`
+```{.sh}
+vagrant plugin install vagrant-bindfs
+vagrant plugin install vagrant-hostmanager
+```
 
 ### operating systems specific
 
