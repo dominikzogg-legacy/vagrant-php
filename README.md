@@ -164,7 +164,17 @@ vagrant ssh
 
 ### Vagrant
 
+#### vagrant-bindfs
+
+##### Unknown configuration section 'bindfs'.
+
+Please install or update the vagrant plugin `vagrant-bindfs`
+
 #### vagrant-hostmanager
+
+##### Unknown configuration section 'hostmanager'.
+
+Please install or update the vagrant plugin `vagrant-hostmanager`
 
 ##### Unable to install due to FFI error
 
