@@ -61,7 +61,18 @@ Vagrant.configure(2) do |config|
     # disable default share
     config.vm.synced_folder '', '/vagrant', disabled: true
 
-    config.vm.synced_folder './../', '/vagrant-nfs', create: true, type: 'nfs', nfs_udp: false
+    synched_opts = { create: true, nfs: true, nfs_udp: false }
+    nfs_exports = ['rw', 'async', 'no_subtree_check', 'all_squash']
+
+    if (RUBY_PLATFORM =~ /darwin/)
+      nfs_exports << 'maproot=0:0'
+      synched_opts[:bsd__nfs_options] = nfs_exports
+    elsif (RUBY_PLATFORM =~ /linux/)
+      nfs_exports << 'no_root_squash'
+      synched_opts[:linux__nfs_options] = nfs_exports
+    end
+
+    config.vm.synced_folder './../', '/vagrant-nfs', synched_opts
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
 
