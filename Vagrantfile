@@ -62,7 +62,7 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder '', '/vagrant', disabled: true
 
     synched_opts = { create: true, nfs: true, nfs_udp: false }
-    nfs_exports = ['rw', 'async', 'no_subtree_check', 'all_squash']
+    nfs_exports = ['rw', 'no_subtree_check', 'all_squash']
 
     if (RUBY_PLATFORM =~ /darwin/)
       nfs_exports << 'maproot=0:0'
