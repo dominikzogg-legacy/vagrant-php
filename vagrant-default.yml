@@ -38,7 +38,7 @@ php:
             intl:
                 intl.default_locale: de_CH.UTF-8
             xdebug:
-                max_nesting_level: 250
+                max_nesting_level: 256
         fpm:
             php:
                 short_open_tag: Off
@@ -64,6 +64,6 @@ php:
             intl:
                 intl.default_locale: de_CH.UTF-8
             xdebug:
-                max_nesting_level: 250
+                max_nesting_level: 256
 
     modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, xdebug]
