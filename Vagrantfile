@@ -75,6 +75,6 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision 'shell' do |sh|
       sh.path = 'ansible/ansible-on-guest.sh'
-      sh.args = ['ansible/playbook.yml', JSON.generate(projectconfig)]
+      sh.args = ['ansible/playbook.yml', projectconfig.to_json.split(' ').join('\u0020')]
     end
 end
