@@ -6,6 +6,15 @@ application: default # contao, default, drupal, lavarel, symfony, wordpress
 general:
     packages: [git, htop, vim]
 
+freetds:
+    config: {}
+#        sampledomain.tld:
+#            host: sampledomain.tld
+#            port: 60655
+#            tds version: 7.0
+#            client charset: UTF-8
+#            text size: 20971520
+
 mariadb:
     config:
         client:
@@ -66,4 +75,4 @@ php:
             xdebug:
                 max_nesting_level: 250
 
-    modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, xdebug]
+    modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, sybase, xdebug]
