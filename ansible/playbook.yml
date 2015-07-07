@@ -3,9 +3,9 @@
   sudo: true
   roles:
     - general
-    - freetds
+    - { role: freetds, when: freetds is defined }
     - java
     - mariadb
     - nginx
-    - nodejs
+    - { role: nodejs, when: nodejs is defined }
     - php

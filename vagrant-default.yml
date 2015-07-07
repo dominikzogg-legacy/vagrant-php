@@ -6,8 +6,8 @@ application: default # contao, default, drupal, lavarel, symfony, wordpress
 general:
     packages: [git, htop, vim]
 
-freetds:
-    config: {}
+#freetds:
+#    config:
 #        sampledomain.tld:
 #            host: sampledomain.tld
 #            port: 60655
@@ -22,8 +22,8 @@ mariadb:
         mysqld:
             character-set-server: utf8
 
-nodejs:
-    modules: [bower, gulp]
+#nodejs:
+#    modules: [bower, gulp]
 
 php:
     config:
