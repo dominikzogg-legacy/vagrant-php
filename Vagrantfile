@@ -59,11 +59,14 @@ Vagrant.configure(2) do |config|
     end
 
     # disable default share
-    config.vm.synced_folder '', '/vagrant', disabled: true
-    config.vm.synced_folder './../', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
+    config.vm.synced_folder '.', '/vagrant', disabled: true
+
+    # add nfs share
+    config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
     config.nfs.map_uid = Process.uid
     config.nfs.map_gid = Process.gid
 
+    # use bindfs
     config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
   end
 
