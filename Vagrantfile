@@ -42,6 +42,21 @@ Vagrant.configure(2) do |config|
     end
   end
 
+  # Synced folder
+  # --------------------------------------------------------------------------
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+
+  if Vagrant.has_plugin?("vagrant-bindfs")
+      config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
+      config.nfs.map_uid = Process.uid
+      config.nfs.map_gid = Process.gid
+      config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
+  else
+      config.vm.synced_folder './..', '/vagrant', create: true, nfs: true, nfs_udp: false
+      config.nfs.map_uid = Process.uid
+      config.nfs.map_gid = Process.gid
+  end
+
   # Resources of our box
   # --------------------------------------------------------------------------
 
@@ -57,17 +72,6 @@ Vagrant.configure(2) do |config|
       v.customize ['modifyvm', :id, '--nictype1', 'virtio']
       v.customize ['modifyvm', :id, '--nictype2', 'virtio']
     end
-
-    # disable default share
-    config.vm.synced_folder '.', '/vagrant', disabled: true
-
-    # add nfs share
-    config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
-    config.nfs.map_uid = Process.uid
-    config.nfs.map_gid = Process.gid
-
-    # use bindfs
-    config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
   end
 
   # Provisioning
