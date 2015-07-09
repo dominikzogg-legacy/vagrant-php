@@ -75,4 +75,4 @@ php:
             xdebug:
                 xdebug.max_nesting_level: 256
 
-    modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, sybase, xdebug]
+    modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, xdebug]

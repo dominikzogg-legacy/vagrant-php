@@ -4,10 +4,18 @@
   with_items:
       - php5
       - php5-common
-      - php5-cgi
+      - php5-cli
       - php5-fpm
   notify:
       - restart php5-fpm
+
+- name: install sybase
+  apt: name={{ item }} state=present
+  with_items:
+      - php5-sybase
+  notify:
+      - restart php5-fpm
+  when: freetds is defined
 
 - name: install modules
   apt: name="php5-{{ php.modules|join(',php5-') }}" state=present
