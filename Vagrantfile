@@ -46,15 +46,14 @@ Vagrant.configure(2) do |config|
   # --------------------------------------------------------------------------
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
+    config.nfs.map_uid = Process.uid
+    config.nfs.map_gid = Process.gid
+
   if Vagrant.has_plugin?("vagrant-bindfs")
       config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
-      config.nfs.map_uid = Process.uid
-      config.nfs.map_gid = Process.gid
       config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
   else
       config.vm.synced_folder './..', '/vagrant', create: true, nfs: true, nfs_udp: false
-      config.nfs.map_uid = Process.uid
-      config.nfs.map_gid = Process.gid
   end
 
   # Resources of our box
