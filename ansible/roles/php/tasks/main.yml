@@ -46,3 +46,13 @@
 
 - name: php-cs-fixer install
   shell: curl -sS http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer.phar && chmod +x /usr/local/bin/php-cs-fixer.phar
+
+- name: copy drush install script
+  copy:
+    src=drush.sh
+    dest=~/drush.sh
+  when: application == 'drupal'
+
+- name: drush install
+  script: ~/drush.sh
+  when: application == 'drupal'
