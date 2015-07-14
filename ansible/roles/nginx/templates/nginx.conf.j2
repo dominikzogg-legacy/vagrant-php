@@ -12,6 +12,8 @@ http {
     charset UTF-8;
 
     sendfile off;
+    
+    client_max_body_size {{ php.config.fpm.post_max_size }};
 
     gzip on;
 
