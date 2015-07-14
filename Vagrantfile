@@ -21,7 +21,7 @@ Vagrant.configure(2) do |config|
 
   # Provider
   # --------------------------------------------------------------------------
-  config.vm.provider = 'virtualbox'
+  #config.vm.provider = 'virtualbox'
 
   # General settings
   # --------------------------------------------------------------------------
