@@ -27,3 +27,11 @@
 
 - name: timezone | Update tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
+
+- name: bash | copy .bash_vagrant
+  template:
+    src=bash_vagrant.j2
+    dest=/home/vagrant/.bash_vagrant
+
+- name: bash | register .bash_vagrant
+  lineinfile: dest=/home/vagrant/.bashrc line='. ~/.bash_vagrant'

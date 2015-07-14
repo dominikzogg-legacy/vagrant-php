@@ -1,0 +1,15 @@
+# shell layout
+export CLICOLOR='true'
+export LSCOLORS="gxfxcxdxbxegedabagacad"
+export PS1='\[\033[01;32m\]\h \[\033[01;37m\]\w \u \$ '
+
+{% if application == 'symfony' %}
+alias sf="./app/console"
+alias sfcc="sf cache:clear"
+alias sfai="sf assets:install --symlink"
+alias sfad="sf assetic:dump"
+alias sfaw="sf assetic:watch"
+alias sfdsu="sf doctrine:schema:update --force --complete"
+{% endif %}
+
+cd /vagrant
