@@ -62,7 +62,7 @@ Vagrant.configure(2) do |config|
   # for virtualbox
   config.vm.provider 'virtualbox' do |v|
     v.name = projectconfig['hostname']
-    v.memory = 1024
+    v.memory = projectconfig['memory']
     v.cpus = 1
     v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
 

@@ -3,6 +3,8 @@ hostname: projectname.dev
 
 application: default # contao, default, drupal, lavarel, symfony, wordpress
 
+memory: 1024
+
 bindfs: false
 
 general:
