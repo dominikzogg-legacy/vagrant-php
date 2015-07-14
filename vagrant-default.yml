@@ -60,7 +60,7 @@ php:
                 display_startup_errors: On
                 log_errors: On
                 error_log: /var/log/php5-fpm.err.log
-                pos_max_size: 50M
+                post_max_size: 50M
                 magic_quotes_gpc: Off
                 magic_quotes_runtime: Off
                 default_charset: utf-8
