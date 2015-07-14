@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
   config.nfs.map_uid = Process.uid
   config.nfs.map_gid = Process.gid
 
-  if Vagrant.has_plugin?("vagrant-bindfs") and bindfs
+  if Vagrant.has_plugin?("vagrant-bindfs") and projectconfig['bindfs']
     config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
     config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
   else
