@@ -19,6 +19,10 @@ Vagrant.configure(2) do |config|
   # --------------------------------------------------------------------------
   config.vm.box = 'debian/jessie64'
 
+  # Provider
+  # --------------------------------------------------------------------------
+  config.vm.provider = 'virtualbox'
+
   # General settings
   # --------------------------------------------------------------------------
   config.vm.hostname = projectconfig['hostname']
