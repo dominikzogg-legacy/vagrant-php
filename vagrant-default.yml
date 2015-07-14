@@ -3,6 +3,8 @@ hostname: projectname.dev
 
 application: default # contao, default, drupal, lavarel, symfony, wordpress
 
+bindfs: false
+
 general:
     packages: [git, htop, vim]
 
