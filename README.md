@@ -135,7 +135,7 @@ SHUTDOWN=savestate
 
 Copy the script:
 
-`tools/vagrant-suspend` to `/usr/local/bin/vagrant-suspend`
+`sudo cp tools/vagrant-suspend /usr/local/bin/vagrant-suspend`
 
 Register the logout hook:
 
