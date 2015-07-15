@@ -100,6 +100,7 @@ rm -r .git
 ---
 hostname: projectname.dev
 application: default
+sharetype: nfs
 ```
 
 for advanced configuration see the [default configuration][2]
@@ -112,6 +113,12 @@ for advanced configuration see the [default configuration][2]
  * lavarel
  * symfony
  * wordpress
+
+#### supported sharetype
+
+ * nfs
+ * nfs-bindfs
+ * native
 
 ### Suspend the virtual machines on host logout or shutdown
 

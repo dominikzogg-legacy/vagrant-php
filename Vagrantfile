@@ -46,16 +46,21 @@ Vagrant.configure(2) do |config|
   # --------------------------------------------------------------------------
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
-  config.nfs.map_uid = Process.uid
-  config.nfs.map_gid = Process.gid
-
-  if Vagrant.has_plugin?("vagrant-bindfs") and projectconfig['bindfs']
-    config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
-    config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
+  if projectconfig['sharetype'] == 'native'
+      config.vm.synced_folder './..', '/vagrant'
+  elsif projectconfig['sharetype'] == 'nfs' or projectconfig['sharetype'] == 'nfs-bindfs'
+    config.nfs.map_uid = Process.uid
+    config.nfs.map_gid = Process.gid
+    if projectconfig['sharetype'] == 'nfs-bindfs'
+      config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
+      config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
+    else
+      config.vm.synced_folder './..', '/vagrant', create: true, nfs: true, nfs_udp: false
+    end
   else
-    config.vm.synced_folder './..', '/vagrant', create: true, nfs: true, nfs_udp: false
+    print "no valid sharetype, please take a look into README.md!\n"
   end
-
+  
   # Resources of our box
   # --------------------------------------------------------------------------
 
