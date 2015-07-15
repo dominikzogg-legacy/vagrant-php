@@ -1,9 +1,4 @@
 ---
-- name: apt | update sources.list
-  copy:
-    src=sources.list
-    dest=/etc/apt/sources.list
-
 - name: apt | upgrade
   apt: update_cache=yes upgrade=full
 

@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Copy sources.list
+cp -f /vagrant/vagrant-virtualbox-ansible/ansible/sources.list /etc/apt/sources.list
+
+# Update apt information
+apt-get update > /dev/null
+
 # Install ansible
 apt-get install -y ansible aptitude apt-transport-https > /dev/null
 

@@ -17,8 +17,7 @@ Vagrant.configure(2) do |config|
 
   # Vagrant box
   # --------------------------------------------------------------------------
-  config.vm.box = 'debian/jessie64'
-  # config.vm.box = 'boxcutter/debian80'
+  config.vm.box = 'boxcutter/debian80'
 
   # General settings
   # --------------------------------------------------------------------------
