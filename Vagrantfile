@@ -73,6 +73,14 @@ Vagrant.configure(2) do |config|
     end
   end
 
+  # for vmware
+  config.vm.provider "vmware_fusion" do |v|
+    v.vmx['displayname'] = projectconfig['hostname']
+    v.vmx['memsize'] = projectconfig['memory']
+    v.vmx['numvcpus'] = '1'
+    v.vmx['vhv.enable'] = 'TRUE'
+  end
+
   # Provisioning
   # --------------------------------------------------------------------------
 
