@@ -24,11 +24,16 @@ Download the newest vagrant version.
 
 https://www.vagrantup.com/downloads.html
 
-### vagrant plugin
+### required vagrant plugin
 
 ```{.sh}
-vagrant plugin install vagrant-bindfs
 vagrant plugin install vagrant-hostmanager
+```
+
+### optional vagrant plugin
+
+```{.sh}
+vagrant plugin install vagrant-bindfs # add bindfs: true to your vagrant.yml
 ```
 
 ### operating systems specific
