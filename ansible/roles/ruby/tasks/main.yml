@@ -4,6 +4,7 @@
   with_items:
       - ruby
       - ruby-dev
+      - build-essential
 
 - name: install gems
   gem: name={{ item }} state=present user_install=no
