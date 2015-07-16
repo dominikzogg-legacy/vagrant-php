@@ -63,6 +63,8 @@ support on a easy way.
 
 ##### register
 
+**important**: call this only onces per project (initial setup).
+
 ```{.sh}
 cd /path/to/my/project
 git submodule add -b v1 https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
@@ -70,12 +72,16 @@ git submodule add -b v1 https://github.com/dominikzogg/vagrant-virtualbox-ansibl
 
 ##### install
 
+**important**: call this if you checked out a prepared project, or if you dlike to update the version registred within the project.
+
 ```{.sh}
 cd /path/to/my/project
 git submodule update --init
 ```
 
 ##### update
+
+**important**: call this if you dlike to get the newest version of the vagrant-virtualbox-ansible submodule.
 
 ```{.sh}
 cd /path/to/my/project
