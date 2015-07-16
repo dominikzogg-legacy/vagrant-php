@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Copy resolv.conf (prevent dns problems)
+cp -f /vagrant/vagrant-virtualbox-ansible/ansible/resolv.conf /etc/resolv.conf
+
 # Copy sources.list
 cp -f /vagrant/vagrant-virtualbox-ansible/ansible/sources.list /etc/apt/sources.list
 
