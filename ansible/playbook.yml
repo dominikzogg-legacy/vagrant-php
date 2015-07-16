@@ -9,3 +9,4 @@
     - nginx
     - { role: nodejs, when: nodejs is defined }
     - php
+    - { role: ruby, when: ruby is defined }

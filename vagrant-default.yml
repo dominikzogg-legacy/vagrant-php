@@ -80,3 +80,6 @@ php:
                 xdebug.max_nesting_level: 256
 
     modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, xdebug]
+
+#ruby:
+#    gems: [compass, compass-normalize, compass-rgbapng, sass, sass-globing, toolkit]
