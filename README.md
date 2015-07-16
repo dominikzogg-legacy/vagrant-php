@@ -72,8 +72,7 @@ git submodule add -b v1 https://github.com/dominikzogg/vagrant-virtualbox-ansibl
 
 ##### install
 
-call this if you checked out a prepared project
-call this if you would like to update the version registred within the project.
+after checked out a prepared project or update to the version registred within the project.
 
 ```{.sh}
 cd /path/to/my/project
@@ -82,7 +81,7 @@ git submodule update --init
 
 ##### update
 
-call this if you dlike to get the newest version of the vagrant-virtualbox-ansible submodule.
+get the newest version of the vagrant-virtualbox-ansible submodule.
 
 ```{.sh}
 cd /path/to/my/project
