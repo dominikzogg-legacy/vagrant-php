@@ -82,4 +82,4 @@ php:
     modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, xdebug]
 
 #ruby:
-#    gems: [compass, compass-normalize, compass-rgbapng, sass, sass-globing, toolkit]
+#    gems: [compass, compass-normalize, compass-rgbapng, sass, sass-globbing, toolkit]
