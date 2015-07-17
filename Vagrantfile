@@ -6,10 +6,10 @@ newdirname = 'vagrant-php'
 if olddirname != newdirname
   if ARGV[0] != 'halt' && ARGV[0] != 'destroy'
     print "please call `vagrant halt` to prepare directory rename\n"
-    exit
+    exit 1
   else
     print 'please call `cd .. && git mv ' + olddirname + ' ' + newdirname + ' && cd ' + newdirname + "`\n"
-    return
+    exit 0
   end
 end
 
