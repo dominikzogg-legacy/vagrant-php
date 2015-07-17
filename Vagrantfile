@@ -8,8 +8,8 @@ if olddirname != newdirname
     print "please call `vagrant halt` to prepare directory rename\n"
     exit
   else
-    system( 'cd .. && git mv ' + olddirname + ' ' + newdirname)
     print 'please call `cd .. && git mv ' + olddirname + ' ' + newdirname + ' && cd ' + newdirname + "`\n"
+    return
   end
 end
 
@@ -107,10 +107,8 @@ Vagrant.configure(2) do |config|
 
   # Provisioning
   # --------------------------------------------------------------------------
-  if ARGV[0] == 'up' or ARGV[0] == 'provision'
-    config.vm.provision 'shell' do |sh|
-        sh.path = 'ansible/ansible-on-guest.sh'
-        sh.args = ['ansible/playbook.yml', projectconfig.to_json.split(' ').join('\u0020')]
-    end
+  config.vm.provision 'shell' do |sh|
+      sh.path = 'ansible/ansible-on-guest.sh'
+      sh.args = ['ansible/playbook.yml', projectconfig.to_json.split(' ').join('\u0020')]
   end
 end
