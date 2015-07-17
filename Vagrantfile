@@ -1,6 +1,16 @@
 require 'json'
 require 'yaml'
 
+if ARGV[0] != 'halt' && ARGV[0] != 'destroy'
+  olddirname = File.dirname(File.expand_path(__FILE__)).split(File::SEPARATOR).last()
+  newdirname = 'vagrant-php'
+  if olddirname != newdirname
+    system( 'cd .. && git mv ' + olddirname + ' ' + newdirname)
+    print 'please call `cd ../' + newdirname + "` directory moved!\n"
+    exit
+  end
+end
+
 class ::Hash
     def deep_merge(second)
         merger = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : Array === v1 && Array === v2 ? v1 | v2 : [:undefined, nil, :nil].include?(v2) ? v1 : v2 }

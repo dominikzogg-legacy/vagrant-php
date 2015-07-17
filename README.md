@@ -1,4 +1,4 @@
-# dominikzogg/vagrant-virtualbox-ansible
+# dominikzogg/vagrant-php
 
 **important**: the host machine, does not need ansible support, all ansible scripts get managed by the client machine.
 
@@ -8,7 +8,6 @@
  * Nginx 1.8
  * MariaDB 10.0
  * PHP 5.6
- * NodeJS 0.12
 
 ## Installation
 
@@ -57,7 +56,7 @@ https://msysgit.github.io
 Windows got no ssh or git support out of the box, by installing git from `msysgit.github.io` you get ssh and a git
 support on a easy way.
 
-### vagrant-virtualbox-ansible
+### vagrant-php
 
 #### as a git submodule
 
@@ -67,7 +66,7 @@ support on a easy way.
 
 ```{.sh}
 cd /path/to/my/project
-git submodule add -b v1 https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
+git submodule add -b v1 https://github.com/dominikzogg/vagrant-php.git
 ```
 
 ##### install
@@ -81,7 +80,7 @@ git submodule update --init
 
 ##### update
 
-get the newest version of the vagrant-virtualbox-ansible submodule.
+get the newest version of the vagrant-php submodule.
 
 ```{.sh}
 cd /path/to/my/project
@@ -92,8 +91,8 @@ git submodule update --remote
 
 ```{.sh}
 cd /path/to/my/project
-git clone https://github.com/dominikzogg/vagrant-virtualbox-ansible.git
-cd vagrant-virtualbox-ansible
+git clone https://github.com/dominikzogg/vagrant-php.git
+cd vagrant-php
 git checkout -b v1
 rm -r .git
 ```
@@ -163,7 +162,7 @@ The vagrant setup is in a subdir, which means you need to go there, and call all
 
 ```{.sh}
 cd /path/to/my/project
-cd vagrant-virtualbox-ansible
+cd vagrant-php
 vagrant up
 vagrant halt
 vagrant suspend
