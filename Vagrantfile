@@ -1,10 +1,13 @@
 require 'json'
 require 'yaml'
 
-if ARGV[0] != 'halt' && ARGV[0] != 'destroy'
-  olddirname = File.dirname(File.expand_path(__FILE__)).split(File::SEPARATOR).last()
-  newdirname = 'vagrant-php'
-  if olddirname != newdirname
+olddirname = File.dirname(File.expand_path(__FILE__)).split(File::SEPARATOR).last()
+newdirname = 'vagrant-php'
+if olddirname != newdirname
+  if ARGV[0] != 'halt' && ARGV[0] != 'destroy'
+    print "please call `vagrant halt` to prepare directory rename\n"
+    exit
+  else
     system( 'cd .. && git mv ' + olddirname + ' ' + newdirname)
     print 'please call `cd ../' + newdirname + "` directory moved!\n"
     exit
