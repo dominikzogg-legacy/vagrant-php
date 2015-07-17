@@ -10,7 +10,6 @@ if olddirname != newdirname
   else
     system( 'cd .. && git mv ' + olddirname + ' ' + newdirname)
     print 'please call `cd ../' + newdirname + "` directory moved!\n"
-    exit
   end
 end
 
