@@ -9,7 +9,7 @@ if olddirname != newdirname
     exit 1
   else
     print 'please call `cd .. && git mv ' + olddirname + ' ' + newdirname + ' && cd ' + newdirname + "`\n"
-    exit 0
+    __END__
   end
 end
 
