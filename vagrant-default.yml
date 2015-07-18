@@ -7,6 +7,9 @@ memory: 1024
 
 sharetype: nfs
 
+locale: &locale de_CH.UTF-8
+timezone: &timezone Europe/Zurich
+
 general:
     packages: [git, htop, vim]
 
@@ -47,9 +50,9 @@ php:
                 allow_url_fopen: On
                 allow_url_include: Off
             date:
-                date.timezone: Europe/Zurich
+                date.timezone: *timezone
             intl:
-                intl.default_locale: de_CH.UTF-8
+                intl.default_locale: *locale
             xdebug:
                 xdebug.max_nesting_level: 256
         fpm:
@@ -73,9 +76,9 @@ php:
                 allow_url_fopen: On
                 allow_url_include: Off
             date:
-                date.timezone: Europe/Zurich
+                date.timezone: *timezone
             intl:
-                intl.default_locale: de_CH.UTF-8
+                intl.default_locale: *locale
             xdebug:
                 xdebug.max_nesting_level: 256
 

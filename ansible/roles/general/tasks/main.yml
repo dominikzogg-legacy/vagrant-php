@@ -11,14 +11,14 @@
   with_items:
     - locales-all
 
-- name: locale | Generate de_CH.UTF-8
-  command: /usr/sbin/locale-gen de_CH.UTF-8
+- name: locale | Generate {{ locale }}
+  command: /usr/sbin/locale-gen {{ locale }}
 
-- name: locale | Set locale to de_CH.UTF-8
-  command: /usr/sbin/update-locale LANG=de_CH.UTF-8 LC_ALL=de_CH.UTF-8
+- name: locale | Set locale to {{ locale }}
+  command: /usr/sbin/update-locale LANG={{ locale }} LC_ALL={{ locale }}
 
-- name: timezone | Set /etc/localtime to Europe/Zurich
-  command: /bin/cp /usr/share/zoneinfo/Europe/Zurich /etc/localtime
+- name: timezone | Set /etc/localtime to {{ timezone }}
+  command: /bin/cp /usr/share/zoneinfo/{{ timezone }} /etc/localtime
 
 - name: timezone | Update tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
