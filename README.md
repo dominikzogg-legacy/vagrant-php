@@ -41,13 +41,17 @@ vagrant plugin install vagrant-bindfs # add bindfs: true to your vagrant.yml
 
 ##### nfs support
 
-`sudo apt-get install nfs-kernel-server`
+```{.sh}
+sudo apt-get install nfs-kernel-server
+```
 
 #### windows
 
 ##### nfs support
 
-`vagrant plugin install vagrant-winnfsd`
+```{.sh}
+vagrant plugin install vagrant-winnfsd`
+```
 
 ##### git / ssh client
 
@@ -140,11 +144,15 @@ SHUTDOWN=savestate
 
 Copy the script:
 
-`sudo cp tools/vagrant-suspend /usr/local/bin/vagrant-suspend`
+```{.sh}
+sudo cp tools/vagrant-suspend /usr/local/bin/vagrant-suspend
+```
 
 Register the logout hook:
 
-`sudo defaults write com.apple.loginwindow LogoutHook /usr/local/bin/vagrant-suspend`
+```{.sh}
+sudo defaults write com.apple.loginwindow LogoutHook /usr/local/bin/vagrant-suspend
+```
 
 #### windows
 
@@ -177,7 +185,9 @@ vagrant ssh
 
 #### dhcp private_network fails
 
-`VBoxManage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0`
+```{.sh}
+VBoxManage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0
+```
 
 ### Vagrant
 
