@@ -5,7 +5,7 @@ application: default # contao, default, drupal, lavarel, symfony, wordpress
 
 memory: 1024
 
-sharetype: nfs
+sharetype: nfs # native, nfs, nfs-bind
 
 locale: &locale de_CH.UTF-8
 timezone: &timezone Europe/Zurich

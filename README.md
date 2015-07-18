@@ -113,7 +113,7 @@ for advanced configuration see the [default configuration][2]
 #### supported application
 
  * contao
- * default (no rewrite)
+ * default
  * drupal
  * lavarel
  * symfony
@@ -121,9 +121,9 @@ for advanced configuration see the [default configuration][2]
 
 #### supported sharetype
 
+ * native
  * nfs
  * nfs-bindfs
- * native
 
 ### Suspend the virtual machines on host logout or shutdown
 
