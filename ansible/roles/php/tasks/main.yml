@@ -70,3 +70,7 @@
 - name: lavarel-installer install
   script: ~/lavarel.sh
   when: application == 'lavarel'
+
+- name: wordpress-cli install
+  shell: curl -LsS https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp-cli.phar && chmod +x /usr/local/bin/wp-cli.phar
+  when: application == 'wordpress'
