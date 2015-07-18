@@ -8,5 +8,6 @@ fi
 cd /usr/local/lib/drush
 
 git checkout 7.x
+git pull origin 7.x
 git checkout `git describe --abbrev=0 --tags`
 composer.phar install
