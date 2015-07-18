@@ -60,3 +60,13 @@
 - name: drush install
   script: ~/drush.sh
   when: application == 'drupal'
+
+- name: copy lavarel-installer install script
+  copy:
+    src=lavarel.sh
+    dest=~/lavarel.sh
+  when: application == 'lavarel'
+
+- name: lavarel-installer install
+  script: ~/lavarel.sh
+  when: application == 'lavarel'
