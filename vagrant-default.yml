@@ -27,7 +27,7 @@ mariadb:
             character-set-server: utf8
 
 #nodejs:
-#    modules: [bower, gulp]
+#    npm: [bower, gulp]
 
 php:
     config:
