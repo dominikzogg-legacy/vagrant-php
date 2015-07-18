@@ -47,6 +47,10 @@
 - name: php-cs-fixer install
   shell: curl -LsS http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer.phar && chmod +x /usr/local/bin/php-cs-fixer.phar
 
+- name: symfony-installer install
+  shell: curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony-installer.phar && chmod +x /usr/local/bin/symfony-installer.phar
+  when: application == 'symfony'
+
 - name: copy drush install script
   copy:
     src=drush.sh
