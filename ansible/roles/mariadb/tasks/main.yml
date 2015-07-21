@@ -6,19 +6,19 @@
     - mariadb-client
     - python-mysqldb
 
-- name: change default user to root/root
-  mysql_user: name=root password=root host=localhost
+- name: change default user to {{ mariadb.username }} / {{ mariadb.password }}
+  mysql_user: name={{ mariadb.username }} password={{ mariadb.password }} host=localhost
 
 - name: copy .my.cnf file for root
-  copy:
-    src=user-my.cnf
+  template:
+    src=user-my.cnf.j2
     dest=/root/.my.cnf
     owner=root
     mode=0600
 
 - name: copy .my.cnf for vagrant
-  copy:
-    src=user-my.cnf
+  template:
+    src=user-my.cnf.j2
     dest=/home/vagrant/.my.cnf
     owner=vagrant
     mode=0600

@@ -32,6 +32,8 @@ freetds:
 #            text size: 20971520
 
 mariadb:
+    username: root
+    password: root
     config:
         client:
             default-character-set: utf8
