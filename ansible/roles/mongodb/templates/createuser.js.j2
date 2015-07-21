@@ -1,4 +1,6 @@
-load('/root/.mongorc.js');
+try {
+    load('/root/.mongorc.js');
+} catch(err) {}
 
 db = db.getSiblingDB('admin');
 var existinguser = db.getUser('{{ mongodb.username }}');

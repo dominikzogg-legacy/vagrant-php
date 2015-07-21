@@ -5,10 +5,17 @@
 - name: app repository
   apt_repository: repo='deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main' state=present
 
-- name: install needed modules
+- name: install
   apt: name={{ item }} state=present
   with_items:
     - mongodb-org
+
+- name: configure mongod.conf
+  template:
+    src=mongod.conf.j2
+    dest=/etc/mongod.conf
+  notify:
+      - restart mongodb
 
 - name: copy user script
   template:
@@ -31,10 +38,3 @@
     dest=/home/vagrant/.mongorc.js
     owner=vagrant
     mode=0600
-
-- name: configure mongod.conf
-  template:
-    src=mongod.conf.j2
-    dest=/etc/mongod.conf
-  notify:
-      - restart mongodb
