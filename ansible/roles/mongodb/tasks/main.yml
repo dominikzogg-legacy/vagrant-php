@@ -1,0 +1,22 @@
+---
+- name: add key
+  apt_key: keyserver=keyserver.ubuntu.com id=7F0CEB10 state=present
+
+- name: app repository
+  apt_repository: repo='deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.0 main' state=present
+
+- name: install needed modules
+  apt: name={{ item }} state=present
+  with_items:
+    - mongodb-org
+    - python-pymongo
+
+- name: prepare socket directory
+  file: path={{ mongodb.config.net.unixDomainSocket.pathPrefix }} state=directory owner=mongodb mode=0755
+
+- name: configure mongod.conf
+  template:
+    src=mongod.conf.j2
+    dest=/etc/mongod.conf
+  notify:
+      - restart mongodb

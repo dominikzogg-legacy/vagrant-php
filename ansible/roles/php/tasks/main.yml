@@ -15,7 +15,15 @@
       - php5-sybase
   notify:
       - restart php5-fpm
-  when: freetds is defined
+  when: role.freetds
+
+- name: install mongo
+  apt: name={{ item }} state=present
+  with_items:
+      - php5-mongo
+  notify:
+      - restart php5-fpm
+  when: role.mongodb
 
 - name: install modules
   apt: name="php5-{{ php.modules|join(',php5-') }}" state=present

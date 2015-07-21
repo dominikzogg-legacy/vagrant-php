@@ -1,20 +1,29 @@
 ---
 hostname: projectname.dev
-
 application: default # contao, default, drupal, lavarel, symfony, wordpress
-
 memory: 1024
-
 sharetype: nfs # native, nfs, nfs-bind
 
-locale: &locale de_CH.UTF-8
-timezone: &timezone Europe/Zurich
+role:
+    freetds: false
+    java: true
+    mariadb: true
+    mongodb: false
+    nginx: true
+    nodejs: false
+    ruby: false
 
 general:
-    packages: [git, htop, vim]
+    config:
+        locale: &locale de_CH.UTF-8
+        timezone: &timezone Europe/Zurich
+    packages:
+        - git
+        - htop
+        - vim
 
-#freetds:
-#    config:
+freetds:
+    config:
 #        sampledomain.tld:
 #            host: sampledomain.tld
 #            port: 60655
@@ -26,11 +35,31 @@ mariadb:
     config:
         client:
             default-character-set: utf8
+            socket: /var/run/mysqld/mysqld.sock
         mysqld:
             character-set-server: utf8
+            datadir: /var/lib/mysql
+            log-error: /var/log/mysql/error.log
+            socket: &mariadbsocket /var/run/mysqld/mysqld.sock
 
-#nodejs:
-#    npm: [bower, gulp, less]
+mongodb:
+    config:
+        net:
+            unixDomainSocket:
+                enabled: true
+                pathPrefix: /var/run/mongodb
+        storage:
+           dbPath: /var/lib/mongodb
+        systemLog:
+           destination: file
+           path: /var/log/mongodb/mongodb.log
+           logAppend: true
+
+nodejs:
+    npm:
+        - bower
+        - gulp
+        - less
 
 php:
     config:
@@ -53,6 +82,12 @@ php:
                 date.timezone: *timezone
             intl:
                 intl.default_locale: *locale
+            mysql:
+                mysql.default_socket: *mariadbsocket
+            mysqli:
+                mysqli.default_socket: *mariadbsocket
+            pdo_mysql:
+                pdo_mysql.default_socket: *mariadbsocket
             xdebug:
                 xdebug.max_nesting_level: 256
         fpm:
@@ -79,10 +114,31 @@ php:
                 date.timezone: *timezone
             intl:
                 intl.default_locale: *locale
+            mysql:
+                mysql.default_socket: *mariadbsocket
+            mysqli:
+                mysqli.default_socket: *mariadbsocket
+            pdo_mysql:
+                pdo_mysql.default_socket: *mariadbsocket
             xdebug:
                 xdebug.max_nesting_level: 256
 
-    modules: [apcu, curl, gd, imagick, intl, mcrypt, mysqlnd, sqlite, xdebug]
+    modules:
+        - apcu
+        - curl
+        - gd
+        - imagick
+        - intl
+        - mcrypt
+        - mysqlnd
+        - sqlite
+        - xdebug
 
-#ruby:
-#    gems: [compass, compass-normalize, compass-rgbapng, sass, sass-globbing, toolkit]
+ruby:
+    gems:
+        - compass
+        - compass-normalize
+        - compass-rgbapng
+        - sass
+        - sass-globbing
+        - toolkit

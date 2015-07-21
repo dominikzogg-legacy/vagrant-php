@@ -3,10 +3,11 @@
   sudo: true
   roles:
     - general
-    - { role: freetds, when: freetds is defined }
-    - java
-    - mariadb
-    - nginx
-    - { role: nodejs, when: nodejs is defined }
+    - { role: freetds, when: role.freetds }
+    - { role: java, when: role.java }
+    - { role: mariadb, when: role.mariadb }
+    - { role: mongodb, when: role.mongodb }
+    - { role: nginx, when: role.nginx }
+    - { role: nodejs, when: role.nodejs }
     - php
-    - { role: ruby, when: ruby is defined }
+    - { role: ruby, when: role.ruby }

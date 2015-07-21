@@ -11,14 +11,14 @@
   with_items:
     - locales-all
 
-- name: locale | Generate {{ locale }}
-  command: /usr/sbin/locale-gen {{ locale }}
+- name: locale | Generate {{ general.config.locale }}
+  command: /usr/sbin/locale-gen {{ general.config.locale }}
 
-- name: locale | Set locale to {{ locale }}
-  command: /usr/sbin/update-locale LANG={{ locale }} LC_ALL={{ locale }}
+- name: locale | Set locale to {{ general.config.locale }}
+  command: /usr/sbin/update-locale LANG={{ general.config.locale }} LC_ALL={{ general.config.locale }}
 
-- name: timezone | Set /etc/localtime to {{ timezone }}
-  command: /bin/cp /usr/share/zoneinfo/{{ timezone }} /etc/localtime
+- name: timezone | Set /etc/localtime to {{ general.config.timezone }}
+  command: /bin/cp /usr/share/zoneinfo/{{ general.config.timezone }} /etc/localtime
 
 - name: timezone | Update tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
