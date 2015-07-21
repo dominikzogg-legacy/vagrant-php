@@ -6,6 +6,13 @@
     - mariadb-client
     - python-mysqldb
 
+- name: configure my.cnf
+  template:
+    src=my.cnf.j2
+    dest=/etc/mysql/my.cnf
+  notify:
+      - restart mysql
+
 - name: change default user to {{ mariadb.username }} / {{ mariadb.password }}
   mysql_user: name={{ mariadb.username }} password={{ mariadb.password }} host=localhost
 
@@ -22,10 +29,3 @@
     dest=/home/vagrant/.my.cnf
     owner=vagrant
     mode=0600
-
-- name: configure my.cnf
-  template:
-    src=my.cnf.j2
-    dest=/etc/mysql/my.cnf
-  notify:
-      - restart mysql
