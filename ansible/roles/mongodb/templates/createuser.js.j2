@@ -1,0 +1,10 @@
+load('/root/.mongorc.js');
+
+db = db.getSiblingDB('admin');
+var existinguser = db.getUser('{{ mongodb.username }}');
+
+if(existinguser == null) {
+  db.createUser({user: '{{ mongodb.username }}', pwd: '{{ mongodb.password }}', roles: [ { role: 'userAdminAnyDatabase', db: 'admin' } ]})
+} else {
+  db.updateUser('{{ mongodb.username }}', {pwd: '{{ mongodb.password }}'});
+}

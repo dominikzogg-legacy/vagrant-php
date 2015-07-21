@@ -45,11 +45,17 @@ mariadb:
             socket: &mariadbsocket /var/run/mysqld/mysqld.sock
 
 mongodb:
+    username: root
+    password: root
     config:
         net:
+            bindIp: 127.0.0.1
+            port: 27017
             unixDomainSocket:
                 enabled: true
-                pathPrefix: /var/run/mongodb
+                pathPrefix: /tmp
+        security:
+            authorization: enabled
         storage:
            dbPath: /var/lib/mongodb
         systemLog:

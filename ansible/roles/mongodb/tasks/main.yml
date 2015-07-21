@@ -9,10 +9,28 @@
   apt: name={{ item }} state=present
   with_items:
     - mongodb-org
-    - python-pymongo
 
-- name: prepare socket directory
-  file: path={{ mongodb.config.net.unixDomainSocket.pathPrefix }} state=directory owner=mongodb mode=0755
+- name: copy user script
+  template:
+    src=createuser.js.j2
+    dest=~/createuser.js
+
+- name: add admin user
+  command: mongo --shell ~/createuser.js
+
+- name: copy .mongorc.js file for root
+  template:
+    src=user-mongorc.js.j2
+    dest=/root/.mongorc.js
+    owner=root
+    mode=0600
+
+- name: copy .mongorc.js for vagrant
+  template:
+    src=user-mongorc.js.j2
+    dest=/home/vagrant/.mongorc.js
+    owner=vagrant
+    mode=0600
 
 - name: configure mongod.conf
   template:
