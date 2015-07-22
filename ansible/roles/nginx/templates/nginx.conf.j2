@@ -33,6 +33,7 @@ http {
             fastcgi_param PATH_INFO $wtf;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_pass unix:/var/run/php5-fpm.socket;
+            fastcgi_read_timeout {{ nginx.config.fastgci_read_timeout }};
             include fastcgi_params;
         }
     }

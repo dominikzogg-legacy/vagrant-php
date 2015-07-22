@@ -64,6 +64,10 @@ mongodb:
            path: /var/log/mongodb/mongodb.log
            logAppend: true
 
+nginx:
+    config:
+        fastgci_read_timeout: 600
+
 nodejs:
     npm:
         - bower
