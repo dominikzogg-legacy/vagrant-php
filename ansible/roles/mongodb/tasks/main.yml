@@ -17,6 +17,9 @@
   notify:
       - restart mongodb
 
+- name: wait for mongod
+  wait_for: port={{mongodb.config.net.port}} delay=10
+
 - name: copy user script
   template:
     src=createuser.js.j2
