@@ -66,7 +66,10 @@ mongodb:
 
 nginx:
     config:
-        fastgci_read_timeout: 600
+        charset: utf-8
+        fastcgi_read_timeout: 600
+        fastcgi_socket: &phpfpmsocket /var/run/php5-fpm.socket
+        error_log: /var/log/nginx/error.log
 
 nodejs:
     npm:
@@ -139,6 +142,8 @@ php:
                 pdo_mysql.default_socket: *mariadbsocket
             xdebug:
                 xdebug.max_nesting_level: 256
+        wwwconf:
+            socket: *phpfpmsocket
 
     modules:
         - apcu

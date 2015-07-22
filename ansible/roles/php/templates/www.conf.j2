@@ -3,7 +3,7 @@
 user = vagrant
 group = vagrant
 
-listen = /var/run/php5-fpm.socket
+listen = {{ php.config.wwwconf.socket }}
 listen.owner = vagrant
 listen.group = vagrant
 

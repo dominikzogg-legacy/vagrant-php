@@ -1,6 +1,6 @@
 user vagrant vagrant;
 worker_processes 4;
-error_log /var/log/nginx/error.log;
+error_log {{ nginx.config.error_log }};
 pid /var/run/nginx.pid;
 
 events {
@@ -9,13 +9,11 @@ events {
 
 http {
     include mime.types;
-    charset UTF-8;
 
-    sendfile off;
-    
-    client_max_body_size {{ php.config.fpm.php.post_max_size }};
-
+    charset {{ nginx.config.charset }};
     gzip on;
+    sendfile off;
+    client_max_body_size {{ php.config.fpm.php.post_max_size }};
 
     server {
         listen 80;
@@ -32,8 +30,8 @@ http {
             set $wtf $fastcgi_path_info;
             fastcgi_param PATH_INFO $wtf;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            fastcgi_pass unix:/var/run/php5-fpm.socket;
-            fastcgi_read_timeout {{ nginx.config.fastgci_read_timeout }};
+            fastcgi_pass unix:/{{ nginx.config.fastcgi_socket }};
+            fastcgi_read_timeout {{ nginx.config.fastcgi_read_timeout }};
             include fastcgi_params;
         }
     }
