@@ -9,8 +9,8 @@ role:
     java: true
     mariadb: true
     mongodb: false
-    nginx: true
     nodejs: false
+    postgresql: false
     ruby: false
 
 general:

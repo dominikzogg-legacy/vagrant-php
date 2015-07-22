@@ -7,7 +7,7 @@
     - { role: java, when: role.java }
     - { role: mariadb, when: role.mariadb }
     - { role: mongodb, when: role.mongodb }
-    - { role: nginx, when: role.nginx }
+    - nginx
     - { role: nodejs, when: role.nodejs }
     - php
     - { role: ruby, when: role.ruby }

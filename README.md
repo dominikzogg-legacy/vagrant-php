@@ -6,7 +6,6 @@
 
  * Debian 8
  * Nginx 1.8
- * MariaDB 10.0
  * PHP 5.6
 
 ## Installation
