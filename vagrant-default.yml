@@ -143,7 +143,6 @@ php:
         - imagick
         - intl
         - mcrypt
-        - mysqlnd
         - sqlite
         - xdebug
 

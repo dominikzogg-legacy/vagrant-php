@@ -17,6 +17,14 @@
       - restart php5-fpm
   when: role.freetds
 
+- name: install mysqlnd
+  apt: name={{ item }} state=present
+  with_items:
+      - php5-mysqlnd
+  notify:
+      - restart php5-fpm
+  when: role.mariadb
+
 - name: install mongo
   apt: name={{ item }} state=present
   with_items:
