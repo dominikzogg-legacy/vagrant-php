@@ -37,12 +37,14 @@ mariadb:
     config:
         client:
             default-character-set: utf8
-            socket: /var/run/mysqld/mysqld.sock
+            port: &mariadbport 3306
+            socket: &mariadbsocket /var/run/mysqld/mysqld.sock
         mysqld:
             character-set-server: utf8
             datadir: /var/lib/mysql
             log-error: /var/log/mysql/error.log
-            socket: &mariadbsocket /var/run/mysqld/mysqld.sock
+            port: *mariadbport
+            socket: *mariadbsocket
 
 mongodb:
     username: root
@@ -90,8 +92,10 @@ php:
             intl:
                 intl.default_locale: *locale
             mysql:
+                mysql.default_port: *mariadbport
                 mysql.default_socket: *mariadbsocket
             mysqli:
+                mysqli.default_port: *mariadbport
                 mysqli.default_socket: *mariadbsocket
             pdo_mysql:
                 pdo_mysql.default_socket: *mariadbsocket
@@ -122,8 +126,10 @@ php:
             intl:
                 intl.default_locale: *locale
             mysql:
+                mysql.default_port: *mariadbport
                 mysql.default_socket: *mariadbsocket
             mysqli:
+                mysqli.default_port: *mariadbport
                 mysqli.default_socket: *mariadbsocket
             pdo_mysql:
                 pdo_mysql.default_socket: *mariadbsocket
