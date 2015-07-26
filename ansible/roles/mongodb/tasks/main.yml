@@ -33,6 +33,7 @@
     src=user-mongorc.js.j2
     dest=/root/.mongorc.js
     owner=root
+    group=root
     mode=0600
 
 - name: copy .mongorc.js for vagrant
@@ -40,4 +41,5 @@
     src=user-mongorc.js.j2
     dest=/home/vagrant/.mongorc.js
     owner=vagrant
+    group=vagrant
     mode=0600
