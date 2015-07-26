@@ -4,9 +4,19 @@
 
 ## Features
 
- * Debian 8
- * Nginx 1.8
- * PHP 5.6
+ * debian 8
+ * nginx 1.8
+ * php 5.6
+
+## Switchable features
+
+ * freetds 0.91
+ * java 7 (headless)
+ * mariadb 10.0
+ * mongodb 3.0
+ * nodejs 0.12
+ * postgresql 9.4
+ * ruby 2.1.5
 
 ## Installation
 
