@@ -111,7 +111,7 @@ application: default
 sharetype: nfs
 ```
 
-for advanced configuration see the [default configuration][2]
+for advanced configuration see the [default configuration][1]
 
 #### supported application
 
@@ -161,7 +161,7 @@ http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
 
 ## Applications
 
- * [symfony][1]
+ * [symfony][2]
 
 ## Run
 
@@ -208,5 +208,5 @@ Please install or update the vagrant plugin `vagrant-hostmanager`
 
 Check if you have installed XCode, if yes, check if you allready started it, and accepted the license.
 
-[1]: doc/symfony.md
-[2]: vagrant-default.yml
+[1]: vagrant-default.yml
+[2]: doc/symfony.md
