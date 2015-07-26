@@ -54,14 +54,12 @@ vagrant plugin install vagrant-bindfs
 #### vmware fusion
 
 ```{.sh}
-vagrant plugin install vagrant-share
 vagrant plugin install vagrant-vmware-fusion
 ```
 
 #### vmware workstation
 
 ```{.sh}
-vagrant plugin install vagrant-share
 vagrant plugin install vagrant-vmware-workstation
 ```
 
