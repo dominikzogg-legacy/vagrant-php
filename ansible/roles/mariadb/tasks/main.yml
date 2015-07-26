@@ -14,7 +14,7 @@
       - restart mysql
 
 - name: wait for mariadb
-  wait_for: port={{mariadb.config.mysqld.port}} delay=10
+  wait_for: port={{mariadb.config.mysqld.port}}
 
 - name: change default user to {{ mariadb.username }} / {{ mariadb.password }}
   mysql_user: name={{ mariadb.username }} password={{ mariadb.password }} host=localhost

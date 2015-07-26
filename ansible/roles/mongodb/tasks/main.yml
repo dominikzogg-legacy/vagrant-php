@@ -18,7 +18,7 @@
       - restart mongodb
 
 - name: wait for mongod
-  wait_for: port={{mongodb.config.net.port}} delay=10
+  wait_for: port={{mongodb.config.net.port}}
 
 - name: copy user script
   template:
