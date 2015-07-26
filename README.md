@@ -26,6 +26,11 @@ Download the newest virtualbox version supported by vagrant.
 
 https://www.virtualbox.org/wiki/Downloads
 
+### vmware (fusion on osx, workstation on linux/windows)
+
+https://www.vmware.com/products/fusion/
+https://www.vmware.com/products/workstation/
+
 ### vagrant
 
 Download the newest vagrant version.
@@ -41,7 +46,23 @@ vagrant plugin install vagrant-hostmanager
 #### optional vagrant plugin
 
 ```{.sh}
-vagrant plugin install vagrant-bindfs # add bindfs: true to your vagrant.yml
+vagrant plugin install vagrant-bindfs
+```
+
+### provider specific
+
+#### vmware fusion
+
+```{.sh}
+vagrant plugin install vagrant-share
+vagrant plugin install vagrant-vmware-fusion
+```
+
+#### vmware workstation
+
+```{.sh}
+vagrant plugin install vagrant-share
+vagrant plugin install vagrant-vmware-workstation
 ```
 
 ### operating systems specific
