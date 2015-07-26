@@ -155,6 +155,12 @@ php:
         - sqlite
         - xdebug
 
+postgresql:
+    username: root
+    password: root
+    config:
+        port: &postgresqlport 5432
+
 ruby:
     gems:
         - compass

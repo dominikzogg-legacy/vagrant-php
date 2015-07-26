@@ -25,6 +25,14 @@
       - restart php5-fpm
   when: role.mariadb
 
+- name: install pgsql
+  apt: name={{ item }} state=present
+  with_items:
+      - php5-pgsql
+  notify:
+      - restart php5-fpm
+  when: role.postgresql
+
 - name: install mongo
   apt: name={{ item }} state=present
   with_items:
