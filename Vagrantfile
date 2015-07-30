@@ -20,9 +20,18 @@ else
       end
   end
 
-  defaultconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + '/vagrant-default.yml')
-  projectconfig = YAML.load_file(File.dirname(File.expand_path(__FILE__)) + '/../vagrant.yml')
+  setuppath = File.dirname(File.expand_path(__FILE__))
+
+  defaultconfig = YAML.load_file(setuppath + '/vagrant-default.yml')
+  projectconfig = YAML.load_file(setuppath + '/../vagrant.yml')
   projectconfig = defaultconfig.deep_merge(projectconfig)
+
+  userconfigpath = setuppath + '/../vagrant-user.yml'
+  if File.file?(userconfigpath)
+    userconfig = YAML.load_file(userconfigpath)
+    projectconfig = projectconfig.deep_merge(userconfig)
+  end
+
   sshforwardport = Random.rand(49152..65535)
 
   Vagrant.configure(2) do |config|
