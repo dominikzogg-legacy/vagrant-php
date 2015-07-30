@@ -142,10 +142,6 @@ sharetype: nfs
 
 for advanced configuration see the [default configuration][1]
 
-### vagrant-user.yml (within your project dir)
-
-This yaml is for user overrides, do not commit this file within your project.
-
 #### supported application
 
  * contao
@@ -160,6 +156,10 @@ This yaml is for user overrides, do not commit this file within your project.
  * native
  * nfs
  * nfs-bindfs
+
+### vagrant-user.yml (within your project dir)
+
+This yaml is for user overrides, do not commit this file within your project.
 
 ### Suspend the virtual machines on host logout or shutdown
 
