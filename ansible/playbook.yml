@@ -4,6 +4,7 @@
   roles:
     - general
     - { role: freetds, when: role.freetds }
+    - git
     - { role: java, when: role.java }
     - { role: mariadb, when: role.mariadb }
     - { role: mongodb, when: role.mongodb }

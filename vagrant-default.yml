@@ -13,15 +13,6 @@ role:
     postgresql: false
     ruby: false
 
-general:
-    config:
-        locale: &locale de_CH.UTF-8
-        timezone: &timezone Europe/Zurich
-    packages:
-        - git
-        - htop
-        - vim
-
 freetds:
     config:
 #        sampledomain.tld:
@@ -30,6 +21,28 @@ freetds:
 #            tds version: 7.0
 #            client charset: UTF-8
 #            text size: 20971520
+
+general:
+    config:
+        editor: &editor vim
+        locale: &locale de_CH.UTF-8
+        timezone: &timezone Europe/Zurich
+    packages:
+        - htop
+        - vim
+
+git:
+    config:
+        alias:
+            pp: "!'git pull -v; git push -v'"
+            ppt: "!'git pull -v; git push -v; git push --tags -v'"
+        core:
+            editor: *editor
+        push:
+            default: simple
+        user:
+            name: Firstname Lastname
+            email: firstname.lastname@domain.tld
 
 mariadb:
     username: root

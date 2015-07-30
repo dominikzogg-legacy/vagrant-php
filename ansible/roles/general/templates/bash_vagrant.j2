@@ -2,7 +2,7 @@
 export CLICOLOR='true'
 export PS1='\[\033[1;32m\]\h \[\033[1;37m\]\w \u \\$ '
 
-export EDITOR='vim'
+export EDITOR='{{ general.config.editor }}'
 
 {% if application == 'symfony' %}
 alias sf="./app/console"
