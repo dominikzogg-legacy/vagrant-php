@@ -40,9 +40,9 @@ git:
             editor: *editor
         push:
             default: simple
-        user:
-            name: Firstname Lastname
-            email: firstname.lastname@domain.tld
+#        user:
+#            name: Firstname Lastname
+#            email: firstname.lastname@domain.tld
 
 mariadb:
     username: root
