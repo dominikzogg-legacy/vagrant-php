@@ -213,33 +213,9 @@ vagrant ssh
 
 ## Troubleshooting
 
-### Virtualbox
+ * [troubleshooting][3]
 
-#### dhcp private_network fails
-
-```{.sh}
-VBoxManage dhcpserver remove --netname HostInterfaceNetworking-vboxnet0
-```
-
-### Vagrant
-
-#### vagrant-bindfs
-
-##### Unknown configuration section 'bindfs'.
-
-Please install or update the vagrant plugin `vagrant-bindfs`
-
-#### vagrant-hostmanager
-
-##### Unknown configuration section 'hostmanager'.
-
-Please install or update the vagrant plugin `vagrant-hostmanager`
-
-##### Unable to install due to FFI error
-
-###### OSX
-
-Check if you have installed XCode, if yes, check if you allready started it, and accepted the license.
 
 [1]: vagrant-default.yml
 [2]: doc/symfony.md
+[3]: doc/troubleshooting.md
