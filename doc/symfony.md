@@ -62,9 +62,7 @@ protected $runtimeDir;
 ...
 
 /**
- * {@inheritdoc}
- *
- * @api
+ * @return string
  */
 public function getCacheDir()
 {
