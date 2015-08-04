@@ -178,6 +178,11 @@ Copy the script:
 
 ```{.sh}
 sudo cp tools/vagrant-suspend /usr/local/bin/vagrant-suspend
+```
+
+Make it executable:
+
+```{.sh}
 sudo chmod +x /usr/local/bin/vagrant-suspend
 ```
 
