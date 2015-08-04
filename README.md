@@ -178,6 +178,7 @@ Copy the script:
 
 ```{.sh}
 sudo cp tools/vagrant-suspend /usr/local/bin/vagrant-suspend
+sudo chmod +x /usr/local/bin/vagrant-suspend
 ```
 
 Register the logout hook:
