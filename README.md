@@ -78,7 +78,7 @@ sudo apt-get install nfs-kernel-server
 ##### nfs support
 
 ```{.sh}
-vagrant plugin install vagrant-winnfsd`
+vagrant plugin install vagrant-winnfsd
 ```
 
 ##### git / ssh client
