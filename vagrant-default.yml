@@ -56,7 +56,8 @@ mariadb:
         mysqld:
             character-set-server: utf8
             datadir: /var/lib/mysql
-            log-error: /var/log/mysql/error.log
+            log_error: /var/log/mysql/error.log
+            pid-file: /var/run/mysqld/mysqld.pid
             port: *mariadbport
             socket: *mariadbsocket
 
