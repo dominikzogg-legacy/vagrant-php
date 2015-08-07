@@ -8,7 +8,7 @@
 - name: configure postgresql.conf
   template:
     src=postgresql.conf.j2
-    dest=/etc/mysql/postgresql.conf
+    dest=/etc/postgresql/9.4/main/postgresql.conf
   notify:
       - restart postgresql
 
