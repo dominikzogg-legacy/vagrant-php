@@ -17,7 +17,7 @@
   wait_for: port={{mariadb.config.mysqld.port}}
 
 - name: change default user to {{ mariadb.username }} / {{ mariadb.password }}
-  mysql_user: name={{ mariadb.username }} password={{ mariadb.password }} host=localhost
+  mysql_user: name={{ mariadb.username }} password={{ mariadb.password }} host=localhost login_unix_socket={{ mariadb.config.mysqld.socket }}
 
 - name: copy .my.cnf file for root
   template:
