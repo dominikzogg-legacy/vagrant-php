@@ -25,6 +25,7 @@ freetds:
 general:
     config:
         editor: &editor vim
+        history_length: 5000
         locale: &locale de_CH.UTF-8
         timezone: &timezone Europe/Zurich
     packages:

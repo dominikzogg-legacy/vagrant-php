@@ -4,6 +4,9 @@ export PS1='\[\033[1;32m\]\h \[\033[1;37m\]\w \u \\$ '
 
 export EDITOR='{{ general.config.editor }}'
 
+export HISTSIZE={{ general.config.history_length }}
+export HISTFILESIZE={{ general.config.history_length }}
+
 {% if application == 'symfony' %}
 alias sf="./app/console"
 alias sfcc="sf cache:clear"
