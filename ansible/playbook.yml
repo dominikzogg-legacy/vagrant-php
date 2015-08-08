@@ -11,5 +11,6 @@
     - nginx
     - { role: nodejs, when: role.nodejs }
     - php
+    - php-commandlinetools
     - { role: postgresql, when: role.postgresql }
     - { role: ruby, when: role.ruby }

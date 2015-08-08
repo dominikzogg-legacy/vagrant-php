@@ -1,0 +1,34 @@
+---
+- name: composer install
+  shell: curl -LsS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin
+
+- name: php-cs-fixer install
+  shell: curl -LsS http://get.sensiolabs.org/php-cs-fixer.phar -o /usr/local/bin/php-cs-fixer.phar && chmod +x /usr/local/bin/php-cs-fixer.phar
+
+- name: symfony-installer install
+  shell: curl -LsS http://symfony.com/installer -o /usr/local/bin/symfony-installer.phar && chmod +x /usr/local/bin/symfony-installer.phar
+  when: application == 'symfony'
+
+- name: copy drush install script
+  copy:
+    src=drush.sh
+    dest=~/drush.sh
+  when: application == 'drupal'
+
+- name: drush install
+  script: ~/drush.sh
+  when: application == 'drupal'
+
+- name: copy lavarel-installer install script
+  copy:
+    src=lavarel.sh
+    dest=~/lavarel.sh
+  when: application == 'lavarel'
+
+- name: lavarel-installer install
+  script: ~/lavarel.sh
+  when: application == 'lavarel'
+
+- name: wordpress-cli install
+  shell: curl -LsS https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp-cli.phar && chmod +x /usr/local/bin/wp-cli.phar
+  when: application == 'wordpress'
