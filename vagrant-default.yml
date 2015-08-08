@@ -83,7 +83,7 @@ nginx:
     config:
         charset: utf-8
         fastcgi_read_timeout: 600
-        fastcgi_socket: &phpfpmsocket /var/run/php5-fpm.socket
+        fastcgi_socket: &phpfpmsocket /var/run/php-fpm.socket
         error_log: /var/log/nginx/error.log
 
 nodejs:
@@ -104,7 +104,7 @@ php:
                 display_errors: On
                 display_startup_errors: On
                 log_errors: On
-                error_log: /var/log/php5-cli.err.log
+                error_log: /var/log/php-cli.err.log
                 magic_quotes_runtime: Off
                 default_charset: utf-8
                 allow_url_fopen: On
@@ -134,7 +134,7 @@ php:
                 display_errors: On
                 display_startup_errors: On
                 log_errors: On
-                error_log: /var/log/php5-fpm.err.log
+                error_log: /var/log/php-fpm.err.log
                 post_max_size: 50M
                 magic_quotes_gpc: Off
                 magic_quotes_runtime: Off
