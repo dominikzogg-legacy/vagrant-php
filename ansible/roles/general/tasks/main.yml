@@ -28,8 +28,16 @@
     src=bash_vagrant.j2
     dest=/home/vagrant/.bash_vagrant
 
+- name: bash | copy .bash_vagrant (root)
+  template:
+    src=bash_vagrant.j2
+    dest=/root/.bash_vagrant
+
 - name: bash | register .bash_vagrant
   lineinfile: dest=/home/vagrant/.bashrc line='. ~/.bash_vagrant'
+
+- name: bash | register .bash_vagrant (root)
+  lineinfile: dest=/root/.bashrc line='. ~/.bash_vagrant'
 
 - name: grub | fix boot parameter
   lineinfile:
