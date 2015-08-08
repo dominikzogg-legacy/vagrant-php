@@ -2,49 +2,49 @@
 - name: install core, common, cli, fpm
   apt: name={{ item }} state=present
   with_items:
-      - php5
-      - php5-common
-      - php5-cli
-      - php5-fpm
+    - php5
+    - php5-common
+    - php5-cli
+    - php5-fpm
   notify:
-      - restart php5-fpm
+    - restart php5-fpm
 
 - name: install sybase
   apt: name={{ item }} state=present
   with_items:
-      - php5-sybase
+    - php5-sybase
   notify:
-      - restart php5-fpm
+    - restart php5-fpm
   when: role.freetds
 
 - name: install mysqlnd
   apt: name={{ item }} state=present
   with_items:
-      - php5-mysqlnd
+    - php5-mysqlnd
   notify:
-      - restart php5-fpm
+    - restart php5-fpm
   when: role.mariadb
 
 - name: install pgsql
   apt: name={{ item }} state=present
   with_items:
-      - php5-pgsql
+    - php5-pgsql
   notify:
-      - restart php5-fpm
+    - restart php5-fpm
   when: role.postgresql
 
 - name: install mongo
   apt: name={{ item }} state=present
   with_items:
-      - php5-mongo
+    - php5-mongo
   notify:
-      - restart php5-fpm
+    - restart php5-fpm
   when: role.mongodb
 
 - name: install modules
   apt: name="php5-{{ php.modules|join(',php5-') }}" state=present
   notify:
-      - restart php5-fpm
+    - restart php5-fpm
 
 - name: configure cli php.ini
   template:
@@ -56,7 +56,7 @@
     src=fpm.php.ini.j2
     dest=/etc/php5/fpm/php.ini
   notify:
-      - restart php5-fpm
+    - restart php5-fpm
 
 - name: fpm pool config
   template:
@@ -64,4 +64,3 @@
     dest=/etc/php5/fpm/pool.d/www.conf
   notify:
     - restart php5-fpm
-
