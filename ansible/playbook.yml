@@ -10,8 +10,8 @@
     - { role: mongodb, when: role.mongodb }
     - nginx
     - { role: nodejs, when: role.nodejs }
-    - { role: php, when: php.major_version == 5.6 }
-    - { role: php7, when: php.major_version == 7 }
+    - { role: php, when: php.version == 5.6 }
+    - { role: php7, when: php.version == 7 }
     - php-commandlinetools
     - { role: postgresql, when: role.postgresql }
     - { role: ruby, when: role.ruby }
