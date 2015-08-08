@@ -1,0 +1,87 @@
+---
+- name: app repository
+  apt_repository: repo='deb http://repos.zend.com/zend-server/early-access/php7/repos ubuntu/' state=present
+
+- name: configure php-fpm
+  copy:
+    src=php-fpm
+    dest=/etc/init.d/php7-fpm
+    mode=0755
+  notify:
+  - reload systemd
+
+- name: install core
+  apt: name={{ item }} state=present force=true
+  with_items:
+    - php7-beta1
+  notify:
+    - restart php7-fpm
+
+- name: link php binary
+  file:
+    src=/usr/local/php7/bin/php
+    dest=/usr/bin/php
+    state=link
+
+- name: link php-fpm rc0.d
+  file:
+    src=/etc/init.d/php7-fpm
+    dest=/etc/rc0.d/K01php7-fpm
+    state=link
+
+- name: link php-fpm rc1.d
+  file:
+    src=/etc/init.d/php7-fpm
+    dest=/etc/rc1.d/K01php7-fpm
+    state=link
+
+- name: link php-fpm rc2.d
+  file:
+    src=/etc/init.d/php7-fpm
+    dest=/etc/rc2.d/S01php7-fpm
+    state=link
+
+- name: link php-fpm rc3.d
+  file:
+    src=/etc/init.d/php7-fpm
+    dest=/etc/rc3.d/S01php7-fpm
+    state=link
+
+- name: link php-fpm rc4.d
+  file:
+    src=/etc/init.d/php7-fpm
+    dest=/etc/rc4.d/S01php7-fpm
+    state=link
+
+- name: link php-fpm rc5.d
+  file:
+    src=/etc/init.d/php7-fpm
+    dest=/etc/rc5.d/S01php7-fpm
+    state=link
+
+- name: link php-fpm rc6.d
+  file:
+    src=/etc/init.d/php7-fpm
+    dest=/etc/rc6.d/K01php7-fpm
+    state=link
+
+- name: configure php.ini
+  template:
+    src=php.ini.j2
+    dest=/usr/local/php7/etc/php.ini
+  notify:
+    - restart php7-fpm
+
+- name: fpm config
+  copy:
+    src=php-fpm.conf
+    dest=/usr/local/php7/etc/php-fpm.conf
+  notify:
+    - restart php7-fpm
+
+- name: fpm pool config
+  template:
+    src=www.conf.j2
+    dest=/usr/local/php7/etc/php-fpm.d/www.conf
+  notify:
+    - restart php7-fpm

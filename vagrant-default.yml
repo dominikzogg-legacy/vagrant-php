@@ -170,6 +170,8 @@ php:
         - sqlite
         - xdebug
 
+    version: 5.6
+
 postgresql:
     username: root
     password: root
