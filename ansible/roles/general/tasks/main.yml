@@ -23,20 +23,20 @@
 - name: timezone | Update tzdata
   command: dpkg-reconfigure --frontend noninteractive tzdata
 
-- name: bash | copy .bash_vagrant
+- name: bash | copy .bash_vagrant for vagrant
   template:
     src=bash_vagrant.j2
     dest=/home/vagrant/.bash_vagrant
 
-- name: bash | copy .bash_vagrant (root)
+- name: bash | copy .bash_vagrant for root
   template:
     src=bash_vagrant.j2
     dest=/root/.bash_vagrant
 
-- name: bash | register .bash_vagrant
+- name: bash | register .bash_vagrant for vagrant
   lineinfile: dest=/home/vagrant/.bashrc line='. ~/.bash_vagrant'
 
-- name: bash | register .bash_vagrant (root)
+- name: bash | register .bash_vagrant for root
   lineinfile: dest=/root/.bashrc line='. ~/.bash_vagrant'
 
 - name: grub | fix boot parameter
