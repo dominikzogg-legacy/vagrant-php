@@ -41,6 +41,14 @@
 - name: bash | register .bash_vagrant for root
   lineinfile: dest=/root/.bashrc line='. ~/.bash_vagrant'
 
+- name: grub | fix boot timeout
+  lineinfile:
+    dest=/etc/default/grub
+    line='GRUB_TIMEOUT=0'
+    regexp='^GRUB_TIMEOUT\='
+    state=present
+  register: fixbootparameter
+
 - name: grub | fix boot parameter
   lineinfile:
     dest=/etc/default/grub
