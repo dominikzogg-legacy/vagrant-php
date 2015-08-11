@@ -27,6 +27,8 @@
   template:
     src=bash_vagrant.j2
     dest=/home/vagrant/.bash_vagrant
+    owner=vagrant
+    group=vagrant
 
 - name: bash | copy .bash_vagrant for root
   template:
