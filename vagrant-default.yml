@@ -83,7 +83,7 @@ nginx:
     config:
         charset: utf-8
         fastcgi_read_timeout: 600
-        fastcgi_socket: &phpserversocket /var/run/php-server-socket
+        fastcgi_socket: &phpserversocket /tmp/php-server-socket
         error_log: /var/log/nginx/error.log
 
 nodejs:

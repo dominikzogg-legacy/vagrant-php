@@ -5,6 +5,7 @@
     - general
     - { role: freetds, when: role.freetds }
     - git
+    - { role: hhvm, when: php.version == 'hhvm' }
     - { role: java, when: role.java }
     - { role: mariadb, when: role.mariadb }
     - { role: mongodb, when: role.mongodb }

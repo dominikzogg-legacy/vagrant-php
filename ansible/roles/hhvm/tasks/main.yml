@@ -1,0 +1,45 @@
+---
+- name: add key
+  apt_key: keyserver=keyserver.ubuntu.com id=0x5a16e7281be7a449 state=present
+
+- name: app repository
+  apt_repository: repo='deb http://dl.hhvm.com/debian jessie main' state=present
+
+- name: install
+  apt: name={{ item }} state=present
+  with_items:
+    - hhvm
+  notify:
+    - restart hhvm
+
+- name: fix user in init script
+  lineinfile:
+    dest=/etc/init.d/hhvm
+    line='RUN_AS_USER="vagrant"'
+    regexp='^RUN_AS_USER\='
+    state=present
+  notify:
+    - reload systemd
+
+- name: fix group in init script
+  lineinfile:
+    dest=/etc/init.d/hhvm
+    line='RUN_AS_GROUP="vagrant"'
+    regexp='^RUN_AS_GROUP\='
+    state=present
+  notify:
+    - reload systemd
+
+- name: configure php.ini
+  template:
+    src=php.ini.j2
+    dest=/etc/hhvm/php.ini
+  notify:
+    - restart hhvm
+
+- name: configure server.ini
+  template:
+    src=server.ini.j2
+    dest=/etc/hhvm/server.ini
+  notify:
+    - restart hhvm
