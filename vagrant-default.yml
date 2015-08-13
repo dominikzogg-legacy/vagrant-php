@@ -157,7 +157,7 @@ php:
                 pdo_mysql.default_socket: *mariadbsocket
             xdebug:
                 xdebug.max_nesting_level: 256
-        wwwconf:
+        server:
             socket: *phpfpmsocket
 
     modules:
