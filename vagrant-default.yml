@@ -6,7 +6,7 @@ sharetype: nfs # native, nfs, nfs-bind
 
 role:
     freetds: false
-    java: true
+    java: false
     mariadb: true
     mongodb: false
     nodejs: false
