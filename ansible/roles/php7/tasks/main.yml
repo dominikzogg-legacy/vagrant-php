@@ -13,7 +13,7 @@
 - name: install core
   apt: name={{ item }} state=present force=true
   with_items:
-    - php7-beta1
+    - php7-nightly
   notify:
     - restart php7-fpm
 
