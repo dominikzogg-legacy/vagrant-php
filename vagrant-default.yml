@@ -124,7 +124,7 @@ php:
             xdebug:
                 xdebug.max_nesting_level: 256
             hhvm:
-                hhvm.libxml.ext_entity_whitelist = file,http
+                hhvm.libxml.ext_entity_whitelist: file,http
         fpm:
             php:
                 short_open_tag: Off
@@ -160,7 +160,7 @@ php:
             xdebug:
                 xdebug.max_nesting_level: 256
             hhvm:
-                hhvm.libxml.ext_entity_whitelist = file,http
+                hhvm.libxml.ext_entity_whitelist: file,http
         server:
             socket: *phpserversocket
             log: /var/log/php-server.log
