@@ -123,6 +123,8 @@ php:
                 pdo_mysql.default_socket: *mariadbsocket
             xdebug:
                 xdebug.max_nesting_level: 256
+            hhvm:
+                hhvm.libxml.ext_entity_whitelist = file,http
         fpm:
             php:
                 short_open_tag: Off
@@ -157,6 +159,8 @@ php:
                 pdo_mysql.default_socket: *mariadbsocket
             xdebug:
                 xdebug.max_nesting_level: 256
+            hhvm:
+                hhvm.libxml.ext_entity_whitelist = file,http
         server:
             socket: *phpserversocket
             log: /var/log/php-server.log
