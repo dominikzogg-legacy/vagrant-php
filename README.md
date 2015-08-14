@@ -11,6 +11,7 @@
 ## Switchable features
 
  * freetds 0.91
+ * hhvm 3.8
  * java 7 (headless)
  * mariadb 10.0
  * mongodb 3.0
