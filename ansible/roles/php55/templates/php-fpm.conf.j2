@@ -1,10 +1,8 @@
-pid = /run/php-server.pid
-error_log = {{ php.config.server.log }}
-
+[vagrant]
 user = vagrant
 group = vagrant
 
-listen = {{ php.config.server.socket }}
+listen = {{ php.server.socket }}
 listen.owner = vagrant
 listen.group = vagrant
 

@@ -13,6 +13,8 @@ role:
     postgresql: false
     ruby: false
 
+# ----------------------------------------------------------------------------------------------------
+
 freetds:
     config:
 #        sampledomain.tld:
@@ -45,14 +47,53 @@ git:
 #            name: Firstname Lastname
 #            email: firstname.lastname@domain.tld
 
+hhvm:
+    config:
+        php:
+            short_open_tag: Off
+            safe_mode: Off
+            max_execution_time: 600
+            max_input_time: 600
+            memory_limit: 256M
+            error_reporting: E_ALL
+            display_errors: On
+            display_startup_errors: On
+            log_errors: On
+            error_log: /var/log/hhvm.err.log
+            post_max_size: 50M
+            magic_quotes_gpc: Off
+            magic_quotes_runtime: Off
+            default_charset: utf-8
+            cgi.fix_pathinfo: Off
+            upload_max_filesize: 50M
+            allow_url_fopen: On
+            allow_url_include: Off
+        date:
+            date.timezone: *timezone
+        intl:
+            intl.default_locale: *locale
+        mysql:
+            mysql.default_port: &mariadbport 3306
+            mysql.default_socket: &mariadbsocket /var/run/mysqld/mysqld.sock
+        mysqli:
+            mysqli.default_port: *mariadbport
+            mysqli.default_socket: *mariadbsocket
+        pdo_mysql:
+            pdo_mysql.default_socket: *mariadbsocket
+        hhvm:
+            hhvm.libxml.ext_entity_whitelist: file,http
+    server:
+        log: /var/log/hhvm-server.log
+        socket: &phpserversocket /tmp/php-server-socket
+
 mariadb:
     username: root
     password: root
     config:
         client:
             default-character-set: utf8
-            port: &mariadbport 3306
-            socket: &mariadbsocket /var/run/mysqld/mysqld.sock
+            port: *mariadbsocket
+            socket: *mariadbsocket
         mysqld:
             character-set-server: utf8
             datadir: /var/lib/mysql
@@ -83,7 +124,7 @@ nginx:
     config:
         charset: utf-8
         fastcgi_read_timeout: 600
-        fastcgi_socket: &phpserversocket /tmp/php-server-socket
+        fastcgi_socket: *phpserversocket
         error_log: /var/log/nginx/error.log
 
 nodejs:
@@ -123,8 +164,6 @@ php:
                 pdo_mysql.default_socket: *mariadbsocket
             xdebug:
                 xdebug.max_nesting_level: 256
-            hhvm:
-                hhvm.libxml.ext_entity_whitelist: file,http
         fpm:
             php:
                 short_open_tag: Off
@@ -159,11 +198,8 @@ php:
                 pdo_mysql.default_socket: *mariadbsocket
             xdebug:
                 xdebug.max_nesting_level: 256
-            hhvm:
-                hhvm.libxml.ext_entity_whitelist: file,http
-        server:
-            socket: *phpserversocket
-            log: /var/log/php-server.log
+    server:
+        socket: *phpserversocket
 
     modules:
         - apcu

@@ -1,4 +1,4 @@
-{% for groupname, group in php.config.fpm.iteritems() %}
+{% for groupname, group in hhvm.config.iteritems() %}
 [{{ groupname }}]
 {% for option, value in group.iteritems() %}
 {{ option }} = {{ value }}
