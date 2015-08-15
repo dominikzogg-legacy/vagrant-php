@@ -6,12 +6,11 @@
 
  * ubuntu 14.04
  * nginx 1.8
- * php 5.6
+ * php 5.5 / 5.6 (default) / 7.0 / hhvm 3.8
 
 ## Switchable features
 
  * freetds 0.91
- * hhvm 3.8
  * java 7 (headless)
  * mariadb 10.0
  * mongodb 3.0
