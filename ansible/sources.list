@@ -1,5 +1,13 @@
-deb http://mirror.switch.ch/ftp/mirror/debian jessie main
-deb-src http://mirror.switch.ch/ftp/mirror/debian jessie main
+deb http://ch.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
+deb-src http://ch.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse
 
-deb http://security.debian.org/ jessie/updates main
-deb-src http://security.debian.org/ jessie/updates main
+deb http://ch.archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+deb-src http://ch.archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse
+
+deb http://ch.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+deb-src http://ch.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+deb-src http://security.ubuntu.com/ubuntu trusty-security main restricted universe multiverse
+
+deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main

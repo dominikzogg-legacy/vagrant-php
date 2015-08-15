@@ -1,4 +1,13 @@
 ---
+- name: add key
+  apt_key: keyserver=keyserver.ubuntu.com id=4F4EA0AAE5267A6C state=present
+
+- name: app repository
+  apt_repository: repo='deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main' state=present
+
+- name: app src repository
+  apt_repository: repo='deb-src http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main' state=present
+
 - name: install core, common, cli, fpm
   apt: name={{ item }} state=present
   with_items:
@@ -7,14 +16,14 @@
     - php5-cli
     - php5-fpm
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
 
 - name: install sybase
   apt: name={{ item }} state=present
   with_items:
     - php5-sybase
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
   when: role.freetds
 
 - name: install mysqlnd
@@ -22,7 +31,7 @@
   with_items:
     - php5-mysqlnd
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
   when: role.mariadb
 
 - name: install pgsql
@@ -30,7 +39,7 @@
   with_items:
     - php5-pgsql
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
   when: role.postgresql
 
 - name: install mongo
@@ -38,13 +47,13 @@
   with_items:
     - php5-mongo
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
   when: role.mongodb
 
 - name: install modules
   apt: name="php5-{{ php.modules|join(',php5-') }}" state=present
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
 
 - name: configure cli php.ini
   template:
@@ -56,11 +65,11 @@
     src=fpm.php.ini.j2
     dest=/etc/php5/fpm/php.ini
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
 
-- name: fpm pool config
+- name: fpm config
   template:
-    src=www.conf.j2
-    dest=/etc/php5/fpm/pool.d/www.conf
+    src=php-fpm.conf.j2
+    dest=/etc/php5/fpm/php-fpm.conf
   notify:
-    - restart php5-fpm
+    - restart php56-fpm

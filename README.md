@@ -4,7 +4,7 @@
 
 ## Features
 
- * debian 8
+ * ubuntu 14.04
  * nginx 1.8
  * php 5.6
 
@@ -99,7 +99,7 @@ support on a easy way.
 
 ```{.sh}
 cd /path/to/my/project
-git submodule add -b v1 https://github.com/dominikzogg/vagrant-php.git
+git submodule add -b v1-ubuntu https://github.com/dominikzogg/vagrant-php.git
 ```
 
 ##### install
@@ -126,7 +126,7 @@ git submodule update --remote
 cd /path/to/my/project
 git clone https://github.com/dominikzogg/vagrant-php.git
 cd vagrant-php
-git checkout -b v1
+git checkout -b v1-ubuntu
 rm -r .git
 ```
 

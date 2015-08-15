@@ -9,7 +9,7 @@
 - name: locale | install
   apt: name={{ item }} state=present
   with_items:
-    - locales-all
+    - locales
 
 - name: locale | Generate {{ general.config.locale }}
   command: /usr/sbin/locale-gen {{ general.config.locale }}

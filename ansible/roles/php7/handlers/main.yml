@@ -1,6 +1,0 @@
----
-- name: restart php7-fpm
-  service: name=php7-fpm state=restarted
-
-- name: reload systemd
-  command: systemctl daemon-reload

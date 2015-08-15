@@ -1,12 +1,12 @@
 ---
 - name: add key
-  apt_key: keyserver=keyserver.ubuntu.com id=89DF5277 state=present
+  apt_key: keyserver=keyserver.ubuntu.com id=00A6F0A3C300EE8C state=present
 
 - name: app repository
-  apt_repository: repo='deb http://dotdeb.netmirror.org jessie all' state=present
+  apt_repository: repo='deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main' state=present
 
 - name: app src repository
-  apt_repository: repo='deb-src http://dotdeb.netmirror.org jessie all' state=present
+  apt_repository: repo='deb-src http://ppa.launchpad.net/nginx/stable/ubuntu trusty main' state=present
 
 - name: install needed modules
   apt: name={{ item }} state=present

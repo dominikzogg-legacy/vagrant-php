@@ -1,8 +1,14 @@
 ---
+- name: add apt key
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc state=present
+
+- name: app repository
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' state=present
+
 - name: install
   apt: name={{ item }} state=present
   with_items:
-    - postgresql
+    - postgresql-9.4
     - python-psycopg2
 
 - name: configure postgresql.conf

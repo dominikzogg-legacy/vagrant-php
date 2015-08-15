@@ -6,11 +6,14 @@ cp -f /vagrant/vagrant-php/ansible/resolv.conf /etc/resolv.conf
 # Copy sources.list
 cp -f /vagrant/vagrant-php/ansible/sources.list /etc/apt/sources.list
 
+# ansible ppa key
+apt-key adv --keyserver keyserver.ubuntu.com --recv 93C4A3FD7BB9C367 > /dev/null 2>&1
+
 # Update apt information
-apt-get update > /dev/null
+apt-get update > /dev/null 2>&1
 
 # Install ansible
-apt-get install -y ansible aptitude apt-transport-https > /dev/null
+apt-get install -y ansible aptitude apt-transport-https > /dev/null 2>&1
 
 export PYTHONUNBUFFERED=1
 
