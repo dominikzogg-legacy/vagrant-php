@@ -12,7 +12,7 @@ apt-key adv --keyserver keyserver.ubuntu.com --recv 93C4A3FD7BB9C367 > /dev/null
 # Update apt information
 apt-get update > /dev/null 2>&1
 
-# Install ansible
+# Install ansible, https support for apt
 apt-get install -y ansible aptitude apt-transport-https > /dev/null 2>&1
 
 export PYTHONUNBUFFERED=1
