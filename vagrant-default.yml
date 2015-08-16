@@ -92,7 +92,7 @@ mariadb:
     config:
         client:
             default-character-set: utf8
-            port: *mariadbsocket
+            port: *mariadbport
             socket: *mariadbsocket
         mysqld:
             character-set-server: utf8
