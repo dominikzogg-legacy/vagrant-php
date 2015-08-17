@@ -7,14 +7,14 @@
     - php5-cli
     - php5-fpm
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
 
 - name: install sybase
   apt: name={{ item }} state=present
   with_items:
     - php5-sybase
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
   when: role.freetds
 
 - name: install mysqlnd
@@ -22,7 +22,7 @@
   with_items:
     - php5-mysqlnd
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
   when: role.mariadb
 
 - name: install pgsql
@@ -30,7 +30,7 @@
   with_items:
     - php5-pgsql
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
   when: role.postgresql
 
 - name: install mongo
@@ -38,13 +38,13 @@
   with_items:
     - php5-mongo
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
   when: role.mongodb
 
 - name: install modules
   apt: name="php5-{{ php.modules|join(',php5-') }}" state=present
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
 
 - name: configure cli php.ini
   template:
@@ -56,11 +56,11 @@
     src=fpm.php.ini.j2
     dest=/etc/php5/fpm/php.ini
   notify:
-    - restart php5-fpm
+    - restart php56-fpm
 
 - name: fpm config
   template:
     src=php-fpm.conf.j2
     dest=/etc/php5/fpm/php-fpm.conf
   notify:
-    - restart php5-fpm
+    - restart php56-fpm

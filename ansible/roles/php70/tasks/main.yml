@@ -7,15 +7,18 @@
     src=php-fpm
     dest=/etc/init.d/php7-fpm
     mode=0755
-  notify:
-  - reload systemd
+  register: php7systemd
+
+- name: systemd reload
+  command: systemctl daemon-reload
+  when: php7systemd.changed
 
 - name: install core
   apt: name={{ item }} state=present force=true
   with_items:
     - php7-nightly
   notify:
-    - restart php7-fpm
+    - restart php70-fpm
 
 - name: link php binary
   file:
@@ -70,18 +73,18 @@
     src=php.ini.j2
     dest=/usr/local/php7/etc/php.ini
   notify:
-    - restart php7-fpm
+    - restart php70-fpm
 
 - name: fpm config
   copy:
     src=php-fpm.conf
     dest=/usr/local/php7/etc/php-fpm.conf
   notify:
-    - restart php7-fpm
+    - restart php70-fpm
 
 - name: fpm config
   template:
     src=php-fpm.conf.j2
     dest=/usr/local/php7/etc/php-fpm.conf
   notify:
-    - restart php7.0-fpm
+    - restart php70-fpm

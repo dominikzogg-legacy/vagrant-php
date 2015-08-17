@@ -60,8 +60,7 @@
     line='RUN_AS_USER="vagrant"'
     regexp='^RUN_AS_USER\='
     state=present
-  notify:
-    - reload systemd
+  register: hhvmsystemd
 
 - name: fix group in init script
   lineinfile:
@@ -69,8 +68,11 @@
     line='RUN_AS_GROUP="vagrant"'
     regexp='^RUN_AS_GROUP\='
     state=present
-  notify:
-    - reload systemd
+  register: hhvmsystemd
+
+- name: systemd reload
+  command: systemctl daemon-reload
+  when: hhvmsystemd.changed
 
 - name: configure php.ini
   template:

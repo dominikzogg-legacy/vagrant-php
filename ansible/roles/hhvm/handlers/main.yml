@@ -1,6 +1,3 @@
 ---
 - name: restart hhvm
   service: name=hhvm state=restarted
-
-- name: reload systemd
-  command: systemctl daemon-reload
