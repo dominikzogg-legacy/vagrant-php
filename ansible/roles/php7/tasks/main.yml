@@ -79,9 +79,9 @@
   notify:
     - restart php7-fpm
 
-- name: fpm pool config
+- name: fpm config
   template:
-    src=www.conf.j2
-    dest=/usr/local/php7/etc/php-fpm.d/www.conf
+    src=php-fpm.conf.j2
+    dest=/usr/local/php7/etc/php-fpm.conf
   notify:
-    - restart php7-fpm
+    - restart php7.0-fpm

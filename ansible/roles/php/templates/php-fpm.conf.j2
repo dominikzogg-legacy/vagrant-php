@@ -1,9 +1,8 @@
 [vagrant]
-
 user = vagrant
 group = vagrant
 
-listen = {{ php.config.server.socket }}
+listen = {{ php.server.socket }}
 listen.owner = vagrant
 listen.group = vagrant
 
@@ -13,6 +12,5 @@ pm.start_servers = 2
 pm.min_spare_servers = 1
 pm.max_spare_servers = 4
 pm.max_requests = 400
-pm.status_path = /fpm-status
 
-request_terminate_timeout = 0s
+request_terminate_timeout = {{ nginx.config.fastcgi_read_timeout }}s
