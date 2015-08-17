@@ -9,7 +9,7 @@ cp -f /vagrant/vagrant-php/ansible/sources.list /etc/apt/sources.list
 # Update apt information
 apt-get update > /dev/null
 
-# Install ansible
+# Install ansible, https support for apt
 apt-get install -y ansible aptitude apt-transport-https > /dev/null
 
 export PYTHONUNBUFFERED=1
