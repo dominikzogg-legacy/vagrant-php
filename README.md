@@ -1,17 +1,13 @@
 # dominikzogg/vagrant-php
 
-**important**: the host machine, does not need ansible support, all ansible scripts get managed by the client machine.
-
 ## Features
 
  * debian 8
  * nginx 1.8
- * php 5.6
 
 ## Switchable features
 
  * freetds 0.91
- * hhvm 3.8
  * java 7 (headless)
  * mariadb 10.0
  * mongodb 3.0
@@ -21,79 +17,13 @@
 
 ## Installation
 
-### virtualbox
-
-Download the newest virtualbox version supported by vagrant.
-
-https://www.virtualbox.org/wiki/Downloads
-
-### vmware (fusion on osx, workstation on linux/windows)
-
-https://www.vmware.com/products/fusion/
-https://www.vmware.com/products/workstation/
-
-### vagrant
-
-Download the newest vagrant version.
-
-https://www.vagrantup.com/downloads.html
-
-#### required vagrant plugin
-
-```{.sh}
-vagrant plugin install vagrant-hostmanager
-```
-
-#### optional vagrant plugin
-
-```{.sh}
-vagrant plugin install vagrant-bindfs
-```
-
-### provider specific
-
-#### vmware fusion
-
-```{.sh}
-vagrant plugin install vagrant-vmware-fusion
-```
-
-#### vmware workstation
-
-```{.sh}
-vagrant plugin install vagrant-vmware-workstation
-```
-
-### operating systems specific
-
-#### linux
-
-##### nfs support
-
-```{.sh}
-sudo apt-get install nfs-kernel-server
-```
-
-#### windows
-
-##### nfs support
-
-```{.sh}
-vagrant plugin install vagrant-winnfsd
-```
-
-##### git / ssh client
-
-https://msysgit.github.io
-
-Windows got no ssh or git support out of the box, by installing git from `msysgit.github.io` you get ssh and a git
-support on a easy way.
+ * [linux][1]
+ * [osx][2]
+ * [windows][3]
 
 ### vagrant-php
 
-#### as a git submodule
-
-##### register
+#### register
 
 **important**: call this only onces per project (initial setup).
 
@@ -102,7 +32,7 @@ cd /path/to/my/project
 git submodule add -b v1 https://github.com/dominikzogg/vagrant-php.git
 ```
 
-##### install
+#### install
 
 after checked out a prepared project or update to the version registred within the project.
 
@@ -111,23 +41,13 @@ cd /path/to/my/project
 git submodule update --init
 ```
 
-##### update
+#### update
 
 get the newest version of the vagrant-php submodule.
 
 ```{.sh}
 cd /path/to/my/project
 git submodule update --remote
-```
-
-#### as a copy of the project
-
-```{.sh}
-cd /path/to/my/project
-git clone https://github.com/dominikzogg/vagrant-php.git
-cd vagrant-php
-git checkout -b v1
-rm -r .git
 ```
 
 ## Configuration
@@ -137,11 +57,9 @@ rm -r .git
 ```{.yml}
 ---
 hostname: projectname.dev
-application: default
-sharetype: nfs
 ```
 
-for advanced configuration see the [default configuration][1]
+for advanced configuration see the [default configuration][4]
 
 #### supported application
 
@@ -149,7 +67,7 @@ for advanced configuration see the [default configuration][1]
  * default
  * drupal
  * lavarel
- * symfony
+ * [symfony][5]
  * wordpress
 
 #### supported sharetype
@@ -158,50 +76,15 @@ for advanced configuration see the [default configuration][1]
  * nfs
  * nfs-bindfs
 
+#### supported php versions
+
+ * 5.6
+ * 7.0
+ * hhvm
+
 ### vagrant-user.yml (within your project dir)
 
-This yaml is for user overrides, do not commit this file within your project.
-
-### Suspend the virtual machines on host logout or shutdown
-
-#### linux
-
-Add the following lines to `/etc/default/virtualbox` and add every user, which uses virtualboxm whitespace separated.
-
-```{.sh}
-SHUTDOWN_USERS="foo bar"
-SHUTDOWN=savestate
-```
-
-#### macosx
-
-Copy the script:
-
-```{.sh}
-sudo cp tools/vagrant-suspend /usr/local/bin/vagrant-suspend
-```
-
-Make it executable:
-
-```{.sh}
-sudo chmod +x /usr/local/bin/vagrant-suspend
-```
-
-Register the logout hook:
-
-```{.sh}
-sudo defaults write com.apple.loginwindow LogoutHook /usr/local/bin/vagrant-suspend
-```
-
-#### windows
-
-There should be a python solution for windows, but i have no expirience with it.
-
-http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
-
-## Applications
-
- * [symfony][2]
+This yaml is for user overrides, *do not* commit this file within your project.
 
 ## Run
 
@@ -220,9 +103,17 @@ vagrant ssh
 
 ## Troubleshooting
 
- * [troubleshooting][3]
+ * [all platforms][6]
+ * [linux][7]
+ * [osx][8]
+ * [windows][9]
 
-
-[1]: vagrant-default.yml
-[2]: doc/symfony.md
-[3]: doc/troubleshooting.md
+[1]: doc/installation/linux.md
+[2]: doc/installation/osx.md
+[3]: doc/installation/windows.md
+[4]: vagrant-default.yml
+[5]: doc/application/symfony.md
+[6]: doc/troubleshooting/allplatforms.md
+[7]: doc/troubleshooting/linux.md
+[8]: doc/troubleshooting/osx.md
+[9]: doc/troubleshooting/windows.md
