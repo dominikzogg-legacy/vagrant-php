@@ -5,15 +5,15 @@
     - general
     - { role: freetds, when: role.freetds }
     - git
-    - { role: hhvm, when: php.version == 'hhvm' }
+    - { role: hhvm, when: phpversion == 'hhvm' }
     - { role: java, when: role.java }
     - { role: mariadb, when: role.mariadb }
     - { role: mongodb, when: role.mongodb }
     - nginx
     - { role: nodejs, when: role.nodejs }
-    - { role: php55, when: php.version == 5.5 }
-    - { role: php56, when: php.version == 5.6 }
-    - { role: php70, when: php.version == 7.0 }
+    - { role: php55, when: phpversion == 5.5 }
+    - { role: php56, when: phpversion == 5.6 }
+    - { role: php70, when: phpversion == 7.0 }
     - php-commandlinetools
     - { role: postgresql, when: role.postgresql }
     - { role: ruby, when: role.ruby }
