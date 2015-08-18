@@ -1,8 +1,9 @@
 ---
 hostname: projectname.dev
 application: default # contao, default, drupal, lavarel, symfony, wordpress
-memory: 1024
 sharetype: nfs # native, nfs, nfs-bind
+phpversion: 5.6 # 5.6, 7.0, hhvm
+memory: 1024
 
 role:
     freetds: false
@@ -210,8 +211,6 @@ php:
         - mcrypt
         - sqlite
         - xdebug
-
-    version: 5.6
 
 postgresql:
     username: root
