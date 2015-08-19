@@ -11,6 +11,7 @@
     - { role: mongodb, when: role.mongodb }
     - nginx
     - { role: nodejs, when: role.nodejs }
+    - { role: php55-original, when: phpversion == '5.5-original' }
     - { role: php55, when: phpversion == 5.5 }
     - { role: php56, when: phpversion == 5.6 }
     - { role: php70, when: phpversion == 7.0 }

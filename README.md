@@ -80,6 +80,7 @@ for advanced configuration see the [default configuration][4]
 
 If you dlike to change the php version, you need to run `vagrant destroy and vagrant up`.
 
+ * 5.5-original
  * 5.5
  * 5.6
  * 7.0
