@@ -21,6 +21,14 @@
  * [osx][2]
  * [windows][3]
 
+### Plugin
+
+#### Hostmanager
+
+```{.sh}
+vagrant plugin install vagrant-hostmanager
+```
+
 ### vagrant-php
 
 #### register
