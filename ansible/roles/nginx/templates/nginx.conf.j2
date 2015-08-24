@@ -34,5 +34,18 @@ http {
             fastcgi_read_timeout {{ nginx.config.fastcgi_read_timeout }};
             include fastcgi_params;
         }
+
+        {% if phpversion == 'hhvm' %}
+            location ~ ^(.+\.hh)(.*)$ {
+                fastcgi_split_path_info ^(.+\.hh)(.*)$;
+                try_files $fastcgi_script_name =404;
+                set $wtf $fastcgi_path_info;
+                fastcgi_param PATH_INFO $wtf;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                fastcgi_pass unix:/{{ nginx.config.fastcgi_socket }};
+                fastcgi_read_timeout {{ nginx.config.fastcgi_read_timeout }};
+                include fastcgi_params;
+            }
+        {% endif %}
     }
 }
