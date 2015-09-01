@@ -36,97 +36,97 @@ else
 
     Vagrant.configure(2) do |config|
 
-      # Vagrant box
-      # --------------------------------------------------------------------------
-      config.vm.box = 'boxcutter/debian80'
+        # Vagrant box
+        # --------------------------------------------------------------------------
+        config.vm.box = 'boxcutter/debian80'
 
-      # General settings
-      # --------------------------------------------------------------------------
-      config.vm.hostname = projectconfig['hostname']
+        # General settings
+        # --------------------------------------------------------------------------
+        config.vm.hostname = projectconfig['hostname']
 
-      # Network
-      # --------------------------------------------------------------------------
-      config.vm.network 'private_network', type: 'dhcp'
-      config.vm.network :forwarded_port, guest: 22, host: sshforwardport, id: 'ssh', auto_correct: true
+        # Network
+        # --------------------------------------------------------------------------
+        config.vm.network 'private_network', type: 'dhcp'
+        config.vm.network :forwarded_port, guest: 22, host: sshforwardport, id: 'ssh', auto_correct: true
 
-      # SSH stuff
-      # --------------------------------------------------------------------------
-      config.ssh.forward_agent = true
+        # SSH stuff
+        # --------------------------------------------------------------------------
+        config.ssh.forward_agent = true
 
-      # Hostmanager
-      # --------------------------------------------------------------------------
-      config.hostmanager.enabled = true
-      config.hostmanager.manage_host = true
-      config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
-          if hostname = (vm.ssh_info && vm.ssh_info[:host])
-              `vagrant ssh -c 'hostname -I'`.split()[1]
-          end
-      end
+        # Hostmanager
+        # --------------------------------------------------------------------------
+        config.hostmanager.enabled = true
+        config.hostmanager.manage_host = true
+        config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
+            if hostname = (vm.ssh_info && vm.ssh_info[:host])
+                `vagrant ssh -c 'hostname -I'`.split()[1]
+            end
+        end
 
-      # Synced folder
-      # --------------------------------------------------------------------------
-      config.vm.synced_folder '.', '/vagrant', disabled: true
+        # Synced folder
+        # --------------------------------------------------------------------------
+        config.vm.synced_folder '.', '/vagrant', disabled: true
 
-      if projectconfig['sharetype'] == 'native'
-          config.vm.synced_folder './..', '/vagrant'
-      elsif projectconfig['sharetype'] == 'nfs' or projectconfig['sharetype'] == 'nfs-bindfs'
-          config.nfs.map_uid = Process.uid
-          config.nfs.map_gid = Process.gid
-          if projectconfig['sharetype'] == 'nfs-bindfs'
-              config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
-              config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
-          else
-              config.vm.synced_folder './..', '/vagrant', create: true, nfs: true, nfs_udp: false
-          end
-      else
-          print "no valid sharetype, please take a look into README.md!\n"
-      end
+        if projectconfig['sharetype'] == 'native'
+            config.vm.synced_folder './..', '/vagrant'
+        elsif projectconfig['sharetype'] == 'nfs' or projectconfig['sharetype'] == 'nfs-bindfs'
+            config.nfs.map_uid = Process.uid
+            config.nfs.map_gid = Process.gid
+            if projectconfig['sharetype'] == 'nfs-bindfs'
+                config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
+                config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
+            else
+                config.vm.synced_folder './..', '/vagrant', create: true, nfs: true, nfs_udp: false
+            end
+        else
+            print "no valid sharetype, please take a look into README.md!\n"
+        end
 
-      # Resources of our box
-      # --------------------------------------------------------------------------
+        # Resources of our box
+        # --------------------------------------------------------------------------
 
-      # for virtualbox
-      config.vm.provider 'virtualbox' do |v|
-          v.name = projectconfig['hostname']
-          v.memory = projectconfig['memory']
-          v.cpus = 1
-          v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+        # for virtualbox
+        config.vm.provider 'virtualbox' do |v|
+            v.name = projectconfig['hostname']
+            v.memory = projectconfig['memory']
+            v.cpus = 1
+            v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
 
-          if not Vagrant::Util::Platform.windows?
-              # use virtio networkcards on unix hosts
-              v.customize ['modifyvm', :id, '--nictype1', 'virtio']
-              v.customize ['modifyvm', :id, '--nictype2', 'virtio']
-          end
-      end
+            # use virtio networkcards on unix hosts
+            if not Vagrant::Util::Platform.windows?
+                v.customize ['modifyvm', :id, '--nictype1', 'virtio']
+                v.customize ['modifyvm', :id, '--nictype2', 'virtio']
+            end
+        end
 
-      # for vmware fusion (osx)
-      config.vm.provider "vmware_fusion" do |v|
-        v.vmx['displayname'] = projectconfig['hostname']
-        v.vmx['memsize'] = projectconfig['memory']
-        v.vmx['numvcpus'] = '1'
-        v.vmx['vhv.enable'] = 'TRUE'
-      end
+        # for vmware fusion (osx)
+        config.vm.provider "vmware_fusion" do |v|
+            v.vmx['displayname'] = projectconfig['hostname']
+            v.vmx['memsize'] = projectconfig['memory']
+            v.vmx['numvcpus'] = '1'
+            v.vmx['vhv.enable'] = 'TRUE'
+        end
 
-      # for vmware workstation (windows, linux)
-      config.vm.provider "vmware_workstation" do |v|
-        v.vmx['displayname'] = projectconfig['hostname']
-        v.vmx['memsize'] = projectconfig['memory']
-        v.vmx['numvcpus'] = '1'
-        v.vmx['vhv.enable'] = 'TRUE'
-      end
+        # for vmware workstation (windows, linux)
+        config.vm.provider "vmware_workstation" do |v|
+            v.vmx['displayname'] = projectconfig['hostname']
+            v.vmx['memsize'] = projectconfig['memory']
+            v.vmx['numvcpus'] = '1'
+            v.vmx['vhv.enable'] = 'TRUE'
+        end
 
-      # for parallels
-      config.vm.provider "parallels" do |v|
-        v.name = projectconfig['hostname']
-        v.memory = projectconfig['memory']
-        v.cpus = 1
-      end
+        # for parallels
+        config.vm.provider "parallels" do |v|
+            v.name = projectconfig['hostname']
+            v.memory = projectconfig['memory']
+            v.cpus = 1
+        end
 
-      # Provisioning
-      # --------------------------------------------------------------------------
-      config.vm.provision 'shell' do |sh|
-          sh.path = 'ansible/ansible-on-guest.sh'
-          sh.args = ['ansible/playbook.yml', projectconfig.to_json.split(' ').join('\u0020')]
-      end
+        # Provisioning
+        # --------------------------------------------------------------------------
+        config.vm.provision 'shell' do |sh|
+            sh.path = 'ansible/ansible-on-guest.sh'
+            sh.args = ['ansible/playbook.yml', projectconfig.to_json.split(' ').join('\u0020')]
+        end
     end
 end
