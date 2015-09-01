@@ -99,19 +99,27 @@ else
           end
       end
 
-      # for vmware
+      # for vmware fusion (osx)
       config.vm.provider "vmware_fusion" do |v|
-          v.vmx['displayname'] = projectconfig['hostname']
-          v.vmx['memsize'] = projectconfig['memory']
-          v.vmx['numvcpus'] = '1'
-          v.vmx['vhv.enable'] = 'TRUE'
+        v.vmx['displayname'] = projectconfig['hostname']
+        v.vmx['memsize'] = projectconfig['memory']
+        v.vmx['numvcpus'] = '1'
+        v.vmx['vhv.enable'] = 'TRUE'
+      end
+
+      # for vmware workstation (windows, linux)
+      config.vm.provider "vmware_workstation" do |v|
+        v.vmx['displayname'] = projectconfig['hostname']
+        v.vmx['memsize'] = projectconfig['memory']
+        v.vmx['numvcpus'] = '1'
+        v.vmx['vhv.enable'] = 'TRUE'
       end
 
       # for parallels
       config.vm.provider "parallels" do |v|
-          v.name = projectconfig['hostname']
-          v.memory = projectconfig['memory']
-          v.cpus = 1
+        v.name = projectconfig['hostname']
+        v.memory = projectconfig['memory']
+        v.cpus = 1
       end
 
       # Provisioning
