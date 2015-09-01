@@ -118,6 +118,11 @@ vagrant ssh
  * [osx][8]
  * [windows][9]
 
+## Thanks
+
+ * [VMware][10] for the large discount on the [vmware workstation][11] license for testing this setup.
+ * [hashicorp][12] for the large discount on the [vagrant-vmware-workstation][13] license for testing this setup.
+
 [1]: doc/installation/linux.md
 [2]: doc/installation/osx.md
 [3]: doc/installation/windows.md
@@ -127,3 +132,7 @@ vagrant ssh
 [7]: doc/troubleshooting/linux.md
 [8]: doc/troubleshooting/osx.md
 [9]: doc/troubleshooting/windows.md
+[10]: https://www.vmware.com
+[11]: https://www.vmware.com/products/workstation/features.html
+[12]: https://hashicorp.com
+[13]: https://www.vagrantup.com/vmware#buy-now
