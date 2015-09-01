@@ -120,7 +120,7 @@ vagrant ssh
  * [osx][8]
  * [windows][9]
 
-### Thanks
+## Thanks
 
  * [VMware][10] for the large discount on the [vmware workstation][11] license for testing this setup.
  * [hashicorp][12] for the large discount on the [vagrant-vmware-workstation][13] license for testing this setup.
