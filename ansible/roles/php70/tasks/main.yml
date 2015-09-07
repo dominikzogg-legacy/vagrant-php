@@ -46,7 +46,9 @@
   apt: name={{ item }} state=present
   with_items:
     - php-curl
+    - php-gd
     - php-intl
+    - php-sqlite3
   notify:
     - restart php7.0-fpm
 
