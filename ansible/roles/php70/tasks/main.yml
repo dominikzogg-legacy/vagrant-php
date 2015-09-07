@@ -48,6 +48,7 @@
     - php-curl
     - php-gd
     - php-intl
+    - php-opcache
     - php-sqlite3
   notify:
     - restart php7.0-fpm
