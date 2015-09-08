@@ -115,13 +115,6 @@ else
             v.vmx['vhv.enable'] = 'TRUE'
         end
 
-        # for parallels
-        config.vm.provider "parallels" do |v|
-            v.name = projectconfig['hostname']
-            v.memory = projectconfig['memory']
-            v.cpus = 1
-        end
-
         # Provisioning
         # --------------------------------------------------------------------------
         config.vm.provision 'shell' do |sh|
