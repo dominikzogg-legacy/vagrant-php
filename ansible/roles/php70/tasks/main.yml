@@ -50,7 +50,6 @@
     - php-intl
     - php-mcrypt
     - php-sqlite3
-    - php-xdebug
   notify:
     - restart php7.0-fpm
 
