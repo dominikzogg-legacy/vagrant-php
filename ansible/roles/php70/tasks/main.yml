@@ -49,6 +49,7 @@
     - php-gd
     - php-intl
     - php-mcrypt
+    - php-opcache
     - php-sqlite3
   notify:
     - restart php7.0-fpm
