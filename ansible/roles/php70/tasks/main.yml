@@ -1,90 +1,74 @@
 ---
+- name: add key
+  apt_key: keyserver=keyserver.ubuntu.com id=89DF5277 state=present
+
 - name: app repository
-  apt_repository: repo='deb http://repos.zend.com/zend-server/early-access/php7/repos ubuntu/' state=present
+  apt_repository: repo='deb http://dotdeb.netmirror.org jessie all' state=present
 
-- name: configure php-fpm
-  copy:
-    src=php-fpm
-    dest=/etc/init.d/php7-fpm
-    mode=0755
-  register: php7systemd
+- name: app src repository
+  apt_repository: repo='deb-src http://dotdeb.netmirror.org jessie all' state=present
 
-- name: systemd reload
-  command: systemctl daemon-reload
-  when: php7systemd.changed
-
-- name: install core
-  apt: name={{ item }} state=present force=true
+- name: install core, common, cli, fpm
+  apt: name={{ item }} state=present
   with_items:
-    - php7-nightly
+    - php7.0
+    - php7.0-common
+    - php7.0-cli
+    - php7.0-fpm
   notify:
-    - restart php70-fpm
+    - restart php7.0-fpm
 
-- name: link php binary
-  file:
-    src=/usr/local/php7/bin/php
-    dest=/usr/bin/php
-    state=link
+- name: install sybase
+  apt: name={{ item }} state=present
+  with_items:
+    - php-sybase
+  notify:
+    - restart php7.0-fpm
+  when: role.freetds
 
-- name: link php-fpm rc0.d
-  file:
-    src=/etc/init.d/php7-fpm
-    dest=/etc/rc0.d/K01php7-fpm
-    state=link
+- name: install mysql
+  apt: name={{ item }} state=present
+  with_items:
+    - php-mysql
+  notify:
+    - restart php7.0-fpm
+  when: role.mariadb
 
-- name: link php-fpm rc1.d
-  file:
-    src=/etc/init.d/php7-fpm
-    dest=/etc/rc1.d/K01php7-fpm
-    state=link
+- name: install pgsql
+  apt: name={{ item }} state=present
+  with_items:
+    - php-pgsql
+  notify:
+    - restart php7.0-fpm
+  when: role.postgresql
 
-- name: link php-fpm rc2.d
-  file:
-    src=/etc/init.d/php7-fpm
-    dest=/etc/rc2.d/S01php7-fpm
-    state=link
+- name: install modules
+  apt: name={{ item }} state=present
+  with_items:
+    - php-curl
+    - php-gd
+    - php-intl
+    - php-mcrypt
+    - php-sqlite3
+    - php-xdebug
+  notify:
+    - restart php7.0-fpm
 
-- name: link php-fpm rc3.d
-  file:
-    src=/etc/init.d/php7-fpm
-    dest=/etc/rc3.d/S01php7-fpm
-    state=link
-
-- name: link php-fpm rc4.d
-  file:
-    src=/etc/init.d/php7-fpm
-    dest=/etc/rc4.d/S01php7-fpm
-    state=link
-
-- name: link php-fpm rc5.d
-  file:
-    src=/etc/init.d/php7-fpm
-    dest=/etc/rc5.d/S01php7-fpm
-    state=link
-
-- name: link php-fpm rc6.d
-  file:
-    src=/etc/init.d/php7-fpm
-    dest=/etc/rc6.d/K01php7-fpm
-    state=link
-
-- name: configure php.ini
+- name: configure cli php.ini
   template:
-    src=php.ini.j2
-    dest=/usr/local/php7/etc/php.ini
-  notify:
-    - restart php70-fpm
+    src=cli.php.ini.j2
+    dest=/etc/php/7.0/cli/php.ini
 
-- name: fpm config
-  copy:
-    src=php-fpm.conf
-    dest=/usr/local/php7/etc/php-fpm.conf
+- name: configure fpm php.ini
+  template:
+    src=fpm.php.ini.j2
+    dest=/etc/php/7.0/fpm/php.ini
   notify:
-    - restart php70-fpm
+    - restart php7.0-fpm
 
 - name: fpm config
   template:
     src=php-fpm.conf.j2
-    dest=/usr/local/php7/etc/php-fpm.conf
+    dest=/etc/php/7.0/fpm/php-fpm.conf
   notify:
-    - restart php70-fpm
+    - restart php7.0-fpm
