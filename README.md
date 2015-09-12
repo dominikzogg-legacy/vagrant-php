@@ -46,7 +46,7 @@ after checked out a prepared project or update to the version registred within t
 
 ```{.sh}
 cd /path/to/my/project
-git submodule update --init
+git submodule update --init -- vagrant-php
 ```
 
 #### update
@@ -55,7 +55,7 @@ get the newest version of the vagrant-php submodule.
 
 ```{.sh}
 cd /path/to/my/project
-git submodule update --remote
+git submodule update --remote -- vagrant-php
 ```
 
 ## Configuration
