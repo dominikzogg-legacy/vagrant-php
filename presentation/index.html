@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>vagrant-php</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Hakim El Hattab">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css" id="theme">
+        <link rel="stylesheet" href="css/print/paper.css">
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h2>vagrant-php</h2>
+                    <p>An easy-to-use, flexible vagrant setup for php which runs on virtualbox and vmware using ansible.</p>
+                    <p>
+                        <small>Created by <a target="_blank" href="https://github.com/dominikzogg">Dominik Zogg</a> / <a target="_blank" href="http://twitter.com/dominikzogg">@dominikzogg</a></small>
+                    </p>
+                </section>
+                <section>
+                    <h2>What is vagrant?</h2>
+                    <p><a target="_blank" href="https://www.vagrantup.com">Vagrant</a> is an opensource tool written in ruby. It provides an easy-to-use and easy-to-configure development environment based on desktop virtualization technologies.</p>
+                </section>
+                <section>
+                    <h2>What exactly does vagrant?</h2>
+                    <section>
+                        <h3>Virtualization</h3>
+                        <p>Vagrant allows the usage of boxes. They are prepared virtual environments for different providers (desktop virtualization solutions) such as <a target="_blank" href="https://www.virtualbox.org">virtualbox</a>, <a target="_blank" href="https://www.vmware.com">vmware</a> and <a target="_blank" href="https://www.parallels.com">parallels</a>.</p>
+                    </section>
+                    <section>
+                        <h3>Configuration</h3>
+                        <p>Vagrant injects this prepared box within the provider and configure it with the configurations made within the Vagrantfile.</p>
+<pre><code data-trim>
+Vagrant.configure("2") do |config|
+  config.vm.box = 'boxcutter/ubuntu1404'
+end
+</code></pre>
+                    </section>
+                    <section>
+                        <h3>Provisioning</h3>
+                        <p>Vagrant supports multiple provisioning tools: from a simple shell script up to professional solutions such as <a target="_blank" href="https://docs.ansible.com/ansible/">ansible</a>, <a target="_blank" href="https://docs.chef.io/provisioning.html">chef</a>, <a target="_blank" href="https://docs.puppetlabs.com/puppet/">puppet</a>, <a target="_blank" href="https://docs.saltstack.com/en/latest/">salt</a> etc.</p>
+<pre><code data-trim>
+Vagrant.configure("2") do |config|
+  config.vm.provision 'shell' do |sh|
+    ...
+  end
+end
+</code></pre>
+                    </section>
+                    <section>
+                        <h3>Commands</h3>
+                        <p>There are various commands allowing you to start, to provision, to halt, etc. your virtual machine.</p>
+<pre><code data-trim>
+vagrant up # boot the machine
+vagrant halt # shutdown the machine
+vagrant ssh # connect to the machine
+vagrant provision # provision machine (run ansible playbooks)
+vagrant suspend # suspend machine (suspend to disk)
+vagrant resume # resume suspended disk
+</code></pre>
+                    </section>
+                </section>
+                <section>
+                    <h2>Why vagrant?</h2>
+                    <section>
+                        <h3>Compared to a local installation</h3>
+                        <p>pro arguments</p>
+                        <ul>
+                            <li>reusable configuration meaning faster and more consistent setup</li>
+                            <li>same or similar setup as on a hosting server</li>
+                            <li>independent from the underlying operating system</li>
+                            <li>project depended setup is supported</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Compared to a local installation</h3>
+                        <p>con arguments</p>
+                        <ul>
+                            <li>overhead (more memory is needed)</li>
+                            <li>slower (shared filesystem)</li>
+                            <li>more complex (setup: host or client problem)</li>
+                            <li>linux knowhow is needed</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Compared to docker</h3>
+                        <p>pro arguments</p>
+                        <ul>
+                            <li>independent of host operating system</li>
+                            <li>better support</li>
+                            <li>no <a target="_blank" href="http://boot2docker.io/">boot2docker</a> is needed on windows/osx hosts</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Compared to docker</h3>
+                        <p>con arguments</p>
+                        <ul>
+                            <li>much slower than docker on linux hosts</li>
+                            <li>no container support</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <h2>Virtualbox</h2>
+                    <p><a target="_blank" href="https://www.virtualbox.org">Virtualbox</a> is an easy-to-use opensource desktop virtualization solution.</p>
+                    <p>Virtualization simulates a computer hardware within an application which allows you to install an operating system within: a so called virtual machine.</p>
+                </section>
+                <section>
+                    <h2>Why virtualbox?</h2>
+                    <section>
+                        <h3>Compared to vmware</h3>
+                        <p>pro arguments</p>
+                        <ul>
+                            <li>better headless support (command to get client ip)</li>
+                            <li>opensource</li>
+                            <li>no licensing costs</li>
+                        </ul>
+                        <p>prices</p>
+                        <p>
+                                        osx: 81.95 USD + 79 USD => <strong>160.95 USD</strong><br>
+                            windows/linux: 254.95 USD + 79 USD => <strong>333.95 USD</strong>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Compared to vmware</h3>
+                        <p>con arguments</p>
+                        <ul>
+                            <li>slower in perfomance</li>
+                            <li>much slower shared filesystem -> use nfs</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <h2>Ansible</h2>
+                    <p><a target="_blank" href="https://docs.ansible.com/ansible/">Ansible</a> is an easy-to-use opensource provisioning solution.</p>
+                    <p>Provisioning automates system administration which means setup, configuration and updates by configuration.</p>
+                    <p>Within ansible this configuration is called <a target="_blank" href="https://docs.ansible.com/ansible/playbooks.html">playbook</a>.</p>
+                </section>
+                <section>
+                    <h2>Why ansible?</h2>
+                    <section>
+                        <h3>Compared to puppet</h3>
+                        <p>pro arguments</p>
+                        <ul>
+                            <li>less complex to use</li>
+                            <li>easily accessible and comprehensible instructions</li>
+                            <li>yaml and jinja templates are easier to write than ruby<br>(for non-ruby developers)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Compared to puppet</h3>
+                        <p>con arguments</p>
+                        <ul>
+                            <li>python is needed (and ruby for vagrant)</li>
+                        </ul>
+                    </section>
+                </section>
+                <section>
+                    <h2>Questions about the first part?</h2>
+                </section>
+                <section>
+                    <h2>What is vagrant-php?</h2>
+                    <p>This vagrant setup is made to work with several projects that mainly use php. It allows you to override the php.ini and my.cnf based on yaml configuration.</p>
+                    <p>Used as a git submodule (recommended), it is easy to update to the latest version.</p>
+                </section>
+                <section>
+                    <h2>How to prepare the host system</h2>
+                    <section>
+                        <h3>Install virtualbox</h3>
+                        <p><a target="_blank" href="https://www.virtualbox.org/wiki/Downloads">Download</a> and install the latest version supported by vagrant.</p>
+                    </section>
+                    <section>
+                        <h3>Install vagrant</h3>
+                        <p><a target="_blank" href="https://www.vagrantup.com/downloads.html">Download</a> and install the latest version.</p>
+                    </section>
+                    <section>
+                        <h3>Install the required vagrant plugin</h3>
+<pre><code data-trim>
+vagrant plugin install vagrant-hostmanager
+</code></pre>
+                    </section>
+                    <section>
+                        <h3>Windows hosts</h3>
+                        <p>The plugin makes it possible to use <a target="_blank" href="https://en.wikipedia.org/wiki/Network_File_System">nfs</a> within windows.</p>
+<pre><code data-trim>
+    vagrant plugin install vagrant-winnfsd
+</code></pre>
+                    </section>
+                    <section>
+                        <h3>Are there any shared folder permission problems?</h3>
+                        <p>Bindfs should fix most of the possible permission problems when using <a target="_blank" href="https://en.wikipedia.org/wiki/Network_File_System">nfs</a>.</p>
+<pre><code data-trim>
+    vagrant plugin install vagrant-bindfs
+</code></pre>
+                    </section>
+                </section>
+                <section>
+                    <h2>How to boot a preconfigured vagrant box</h2>
+<pre><code data-trim>
+cd /path/to/my/project
+git submodule update --init -- vagrant-php
+cd vagrant-php
+vagrant up
+</code></pre>
+                </section>
+                <section>
+                    <h2>How to setup a vagrant box</h2>
+                    <p>Add a vagrant.yml to the project directory and change the application with <a target="_blank" href="https://github.com/dominikzogg/vagrant-php#supported-application">supported</a> ones.</p>
+<pre><code data-trim>
+---
+hostname: projectname.dev
+application: symfony
+</code></pre>
+<pre><code data-trim>
+cd /path/to/my/project
+git submodule add -b v1-ubuntu \
+    https://github.com/dominikzogg/vagrant-php.git
+git submodule update --init -- vagrant-php
+cd vagrant-php
+vagrant up
+</code></pre>
+                </section>
+                <section>
+                    <h2>How to configure a vagrant box</h2>
+                    <p>The <a target="_blank" href="https://github.com/dominikzogg/vagrant-php/blob/v1-ubuntu/vagrant-default.yml">vagrant-default.yml</a> explains the supported configuration to modify the box according to your needs.</p>
+                    <p>This default configuration is the base, meaning all values get merged together with your configuration.</p>
+                </section>
+                <section>
+                    <h2>Background Know How</h2>
+                    <section>
+                        <h3>Why use yaml?</h3>
+                        <p>Using <a target="_blank" href="http://www.yaml.org">yaml</a> is probably the easiest and most well-known way for simple configuration within the php world.</p>
+                    </section>
+                    <section>
+                        <h3>Why use a default configuration?</h3>
+                        <p>It helps to understand the possibilities, while the user only needs to change what is necessary.</p>
+                    </section>
+                    <section>
+                        <h3>Why use a random ssh forward port?</h3>
+                        <p>Vagrant can solve conflicts at boot time, but if you suspend a machine and start a new one, both will use the same port. This prevents you from resuming the first one, as long the second one runs.</p>
+                    </section>
+                    <section>
+                        <h3>Why use dhcp to get an ip?</h3>
+                        <p>It prevents you from ip conflicts, which could happen running multiple machines at once.</p>
+                    </section>
+                    <section>
+                        <h3>Why use the hostmanager plugin?</h3>
+                        <p>There are different plugins which allow you to update the <a target="_blank" href="file:///etc/hosts">/etc/hosts</a> dynamically, but only this one is able to get the ip on a box using dhcp to receive the ip.</p>
+                    </section>
+                    <section>
+                        <h3>Why use nfs with TCP instead of UDP?</h3>
+                        <p><a target="_blank" href="https://de.wikipedia.org/wiki/User_Datagram_Protocol">UDP</a> is faster than <a target="_blank" href="https://de.wikipedia.org/wiki/Transmission_Control_Protocol">TCP</a>, but there were problems in the past when trying to run a <a target="_blank" href="https://getcomposer.org/">composer</a> update.</p>
+                    </section>
+                    <section>
+                        <h3>Why using shell provisioning?</h3>
+                        <p>It is not shell provisioning at all as it is still ansible provisioning getting tunneled through the shell provisioner.</p>
+                    </section>
+                    <section>
+                        <h3>But why?</h3>
+                        <p>Ansible runs only on unix like systems. Getting ansible to run on a windows host requires a lot of work and other technologies such as <a target="_blank" href="https://www.cygwin.com/">cycwin</a>.</p>
+                        <p>Another benefit is that less preparation is needed on host.</p>
+                    </section>
+                </section>
+                <section>
+                    <h2>Questions?</h2>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
