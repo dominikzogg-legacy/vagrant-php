@@ -43,7 +43,7 @@ git:
         core:
             editor: *editor
         push:
-            default: simple
+            default: current
 #        user:
 #            name: Firstname Lastname
 #            email: firstname.lastname@domain.tld
