@@ -5,6 +5,11 @@ sharetype: nfs # native, nfs, nfs-bind
 phpversion: 5.6 # 5.6, 7.0, hhvm
 memory: 1024
 
+nfsoptions:
+    udp: false
+    bsd: ['alldirs']
+    linux: ['rw','no_subtree_check','all_squash','async']
+
 role:
     freetds: false
     java: false

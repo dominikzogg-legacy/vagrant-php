@@ -72,11 +72,18 @@ else
         elsif projectconfig['sharetype'] == 'nfs' or projectconfig['sharetype'] == 'nfs-bindfs'
             config.nfs.map_uid = Process.uid
             config.nfs.map_gid = Process.gid
+            nfsoptions = {
+                :create => true,
+                :nfs => true,
+                :nfs_udp => projectconfig['nfsoptions']['udp'],
+                :bsd__nfs_options => projectconfig['nfsoptions']['bsd'],
+                :linux__nfs_options => projectconfig['nfsoptions']['linux']
+            }
             if projectconfig['sharetype'] == 'nfs-bindfs'
-                config.vm.synced_folder './..', '/vagrant-nfs', create: true, nfs: true, nfs_udp: false
+                config.vm.synced_folder './..', '/vagrant-nfs', nfsoptions
                 config.bindfs.bind_folder '/vagrant-nfs', '/vagrant'
             else
-                config.vm.synced_folder './..', '/vagrant', create: true, nfs: true, nfs_udp: false
+                config.vm.synced_folder './..', '/vagrant', nfsoptions
             end
         else
             print "no valid sharetype, please take a look into README.md!\n"
