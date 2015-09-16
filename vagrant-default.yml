@@ -115,8 +115,8 @@ memcached:
         logfile: /var/log/memcached.log
         -m: 64
         -p: 11211
+        -s: /tmp/memcached.sock
         -u: memcache
-        -l: 127.0.0.1
 
 mongodb:
     username: root
