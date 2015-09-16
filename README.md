@@ -10,6 +10,7 @@
  * freetds 0.91
  * java 7 (headless)
  * mariadb 10.0
+ * memcached 1.4
  * mongodb 3.0
  * nodejs 0.12
  * postgresql 9.4
