@@ -34,6 +34,14 @@
     - restart php55-fpm
   when: role.mariadb
 
+- name: install memcached
+  apt: name={{ item }} state=present
+  with_items:
+    - php5-memcached
+  notify:
+    - restart php55-fpm
+  when: role.memcached
+
 - name: install pgsql
   apt: name={{ item }} state=present
   with_items:
