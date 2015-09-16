@@ -8,6 +8,7 @@
     - { role: hhvm, when: phpversion == 'hhvm' }
     - { role: java, when: role.java }
     - { role: mariadb, when: role.mariadb }
+    - { role: memcached, when: role.memcached }
     - { role: mongodb, when: role.mongodb }
     - nginx
     - { role: nodejs, when: role.nodejs }

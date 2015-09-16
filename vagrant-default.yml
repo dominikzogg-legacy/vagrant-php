@@ -14,6 +14,7 @@ role:
     freetds: false
     java: false
     mariadb: true
+    memcached: false
     mongodb: false
     nodejs: false
     postgresql: false
@@ -107,6 +108,15 @@ mariadb:
             pid-file: /var/run/mysqld/mysqld.pid
             port: *mariadbport
             socket: *mariadbsocket
+
+memcached:
+    config:
+        -d: ''
+        logfile: /var/log/memcached.log
+        -m: 64
+        -p: 11211
+        -u: memcache
+        -l: 127.0.0.1
 
 mongodb:
     username: root
