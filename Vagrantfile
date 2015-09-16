@@ -85,7 +85,7 @@ Vagrant.configure(2) do |config|
         v.name = projectconfig['hostname']
         v.memory = projectconfig['memory']
         v.cpus = 1
-        v.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+        v.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
 
         if not Vagrant::Util::Platform.windows?
             # use virtio networkcards on unix hosts
