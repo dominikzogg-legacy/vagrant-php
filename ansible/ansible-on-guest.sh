@@ -15,13 +15,9 @@ apt-get update > /dev/null 2>&1
 # Install ansible, https support for apt
 apt-get install -y ansible aptitude apt-transport-https > /dev/null 2>&1
 
-isPythonUnbuffered=${PYTHONUNBUFFERED:-0}
-
-export PYTHONUNBUFFERED=1
+PYTHONUNBUFFERED=1
 
 # Run the playbook.
 echo "Running Ansible provisioner defined in Vagrantfile."
 echo "extra-vars: " $2
 ansible-playbook -i localhost, --connection=local --extra-vars=${2} /vagrant/vagrant-php/${1}
-
-export PYTHONUNBUFFERED=$isPythonUnbuffered
