@@ -7,7 +7,7 @@ cp -f /vagrant/vagrant-php/ansible/resolv.conf /etc/resolv.conf
 cp -f /vagrant/vagrant-php/ansible/sources.list /etc/apt/sources.list
 
 # Update apt information
-apt-get update > /dev/null
+apt-get update > /dev/null 2>&1
 
 # Install ansible, https support for apt
 apt-get install -y ansible aptitude apt-transport-https > /dev/null 2>&1
