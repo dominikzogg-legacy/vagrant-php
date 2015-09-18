@@ -48,7 +48,6 @@
     - php-curl
     - php-gd
     - php-intl
-    - php-mcrypt
     - php-opcache
     - php-sqlite3
   notify:
