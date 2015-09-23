@@ -15,6 +15,7 @@
  * mongodb 3.0
  * nodejs 0.12
  * postgresql 9.4
+ * redis 3.0.4
  * ruby 2.1.5
 
 ## Installation
