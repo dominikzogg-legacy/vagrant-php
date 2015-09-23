@@ -18,6 +18,7 @@ role:
     mongodb: false
     nodejs: false
     postgresql: false
+    redis: false
     ruby: false
 
 # ----------------------------------------------------------------------------------------------------
@@ -245,6 +246,20 @@ postgresql:
         shared_buffers: 128MB
         timezone: *timezone
         unix_socket_directories: /var/run/postgresql
+
+redis:
+    config:
+        daemonize: yes
+        pidfile: /var/run/redis/redis-server.pid
+        port: 6379
+        unixsocket: /var/run/redis/redis.sock
+        loglevel: notice
+        logfile: /var/log/redis/redis-server.log
+        dir: /var/lib/redis
+        #save:
+            #900: 1
+            #300: 10
+            #60: 10000
 
 ruby:
     gems:
