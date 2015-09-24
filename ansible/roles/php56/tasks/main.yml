@@ -18,13 +18,21 @@
   notify:
     - restart php56-fpm
 
-- name: install sybase
+- name: install memcached
   apt: name={{ item }} state=present
   with_items:
-    - php5-sybase
+    - php5-memcached
   notify:
     - restart php56-fpm
-  when: role.freetds
+  when: role.memcached
+
+- name: install mongo
+  apt: name={{ item }} state=present
+  with_items:
+    - php5-mongo
+  notify:
+    - restart php56-fpm
+  when: role.mongodb
 
 - name: install mysqlnd
   apt: name={{ item }} state=present
@@ -34,14 +42,6 @@
     - restart php56-fpm
   when: role.mariadb
 
-- name: install memcached
-  apt: name={{ item }} state=present
-  with_items:
-    - php5-memcached
-  notify:
-    - restart php56-fpm
-  when: role.memcached
-
 - name: install pgsql
   apt: name={{ item }} state=present
   with_items:
@@ -50,13 +50,21 @@
     - restart php56-fpm
   when: role.postgresql
 
-- name: install mongo
+- name: install redis
   apt: name={{ item }} state=present
   with_items:
-    - php5-mongo
+    - php5-redis
   notify:
     - restart php56-fpm
-  when: role.mongodb
+  when: role.redis
+
+- name: install sybase
+  apt: name={{ item }} state=present
+  with_items:
+    - php5-sybase
+  notify:
+    - restart php56-fpm
+  when: role.freetds
 
 - name: install modules
   apt: name="php5-{{ php.modules|join(',php5-') }}" state=present
