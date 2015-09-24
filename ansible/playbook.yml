@@ -3,6 +3,7 @@
   sudo: true
   roles:
     - general
+    - { role: elasticsearch, when: role.elasticsearch }
     - { role: freetds, when: role.freetds }
     - git
     - { role: hhvm, when: phpversion == 'hhvm' }

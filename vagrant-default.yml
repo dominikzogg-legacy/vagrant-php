@@ -11,6 +11,7 @@ nfsoptions:
     linux: ['rw','no_subtree_check','all_squash','async']
 
 role:
+    elasticsearch: false
     freetds: false
     java: false
     mariadb: true
