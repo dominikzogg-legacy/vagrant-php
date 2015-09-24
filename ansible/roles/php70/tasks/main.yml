@@ -18,14 +18,6 @@
   notify:
     - restart php7.0-fpm
 
-- name: install sybase
-  apt: name={{ item }} state=present
-  with_items:
-    - php-sybase
-  notify:
-    - restart php7.0-fpm
-  when: role.freetds
-
 - name: install mysql
   apt: name={{ item }} state=present
   with_items:
@@ -41,6 +33,14 @@
   notify:
     - restart php7.0-fpm
   when: role.postgresql
+
+- name: install sybase
+  apt: name={{ item }} state=present
+  with_items:
+    - php-sybase
+  notify:
+    - restart php7.0-fpm
+  when: role.freetds
 
 - name: install modules
   apt: name={{ item }} state=present

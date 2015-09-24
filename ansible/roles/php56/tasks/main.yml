@@ -9,22 +9,6 @@
   notify:
     - restart php56-fpm
 
-- name: install sybase
-  apt: name={{ item }} state=present
-  with_items:
-    - php5-sybase
-  notify:
-    - restart php56-fpm
-  when: role.freetds
-
-- name: install mysqlnd
-  apt: name={{ item }} state=present
-  with_items:
-    - php5-mysqlnd
-  notify:
-    - restart php56-fpm
-  when: role.mariadb
-
 - name: install memcached
   apt: name={{ item }} state=present
   with_items:
@@ -48,6 +32,30 @@
   notify:
     - restart php56-fpm
   when: role.mongodb
+
+- name: install mysqlnd
+  apt: name={{ item }} state=present
+  with_items:
+    - php5-mysqlnd
+  notify:
+    - restart php56-fpm
+  when: role.mariadb
+
+- name: install redis
+  apt: name={{ item }} state=present
+  with_items:
+    - php5-redis
+  notify:
+    - restart php56-fpm
+  when: role.redis
+
+- name: install sybase
+  apt: name={{ item }} state=present
+  with_items:
+    - php5-sybase
+  notify:
+    - restart php56-fpm
+  when: role.freetds
 
 - name: install modules
   apt: name="php5-{{ php.modules|join(',php5-') }}" state=present
