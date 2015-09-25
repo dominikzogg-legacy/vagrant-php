@@ -7,9 +7,7 @@ export EDITOR='{{ general.config.editor }}'
 export HISTSIZE={{ general.config.history_length }}
 export HISTFILESIZE={{ general.config.history_length }}
 
-{% if phpversion == 7 %}
-export PATH=/usr/local/php7/sbin:/usr/local/php7/bin:$PATH
-{% endif %}
+alias cls='printf "\033c"'
 
 {% if application == 'symfony' %}
 alias sf="./app/console"
