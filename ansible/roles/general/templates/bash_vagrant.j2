@@ -7,6 +7,8 @@ export EDITOR='{{ general.config.editor }}'
 export HISTSIZE={{ general.config.history_length }}
 export HISTFILESIZE={{ general.config.history_length }}
 
+alias cls='printf "\033c"'
+
 {% if application == 'symfony' %}
 alias sf="./app/console"
 alias sfcc="sf cache:clear"
