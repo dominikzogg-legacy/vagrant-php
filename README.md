@@ -8,6 +8,7 @@
 
 ## Switchable features
 
+ * elasticsearch 1.7
  * freetds 0.91
  * java 7 (headless)
  * mariadb 10.0
