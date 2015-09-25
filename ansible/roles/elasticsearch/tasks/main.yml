@@ -52,3 +52,10 @@
     src=/etc/init.d/elasticsearch
     dest=/etc/rc6.d/K01elasticsearch
     state=link
+
+- name: configure elasticsearch.yml
+  template:
+    src=elasticsearch.yml.j2
+    dest=/etc/elasticsearch/elasticsearch.yml
+  notify:
+      - restart elasticsearch

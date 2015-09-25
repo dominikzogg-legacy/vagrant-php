@@ -24,6 +24,14 @@ role:
 
 # ----------------------------------------------------------------------------------------------------
 
+elasticsearch:
+    config:
+        path.home: /usr/share/elasticsearch
+        path.data: /var/lib/elasticsearch
+        path.work: /tmp/elasticsearch
+        path.logs: /var/log/elasticsearch
+        pidfile: /var/run/elasticsearch/elasticsearch.pid
+
 freetds:
     config:
 #        sampledomain.tld:
