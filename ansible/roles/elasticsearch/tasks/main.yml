@@ -59,3 +59,11 @@
     dest=/etc/elasticsearch/elasticsearch.yml
   notify:
       - restart elasticsearch
+
+- name: install mobz/elasticsearch-head
+  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin -install mobz/elasticsearch-head"
+  when: elasticsearch.plugins.head
+
+- name: install elasticsearch/marvel
+  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin -install elasticsearch/marvel/latest"
+  when: elasticsearch.plugins.marvel
