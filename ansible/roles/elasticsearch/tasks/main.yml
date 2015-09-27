@@ -59,3 +59,13 @@
     dest=/etc/elasticsearch/elasticsearch.yml
   notify:
       - restart elasticsearch
+
+- name: get installed Elasticsearch plugins list
+  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin -l"
+  changed_when: false
+  register: es_installed_plugins
+
+- name: install Elasticsearch plugins
+  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin -install {{item.path}}"
+  with_items: "{{elasticsearch.plugins}}"
+  when: "'- {{item.name}}' not in es_installed_plugins.stdout"
