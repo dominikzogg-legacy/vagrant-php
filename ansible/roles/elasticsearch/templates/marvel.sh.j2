@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -d "{{ elasticsearch.config['path.home'] }}/plugins/marvel" ]; then
+    {{ elasticsearch.config['path.home'] }}/bin/plugin --remove elasticsearch/marvel/latest
+fi
+
+{{ elasticsearch.config['path.home'] }}/bin/plugin --install elasticsearch/marvel/latest

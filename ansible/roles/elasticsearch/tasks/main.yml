@@ -60,10 +60,22 @@
   notify:
       - restart elasticsearch
 
-- name: install mobz/elasticsearch-head
-  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin -install mobz/elasticsearch-head"
+- name: copy head install script
+  template:
+    src=head.sh.j2
+    dest=~/head.sh
   when: elasticsearch.plugins.head
 
-- name: install elasticsearch/marvel
-  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin -install elasticsearch/marvel/latest"
+- name: head install
+  script: ~/head.sh
+  when: elasticsearch.plugins.head
+
+- name: copy marvel install script
+  template:
+    src=marvel.sh.j2
+    dest=~/marvel.sh
+  when: elasticsearch.plugins.marvel
+
+- name: marvel install
+  script: ~/marvel.sh
   when: elasticsearch.plugins.marvel
