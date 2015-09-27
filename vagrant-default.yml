@@ -33,8 +33,11 @@ elasticsearch:
         pidfile: /var/run/elasticsearch/elasticsearch.pid
         http.port: 9200
     plugins:
-        head: false
-        marvel: true
+        - name: head
+          path: mobz/elasticsearch-head
+        - name: marvel
+          path: elasticsearch/marvel/latest
+
 
 freetds:
     config:
