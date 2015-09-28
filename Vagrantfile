@@ -38,7 +38,7 @@ else
 
         # Vagrant box
         # --------------------------------------------------------------------------
-        config.vm.box = 'boxcutter/debian80'
+        config.vm.box = 'boxcutter/debian82'
 
         # General settings
         # --------------------------------------------------------------------------
