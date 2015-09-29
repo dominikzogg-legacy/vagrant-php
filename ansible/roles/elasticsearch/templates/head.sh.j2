@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ -d "{{ elasticsearch.config['path.home'] }}/plugins/head" ]; then
-    {{ elasticsearch.config['path.home'] }}/bin/plugin --remove mobz/elasticsearch-head
-fi
-
-{{ elasticsearch.config['path.home'] }}/bin/plugin --install mobz/elasticsearch-head

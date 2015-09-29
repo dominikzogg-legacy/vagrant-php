@@ -60,22 +60,10 @@
   notify:
       - restart elasticsearch
 
-- name: copy head install script
-  template:
-    src=head.sh.j2
-    dest=~/head.sh
-  when: elasticsearch.plugins.head
+- name: uninstall all modules (there is no update support)
+  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin --remove {{ item }}"
+  with_items: elasticsearch.plugins
 
-- name: head install
-  script: ~/head.sh
-  when: elasticsearch.plugins.head
-
-- name: copy marvel install script
-  template:
-    src=marvel.sh.j2
-    dest=~/marvel.sh
-  when: elasticsearch.plugins.marvel
-
-- name: marvel install
-  script: ~/marvel.sh
-  when: elasticsearch.plugins.marvel
+- name: install all modules
+  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin --install {{ item }}"
+  with_items: elasticsearch.plugins
