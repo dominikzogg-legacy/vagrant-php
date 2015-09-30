@@ -9,26 +9,26 @@ Add a function after the use statements
 ```{.php}
 function checkAllowedIp($remoteAddress)
 {
-    if(in_array($remoteAddress, array('127.0.0.1', 'fe80::1', '::1'))) {
+    if (in_array($remoteAddress, array('127.0.0.1', 'fe80::1', '::1'))) {
         return true;
     }
+
     $matches = array();
-    // http://en.wikipedia.org/wiki/Private_network
-    if(preg_match('/([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/', $remoteAddress, $matches) === 1) {
-        for($i=1;$i<5;$i++) {
-            $matches[$i] = (int) $matches[$i];
+    if (preg_match('/([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/', $remoteAddress, $matches) === 1) {
+        for ($i = 1; $i < 5; $i++) {
+            $matches[$i] = (int)$matches[$i];
         }
         // localhost
-        if($matches[1] === 127) {
+        if ($matches[1] === 127) {
             return true;
         }
-        if($matches[1] === 10) {
+        if ($matches[1] === 10) {
             return true;
         }
-        if($matches[1] === 172 && $matches[2] >= 16 && $matches[2] <= 31) {
+        if ($matches[1] === 172 && $matches[2] >= 16 && $matches[2] <= 31) {
             return true;
         }
-        if($matches[1] === 192 && $matches[2] === 168) {
+        if ($matches[1] === 192 && $matches[2] === 168) {
             return true;
         }
     }
@@ -84,9 +84,9 @@ public function getLogDir()
  */
 protected function getRuntimeDir()
 {
-    if(null === $this->runtimeDir) {
+    if (null === $this->runtimeDir) {
         $runtimeDirConfigFile = __DIR__ . '/runtime_dir_config.php';
-        if(is_file($runtimeDirConfigFile)) {
+        if (is_file($runtimeDirConfigFile)) {
             $this->runtimeDir = require $runtimeDirConfigFile;
         } else {
             $this->runtimeDir = $this->rootDir;
@@ -95,6 +95,7 @@ protected function getRuntimeDir()
 
     return $this->runtimeDir;
 }
+
 ```
 
 ### Change the cache and log dir path
@@ -106,11 +107,11 @@ protected function getRuntimeDir()
 
 $relativeUrl = DIRECTORY_SEPARATOR . 'symfony' . DIRECTORY_SEPARATOR . trim(str_replace(DIRECTORY_SEPARATOR, '-', dirname(__DIR__)), '-');
 
-if(function_exists('posix_getuid') && function_exists('posix_getpwuid')) {
+if (function_exists('posix_getuid') && function_exists('posix_getpwuid')) {
     $userID = posix_getuid();
     $userInfo = posix_getpwuid($userID);
 
-    if(is_array($userInfo) && isset($userInfo['dir']) && $userInfo['dir']) {
+    if (is_array($userInfo) && isset($userInfo['dir']) && $userInfo['dir']) {
         return $userInfo['dir'] . $relativeUrl;
     }
 }
