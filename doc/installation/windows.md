@@ -41,7 +41,7 @@ vagrant plugin install vagrant-winnfsd
 
 ## git / ssh client
 
-[Download][1] and install the newest version of git. You will get an ssh client as well, which can be used by vagrant.
+[Download][5] and install the newest version of git. You will get an ssh client as well, which can be used by vagrant.
 
 [1]: https://www.vagrantup.com/downloads.html
 [2]: https://www.virtualbox.org/wiki/Downloads
