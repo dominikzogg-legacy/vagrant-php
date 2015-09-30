@@ -59,3 +59,11 @@
     dest=/etc/elasticsearch/elasticsearch.yml
   notify:
       - restart elasticsearch
+
+- name: uninstall all modules (there is no update support)
+  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin --remove {{ item }}"
+  with_items: elasticsearch.plugins
+
+- name: install all modules
+  command: "{{ elasticsearch.config['path.home'] }}/bin/plugin --install {{ item }}"
+  with_items: elasticsearch.plugins
