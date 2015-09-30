@@ -69,8 +69,10 @@ zypper install nfs-kernel-server
 
 ## Passwordless Usage
 
-Add all users, using vagrant to the group `vagrant`.
-Create a file at `/etc/sudoers.d/vagrant`.
+
+ * Create a group `vagrant`.
+ * Add all users, using vagrant to the group `vagrant`.
+ * Create a file at `/etc/sudoers.d/vagrant`.
 
 ```
 # nfs

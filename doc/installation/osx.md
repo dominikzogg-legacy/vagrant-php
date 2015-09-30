@@ -36,7 +36,6 @@ You need to get a [license][4] and follow the instructions within the mail from 
 
 ## Passwordless Usage
 
-Add all users, using vagrant to the group `vagrant`.
 Create a file at `/etc/sudoers.d/vagrant`.
 
 ```
