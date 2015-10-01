@@ -36,9 +36,9 @@ You need to get a [license][4] and follow the instructions within the mail from 
 
 ## Passwordless Usage
 
-Create a directory at `/etc/sudoers.d`.
-Create a file at `/etc/sudoers.d/vagrant`.
-Add a new line `#includedir /etc/sudoers.d` at the end to `/etc/sudoers` 
+ * Create a directory at `/etc/sudoers.d`.
+ * Create a file at `/etc/sudoers.d/vagrant`.
+ * Add a new line `#includedir /etc/sudoers.d` at the end to `/etc/sudoers` 
 
 ```
 # nfs
