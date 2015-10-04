@@ -79,7 +79,7 @@ for advanced configuration see the [default configuration][4]
  * default
  * drupal
  * lavarel
- * [symfony][5]
+ * symfony
  * wordpress
 
 #### supported sharetype
@@ -133,7 +133,6 @@ vagrant ssh
 [2]: doc/installation/osx.md
 [3]: doc/installation/windows.md
 [4]: vagrant-default.yml
-[5]: doc/application/symfony.md
 [6]: doc/troubleshooting/allplatforms.md
 [7]: doc/troubleshooting/linux.md
 [8]: doc/troubleshooting/osx.md
