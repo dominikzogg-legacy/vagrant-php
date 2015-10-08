@@ -12,7 +12,7 @@ You need at least one of this providers to use vagrant-php.
 
 ### Virtualbox
 
-[Download][2] and install the newest version of virtualbox.
+[Download][2] and install the newest version of virtualbox and virtualBox extension pack.
 
 #### Automatic suspend on host reboot/shutdown
 
