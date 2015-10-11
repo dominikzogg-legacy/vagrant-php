@@ -66,9 +66,9 @@ simple unix commands, which allows you to use the [create-symfony-project][6] fo
 
 ### Virtualbox
 
-While `winnfsd` got a much better read performance than `vboxfs` it suggest to prefere it for all read operation
-(most cases). But for `composer install` or other write intensive operations its faster to change the `sharetype`
-to `native` for using `vboxfs` and reboot the virtual machine by calling `vagrant halt && vagrant up` within the bash.
+While `winnfsd` got a much better read performance than `vboxfs` i suggest to prefere it for all read operations
+But for `composer install` or other write intensive operations its faster to change the `sharetype` to `native`
+and reboot the virtual machine by calling `vagrant halt && vagrant up` within the bash.
 
 
 [1]: https://www.vagrantup.com/downloads.html
