@@ -43,6 +43,22 @@ vagrant plugin install vagrant-winnfsd
 
 [Download][5] and install the newest version of git. You will get an ssh client as well, which can be used by vagrant.
 
+### components
+
+![GitHub Logo](doc/installation/windows/components.png)
+
+### git integration
+
+![GitHub Logo](doc/installation/windows/git-integration.png)
+
+### path
+
+![GitHub Logo](doc/installation/windows/path.png)
+
+### terminal integration
+
+![GitHub Logo](doc/installation/windows/terminal-integration.png)
+
 [1]: https://www.vagrantup.com/downloads.html
 [2]: https://www.virtualbox.org/wiki/Downloads
 [3]: http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
