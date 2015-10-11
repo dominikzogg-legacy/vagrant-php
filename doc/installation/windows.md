@@ -39,7 +39,7 @@ or cause the kernel module of the provider does problem, you need to install the
 vagrant plugin install vagrant-winnfsd
 ```
 
-## git / ssh client
+## Git / SSH client
 
 [Download][5] and install the newest version of git. You will get an ssh client as well, which can be used by vagrant.
 
@@ -59,9 +59,22 @@ vagrant plugin install vagrant-winnfsd
 
 ![use mintty](windows/terminal-integration.png)
 
+## Usage
+
+Press `Windows` Key, enter `git bash`, press `ctrl + shif + enter`. You get a simple a bash shell which supports most
+simple unix commands, which allows you to use the [create-symfony-project][6] for example.
+
+### Virtualbox
+
+While `winnfsd` got a much better read performance than `vboxfs` it suggest to prefere it for all read operation
+(most cases). But for `composer install` or other write intensive operations its faster to change the `sharetype`
+to `native` for using `vboxfs` and reboot the virtual machine by calling `vagrant halt && vagrant up` within the bash.
+
+
 [1]: https://www.vagrantup.com/downloads.html
 [2]: https://www.virtualbox.org/wiki/Downloads
 [3]: http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
 [3]: https://www.vmware.com/products/workstation
 [4]: https://www.vagrantup.com/vmware
 [5]: https://git-for-windows.github.io
+[6]: https://github.com/vagrant-php/create-symfony-project
