@@ -45,19 +45,19 @@ vagrant plugin install vagrant-winnfsd
 
 ### components
 
-![GitHub Logo](doc/installation/windows/components.png)
+![use default components](windows/components.png)
 
 ### git integration
 
-![GitHub Logo](doc/installation/windows/git-integration.png)
+![checkout windows style, commit unix style](windows/git-integration.png)
 
 ### path
 
-![GitHub Logo](doc/installation/windows/path.png)
+![use git from git bash only](windows/path.png)
 
 ### terminal integration
 
-![GitHub Logo](doc/installation/windows/terminal-integration.png)
+![use mintty](windows/terminal-integration.png)
 
 [1]: https://www.vagrantup.com/downloads.html
 [2]: https://www.virtualbox.org/wiki/Downloads
