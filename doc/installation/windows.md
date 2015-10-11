@@ -46,6 +46,6 @@ vagrant plugin install vagrant-winnfsd
 [1]: https://www.vagrantup.com/downloads.html
 [2]: https://www.virtualbox.org/wiki/Downloads
 [3]: http://blog.ionelmc.ro/2014/01/04/virtualbox-vm-auto-shutdown
-[3]: http://www.vmware.com/products/workstation
-[4]: http://www.vagrantup.com/vmware
-[5]: https://msysgit.github.io
+[3]: https://www.vmware.com/products/workstation
+[4]: https://www.vagrantup.com/vmware
+[5]: https://git-for-windows.github.io
