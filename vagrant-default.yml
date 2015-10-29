@@ -1,6 +1,6 @@
 ---
 hostname: projectname.dev
-application: default # contao, default, drupal, lavarel, symfony, wordpress
+application: default # bolt, contao, default, drupal, lavarel, symfony, wordpress
 sharetype: nfs # native, nfs, nfs-bind
 phpversion: 5.6 # 5.6, 7.0, hhvm
 memory: 1024

@@ -75,6 +75,7 @@ for advanced configuration see the [default configuration][4]
 
 #### supported application
 
+ * bolt
  * contao
  * default
  * drupal
