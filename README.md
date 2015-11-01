@@ -1,5 +1,7 @@
 # dominikzogg/vagrant-php
 
+*DEPRECATED*: please use [vagrant-php/debian](https://github.com/vagrant-php/debian).
+
 ## Features
 
  * debian 8
