@@ -1,5 +1,7 @@
 # dominikzogg/vagrant-php
 
+*DEPRECATED*: please use [agrant-php/ubuntu][https://github.com/vagrant-php/ubuntu].
+
 ## Features
 
  * ubuntu 14.04
