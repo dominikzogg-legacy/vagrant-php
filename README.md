@@ -1,6 +1,6 @@
-# dominikzogg/vagrant-php
+# *DEPRECATED*: please use [vagrant-php/ubuntu](https://github.com/vagrant-php/ubuntu).
 
-*DEPRECATED*: please use [vagrant-php/ubuntu](https://github.com/vagrant-php/ubuntu).
+# dominikzogg/vagrant-php
 
 ## Features
 
